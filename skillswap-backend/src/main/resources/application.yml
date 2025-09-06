@@ -77,6 +77,13 @@ spring:
           auth: true
           starttls:
             enable: true
+
+# JWT Configuration
+app:
+  jwt:
+    secret: ${JWT_SECRET:skillswap-secret-key-for-development-change-in-production-please}
+    expiration: 86400000  # 24 hours in milliseconds
+    refresh-expiration: 604800000  # 7 days in milliseconds
   
   # File Upload Configuration
   servlet:

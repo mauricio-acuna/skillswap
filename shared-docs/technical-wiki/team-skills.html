@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Skills & Knowledge Management - SkillSwap</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c5282;
+            border-bottom: 3px solid #4299e1;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2d3748;
+            margin-top: 30px;
+            border-left: 4px solid #4299e1;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #4a5568;
+            margin-top: 25px;
+        }
+        .team-role {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #4299e1;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .skill-category {
+            background: #f0fff4;
+            border: 1px solid #9ae6b4;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .skill-level {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin: 2px;
+        }
+        .level-beginner { background: #fed7d7; color: #742a2a; }
+        .level-intermediate { background: #fef5e7; color: #7c2d12; }
+        .level-advanced { background: #dcfce7; color: #14532d; }
+        .level-expert { background: #dbeafe; color: #1e3a8a; }
+        .learning-path {
+            background: #e6fffa;
+            border: 1px solid #81e6d9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .knowledge-area {
+            background: #fef5e7;
+            border: 1px solid #f6e05e;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .certification-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .code-block {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background: #edf2f7;
+            font-weight: bold;
+        }
+        .timeline {
+            border-left: 3px solid #4299e1;
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+        .timeline-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        .timeline-date {
+            font-weight: bold;
+            color: #2c5282;
+        }
+        .mentorship-card {
+            background: #f0f9ff;
+            border: 1px solid #7dd3fc;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .warning {
+            background: #fed7d7;
+            border: 1px solid #feb2b2;
+            color: #742a2a;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>👥 Team Skills & Knowledge Management - SkillSwap</h1>
+        
+        <p><strong>Guía de Competencias del Equipo</strong> para construir y mantener un equipo técnico de clase mundial</p>
+        
+        <h2>🎯 Perfiles del Equipo por Fase</h2>
+        
+        <h3>📊 MVP Team (Mes 1-6)</h3>
+        
+        <div class="team-role">
+            <h4>🔧 Full-Stack Developer (2 personas)</h4>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h5>Backend Skills</h5>
+                    <div class="skill-level level-advanced">Java/Spring Boot</div>
+                    <div class="skill-level level-intermediate">PostgreSQL</div>
+                    <div class="skill-level level-intermediate">REST APIs</div>
+                    <div class="skill-level level-beginner">JWT/Security</div>
+                    <div class="skill-level level-intermediate">Docker</div>
+                </div>
+                <div class="skill-category">
+                    <h5>Frontend Skills</h5>
+                    <div class="skill-level level-advanced">React Native</div>
+                    <div class="skill-level level-advanced">TypeScript</div>
+                    <div class="skill-level level-intermediate">Redux</div>
+                    <div class="skill-level level-intermediate">Mobile UI/UX</div>
+                    <div class="skill-level level-beginner">WebRTC</div>
+                </div>
+                <div class="skill-category">
+                    <h5>DevOps Skills</h5>
+                    <div class="skill-level level-intermediate">AWS/Cloud</div>
+                    <div class="skill-level level-beginner">CI/CD</div>
+                    <div class="skill-level level-beginner">Monitoring</div>
+                </div>
+            </div>
+            
+            <div class="learning-path">
+                <strong>📚 Learning Path (3 meses):</strong>
+                <ul>
+                    <li><strong>Mes 1:</strong> Spring Security, JWT implementation, PostgreSQL optimization</li>
+                    <li><strong>Mes 2:</strong> React Native performance, WebRTC integration, Redux patterns</li>
+                    <li><strong>Mes 3:</strong> AWS deployment, CI/CD setup, monitoring implementation</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="team-role">
+            <h4>🎨 Product Designer/UX (1 persona)</h4>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h5>Design Skills</h5>
+                    <div class="skill-level level-expert">Figma/Sketch</div>
+                    <div class="skill-level level-advanced">Mobile UX</div>
+                    <div class="skill-level level-intermediate">User Research</div>
+                    <div class="skill-level level-advanced">Prototyping</div>
+                    <div class="skill-level level-intermediate">Design Systems</div>
+                </div>
+                <div class="skill-category">
+                    <h5>Research Skills</h5>
+                    <div class="skill-level level-intermediate">User Testing</div>
+                    <div class="skill-level level-beginner">Analytics</div>
+                    <div class="skill-level level-intermediate">A/B Testing</div>
+                </div>
+            </div>
+        </div>
+
+        <h3>🚀 Growth Team (Mes 7-18)</h3>
+
+        <div class="team-role">
+            <h4>⚙️ Backend Specialist (2 personas)</h4>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h5>Advanced Backend</h5>
+                    <div class="skill-level level-expert">Microservices</div>
+                    <div class="skill-level level-advanced">Database Design</div>
+                    <div class="skill-level level-intermediate">Caching (Redis)</div>
+                    <div class="skill-level level-intermediate">Message Queues</div>
+                    <div class="skill-level level-beginner">Machine Learning</div>
+                </div>
+                <div class="skill-category">
+                    <h5>Infrastructure</h5>
+                    <div class="skill-level level-advanced">Kubernetes</div>
+                    <div class="skill-level level-intermediate">AWS Advanced</div>
+                    <div class="skill-level level-intermediate">Performance Tuning</div>
+                    <div class="skill-level level-beginner">Security Hardening</div>
+                </div>
+            </div>
+            
+            <div class="code-block">
+# Skill Development Plan - Backend Specialist
+skills-development/
+├── microservices/
+│   ├── service-decomposition.md
+│   ├── event-driven-architecture.md
+│   └── distributed-systems-patterns.md
+├── performance/
+│   ├── database-optimization.md
+│   ├── caching-strategies.md
+│   └── load-testing.md
+├── ml-integration/
+│   ├── recommendation-systems.md
+│   ├── matching-algorithms.md
+│   └── ml-ops-basics.md
+└── security/
+    ├── oauth2-advanced.md
+    ├── api-security.md
+    └── gdpr-compliance.md
+            </div>
+        </div>
+
+        <div class="team-role">
+            <h4>📱 Mobile Specialist (2 personas)</h4>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h5>Advanced Mobile</h5>
+                    <div class="skill-level level-expert">React Native Performance</div>
+                    <div class="skill-level level-advanced">Native Modules</div>
+                    <div class="skill-level level-intermediate">Real-time Features</div>
+                    <div class="skill-level level-advanced">Offline-first Apps</div>
+                    <div class="skill-level level-beginner">AR/VR Integration</div>
+                </div>
+                <div class="skill-category">
+                    <h5>Platform Specific</h5>
+                    <div class="skill-level level-intermediate">iOS Native (Swift)</div>
+                    <div class="skill-level level-intermediate">Android Native (Kotlin)</div>
+                    <div class="skill-level level-advanced">App Store Optimization</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-role">
+            <h4>📊 Data Scientist (1 persona)</h4>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h5>ML/AI Skills</h5>
+                    <div class="skill-level level-advanced">Python/R</div>
+                    <div class="skill-level level-intermediate">TensorFlow/PyTorch</div>
+                    <div class="skill-level level-intermediate">Recommendation Systems</div>
+                    <div class="skill-level level-beginner">NLP</div>
+                    <div class="skill-level level-beginner">Computer Vision</div>
+                </div>
+                <div class="skill-category">
+                    <h5>Data Engineering</h5>
+                    <div class="skill-level level-intermediate">SQL Advanced</div>
+                    <div class="skill-level level-beginner">Apache Spark</div>
+                    <div class="skill-level level-intermediate">Data Pipelines</div>
+                </div>
+            </div>
+        </div>
+
+        <h3>⚡ Scale Team (Mes 19+)</h3>
+
+        <div class="team-role">
+            <h4>🏗️ Platform Architect (1 persona)</h4>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h5>Architecture Skills</h5>
+                    <div class="skill-level level-expert">Distributed Systems</div>
+                    <div class="skill-level level-expert">System Design</div>
+                    <div class="skill-level level-advanced">Cloud Architecture</div>
+                    <div class="skill-level level-intermediate">Event Sourcing</div>
+                    <div class="skill-level level-intermediate">CQRS</div>
+                </div>
+                <div class="skill-category">
+                    <h5>Leadership Skills</h5>
+                    <div class="skill-level level-advanced">Technical Leadership</div>
+                    <div class="skill-level level-intermediate">Mentoring</div>
+                    <div class="skill-level level-advanced">Architecture Reviews</div>
+                </div>
+            </div>
+        </div>
+
+        <h2>📚 Knowledge Management System</h2>
+
+        <h3>🧠 Documentation Strategy</h3>
+
+        <div class="knowledge-area">
+            <strong>📖 Knowledge Base Structure</strong>
+            
+            <div class="code-block">
+knowledge-base/
+├── architecture/
+│   ├── system-overview.md
+│   ├── data-flow-diagrams.md
+│   ├── security-architecture.md
+│   └── scalability-patterns.md
+├── development/
+│   ├── coding-standards.md
+│   ├── git-workflow.md
+│   ├── testing-strategy.md
+│   └── deployment-procedures.md
+├── domain-knowledge/
+│   ├── skillswap-business-logic.md
+│   ├── user-journey-maps.md
+│   ├── matching-algorithm-docs.md
+│   └── european-market-insights.md
+├── troubleshooting/
+│   ├── common-issues.md
+│   ├── performance-debugging.md
+│   ├── database-maintenance.md
+│   └── security-incidents.md
+└── onboarding/
+    ├── new-developer-guide.md
+    ├── environment-setup.md
+    ├── first-week-tasks.md
+    └── team-rituals.md
+            </div>
+
+            <h4>Knowledge Sharing Rituals:</h4>
+            <ul>
+                <li><strong>Tech Talks (Bi-weekly):</strong> 30min sessions sobre nuevos learnings</li>
+                <li><strong>Code Reviews:</strong> Mandatory para knowledge transfer</li>
+                <li><strong>Architecture Decision Records (ADRs):</strong> Documentar decisiones importantes</li>
+                <li><strong>Post-mortems:</strong> Learning from incidents sin blame</li>
+                <li><strong>Lunch & Learn:</strong> Informal knowledge sharing sessions</li>
+            </ul>
+        </div>
+
+        <h3>🎓 Continuous Learning Program</h3>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">Monthly: Individual Development Plans</div>
+                <ul>
+                    <li>1-on-1 skill assessment con manager</li>
+                    <li>Identificación de gaps de conocimiento</li>
+                    <li>Learning goals para próximo trimestre</li>
+                    <li>Budget asignado para cursos/certificaciones</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">Quarterly: Team Skill Mapping</div>
+                <ul>
+                    <li>Assessment de competencias del equipo</li>
+                    <li>Identificación de dependencies críticas</li>
+                    <li>Plan de cross-training</li>
+                    <li>Hiring strategy basada en gaps</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">Annually: Technology Radar Update</div>
+                <ul>
+                    <li>Evaluación de nuevas tecnologías</li>
+                    <li>Deprecated technology migration plan</li>
+                    <li>Innovation time allocation (20% rule)</li>
+                    <li>Conference attendance planning</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>🏆 Certificaciones & Especialización</h2>
+
+        <h3>📜 Certification Roadmap por Rol</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Rol</th>
+                    <th>Certificaciones Básicas</th>
+                    <th>Certificaciones Avanzadas</th>
+                    <th>Timeframe</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Backend Developer</td>
+                    <td>AWS Solutions Architect Associate, Spring Professional</td>
+                    <td>AWS Solutions Architect Professional, Kubernetes CKA</td>
+                    <td>6-12 meses</td>
+                </tr>
+                <tr>
+                    <td>Frontend Developer</td>
+                    <td>React Native Certified, TypeScript Certified</td>
+                    <td>Google Mobile Web Specialist, Progressive Web Apps</td>
+                    <td>6-9 meses</td>
+                </tr>
+                <tr>
+                    <td>Data Scientist</td>
+                    <td>AWS ML Specialty, TensorFlow Developer</td>
+                    <td>Google ML Engineer, Azure Data Scientist</td>
+                    <td>9-12 meses</td>
+                </tr>
+                <tr>
+                    <td>DevOps Engineer</td>
+                    <td>AWS DevOps Professional, Docker Certified</td>
+                    <td>Kubernetes CKS, HashiCorp Terraform</td>
+                    <td>6-12 meses</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="certification-card">
+            <h4>💰 Certification Investment Program</h4>
+            <ul>
+                <li><strong>Budget:</strong> €2,000/year por developer</li>
+                <li><strong>Time allocation:</strong> 4 horas/semana para study time</li>
+                <li><strong>Incentivos:</strong> €500 bonus por certification achieved</li>
+                <li><strong>Conference budget:</strong> €3,000/year por senior developer</li>
+            </ul>
+        </div>
+
+        <h2>🤝 Mentorship & Knowledge Transfer</h2>
+
+        <h3>👨‍🏫 Internal Mentorship Program</h3>
+
+        <div class="mentorship-card">
+            <h4>🎯 Mentorship Pairings</h4>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mentor Level</th>
+                        <th>Mentee Level</th>
+                        <th>Focus Areas</th>
+                        <th>Duration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Senior Backend</td>
+                        <td>Junior Backend</td>
+                        <td>System design, performance optimization</td>
+                        <td>6 meses</td>
+                    </tr>
+                    <tr>
+                        <td>Senior Frontend</td>
+                        <td>Junior Frontend</td>
+                        <td>React Native patterns, mobile UX</td>
+                        <td>6 meses</td>
+                    </tr>
+                    <tr>
+                        <td>Architect</td>
+                        <td>Mid-level Dev</td>
+                        <td>Architecture decisions, leadership</td>
+                        <td>12 meses</td>
+                    </tr>
+                    <tr>
+                        <td>Data Scientist</td>
+                        <td>Backend Dev</td>
+                        <td>ML integration, data modeling</td>
+                        <td>3 meses</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>📝 Knowledge Documentation Requirements</h3>
+
+        <div class="learning-path">
+            <strong>📚 Documentation Standards</strong>
+            
+            <h4>Code Documentation:</h4>
+            <div class="code-block">
+/**
+ * Calculates skill compatibility score between two users
+ * using machine learning model and business rules
+ * 
+ * @param requester User requesting the match
+ * @param target User being matched against
+ * @param skill Skill being evaluated for compatibility
+ * @return CompatibilityScore with confidence level and reasoning
+ * 
+ * @complexity O(n) where n is number of shared skills
+ * @performance Typically &lt; 50ms for standard user profiles
+ * @caching Results cached for 1 hour per user pair
+ * 
+ * @example
+ * CompatibilityScore score = calculateCompatibility(
+ *     userA, userB, javaSkill
+ * );
+ * if (score.getConfidence() > 0.8) {
+ *     // High confidence match
+ * }
+ */
+public CompatibilityScore calculateCompatibility(
+    User requester, User target, Skill skill
+) {
+    // Implementation details...
+}
+            </div>
+
+            <h4>Architecture Decision Records (ADRs):</h4>
+            <div class="code-block">
+# ADR-001: Monolith to Microservices Migration Strategy
+
+## Status
+Proposed
+
+## Context
+Current monolithic architecture reaching scalability limits with 100K+ users.
+Response times degrading, deployment risks increasing.
+
+## Decision
+Migrate to microservices using strangler fig pattern over 6 months.
+
+## Consequences
+### Positive
+- Independent scaling per service
+- Technology diversity possible
+- Team autonomy increased
+
+### Negative
+- Distributed system complexity
+- Network latency overhead
+- Eventual consistency challenges
+
+## Implementation Plan
+1. Extract user service (Month 1-2)
+2. Extract skill service (Month 3-4)  
+3. Extract matching service (Month 5-6)
+            </div>
+        </div>
+
+        <h2>🔍 Skill Gap Analysis</h2>
+
+        <h3>📊 Current vs Required Skills Matrix</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Technology</th>
+                    <th>Current Team Level</th>
+                    <th>Required Level</th>
+                    <th>Gap</th>
+                    <th>Action Plan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Kubernetes</td>
+                    <td>Beginner</td>
+                    <td>Advanced</td>
+                    <td>Large</td>
+                    <td>CKA certification + training</td>
+                </tr>
+                <tr>
+                    <td>Machine Learning</td>
+                    <td>None</td>
+                    <td>Intermediate</td>
+                    <td>Large</td>
+                    <td>Hire ML specialist + team training</td>
+                </tr>
+                <tr>
+                    <td>React Native Performance</td>
+                    <td>Intermediate</td>
+                    <td>Advanced</td>
+                    <td>Medium</td>
+                    <td>Workshop + performance project</td>
+                </tr>
+                <tr>
+                    <td>WebRTC</td>
+                    <td>Beginner</td>
+                    <td>Intermediate</td>
+                    <td>Medium</td>
+                    <td>Dedicated learning sprint</td>
+                </tr>
+                <tr>
+                    <td>Security</td>
+                    <td>Intermediate</td>
+                    <td>Advanced</td>
+                    <td>Small</td>
+                    <td>Security review sessions</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>🚨 Critical Knowledge Dependencies</h3>
+
+        <div class="warning">
+            <strong>⚠️ Single Points of Failure (Knowledge)</strong>
+            
+            <h4>High Risk Areas:</h4>
+            <ul>
+                <li><strong>Matching Algorithm:</strong> Solo 1 persona entiende completamente</li>
+                <li><strong>Payment Integration:</strong> Conocimiento concentrado en 1 developer</li>
+                <li><strong>AWS Infrastructure:</strong> Solo DevOps lead maneja configuración completa</li>
+                <li><strong>React Native Performance:</strong> Optimization techniques conocidas por 1 persona</li>
+            </ul>
+
+            <h4>Mitigation Plan:</h4>
+            <ul>
+                <li><strong>Paired Programming:</strong> Mandatory para critical components</li>
+                <li><strong>Documentation Sprint:</strong> 2 semanas focused en knowledge capture</li>
+                <li><strong>Cross-training Schedule:</strong> 1 hour/week knowledge transfer sessions</li>
+                <li><strong>Code Review Requirements:</strong> 2+ reviewers para critical paths</li>
+            </ul>
+        </div>
+
+        <h2>🎯 Hiring Strategy</h2>
+
+        <h3>📋 Recruitment Priorities</h3>
+
+        <div class="learning-path">
+            <strong>🔥 Immediate Needs (Next 3 meses)</strong>
+            
+            <h4>Senior React Native Developer:</h4>
+            <ul>
+                <li><strong>Must-have:</strong> 4+ años React Native, performance optimization</li>
+                <li><strong>Nice-to-have:</strong> WebRTC, offline-first apps, native modules</li>
+                <li><strong>Compensation:</strong> €65-80K + equity</li>
+                <li><strong>Location:</strong> Remote EU o Madrid/Barcelona</li>
+            </ul>
+
+            <h4>DevOps/SRE Engineer:</h4>
+            <ul>
+                <li><strong>Must-have:</strong> Kubernetes, AWS, monitoring, CI/CD</li>
+                <li><strong>Nice-to-have:</strong> Security, compliance, chaos engineering</li>
+                <li><strong>Compensation:</strong> €70-85K + equity</li>
+                <li><strong>Location:</strong> Remote EU preferred</li>
+            </ul>
+        </div>
+
+        <div class="learning-path">
+            <strong>📅 Medium-term Needs (3-6 meses)</strong>
+            
+            <h4>Machine Learning Engineer:</h4>
+            <ul>
+                <li><strong>Must-have:</strong> Python, TensorFlow/PyTorch, recommendation systems</li>
+                <li><strong>Nice-to-have:</strong> Real-time ML, MLOps, NLP</li>
+                <li><strong>Compensation:</strong> €75-90K + equity</li>
+            </ul>
+
+            <h4>QA Automation Engineer:</h4>
+            <ul>
+                <li><strong>Must-have:</strong> Test automation, mobile testing, CI/CD</li>
+                <li><strong>Nice-to-have:</strong> Performance testing, security testing</li>
+                <li><strong>Compensation:</strong> €50-65K + equity</li>
+            </ul>
+        </div>
+
+        <h3>💼 Interview Process</h3>
+
+        <div class="code-block">
+# Interview Process - Technical Roles
+interview-process/
+├── screening/
+│   ├── cv-review.md           # 30min recruiter call
+│   └── technical-screen.md    # 45min basic technical questions
+├── technical-assessment/
+│   ├── coding-challenge.md    # Take-home project (4-6 hours)
+│   ├── system-design.md       # 60min system design interview
+│   └── pair-programming.md    # 45min collaborative coding
+├── cultural-fit/
+│   ├── team-interview.md      # 45min with future teammates
+│   ├── product-interview.md   # 30min with product manager
+│   └── leadership-interview.md # 30min with tech lead/architect
+└── final/
+    ├── reference-check.md     # Professional references
+    └── offer-negotiation.md   # Compensation discussion
+        </div>
+
+        <h2>📈 Performance & Growth Tracking</h2>
+
+        <h3>🎯 Individual Performance Metrics</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Junior Dev</th>
+                    <th>Mid-level Dev</th>
+                    <th>Senior Dev</th>
+                    <th>Tech Lead</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Code Quality (Defect Rate)</td>
+                    <td>&lt; 10%</td>
+                    <td>&lt; 5%</td>
+                    <td>&lt; 2%</td>
+                    <td>&lt; 1%</td>
+                </tr>
+                <tr>
+                    <td>Pull Request Size</td>
+                    <td>&lt; 500 lines</td>
+                    <td>&lt; 400 lines</td>
+                    <td>&lt; 300 lines</td>
+                    <td>&lt; 200 lines</td>
+                </tr>
+                <tr>
+                    <td>Code Review Turnaround</td>
+                    <td>&lt; 48h</td>
+                    <td>&lt; 24h</td>
+                    <td>&lt; 12h</td>
+                    <td>&lt; 8h</td>
+                </tr>
+                <tr>
+                    <td>Knowledge Sharing</td>
+                    <td>1 tech talk/quarter</td>
+                    <td>1 tech talk/month</td>
+                    <td>2 tech talks/month</td>
+                    <td>Mentor 2+ people</td>
+                </tr>
+                <tr>
+                    <td>Innovation Time</td>
+                    <td>10% (R&D projects)</td>
+                    <td>15% (R&D projects)</td>
+                    <td>20% (R&D projects)</td>
+                    <td>25% (Strategic planning)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>📊 Team Performance Dashboard</h3>
+
+        <div class="knowledge-area">
+            <strong>📈 Engineering Metrics Dashboard</strong>
+            
+            <div class="code-block">
+# Engineering Metrics Tracking
+metrics/
+├── velocity/
+│   ├── story-points-per-sprint.json
+│   ├── cycle-time-trends.json
+│   └── sprint-completion-rate.json
+├── quality/
+│   ├── defect-density.json
+│   ├── test-coverage.json
+│   └── code-review-metrics.json
+├── deployment/
+│   ├── deployment-frequency.json
+│   ├── lead-time-for-changes.json
+│   └── mean-time-to-recovery.json
+└── team-health/
+    ├── knowledge-distribution.json
+    ├── learning-velocity.json
+    └── retention-risk.json
+            </div>
+
+            <h4>Weekly Team Health Check:</h4>
+            <ul>
+                <li><strong>Velocity Trend:</strong> Story points completed vs planned</li>
+                <li><strong>Quality Gate:</strong> Test coverage, code review completion</li>
+                <li><strong>Knowledge Distribution:</strong> No single points of failure</li>
+                <li><strong>Learning Progress:</strong> Individual skill development tracking</li>
+                <li><strong>Team Satisfaction:</strong> Quarterly surveys, retention signals</li>
+            </ul>
+        </div>
+
+        <p><em>Última actualización: 6 de septiembre de 2025</em></p>
+        <p><em>Próxima revisión: Trimestral</em></p>
+    </div>
+</body>
+</html>
