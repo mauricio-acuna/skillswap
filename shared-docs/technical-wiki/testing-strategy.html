@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing & Quality Assurance Strategy - SkillSwap</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c5282;
+            border-bottom: 3px solid #4299e1;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2d3748;
+            margin-top: 30px;
+            border-left: 4px solid #4299e1;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #4a5568;
+            margin-top: 25px;
+        }
+        .test-strategy {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #4299e1;
+        }
+        .test-pyramid {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .testing-tool {
+            background: #f0fff4;
+            border: 1px solid #9ae6b4;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .quality-metric {
+            background: #e6fffa;
+            border: 1px solid #81e6d9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .warning {
+            background: #fed7d7;
+            border: 1px solid #feb2b2;
+            color: #742a2a;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .success {
+            background: #f0fff4;
+            border: 1px solid #9ae6b4;
+            color: #22543d;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .code-block {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background: #edf2f7;
+            font-weight: bold;
+        }
+        .timeline {
+            border-left: 3px solid #4299e1;
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+        .timeline-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        .timeline-date {
+            font-weight: bold;
+            color: #2c5282;
+        }
+        .coverage-metric {
+            background: #fef5e7;
+            border: 1px solid #f6e05e;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .automation-flow {
+            background: #f0f9ff;
+            border: 1px solid #7dd3fc;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .performance-benchmark {
+            background: #e6fffa;
+            border: 2px solid #38b2ac;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Testing & Quality Assurance Strategy - SkillSwap</h1>
+        
+        <p><strong>Comprehensive Testing Framework</strong> para garantizar calidad, rendimiento y confiabilidad del sistema completo</p>
+        
+        <h2>🎯 Testing Strategy Overview</h2>
+        
+        <div class="test-pyramid">
+            <h3>🏗️ Testing Pyramid Architecture</h3>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Test Level</th>
+                        <th>Coverage %</th>
+                        <th>Quantity</th>
+                        <th>Speed</th>
+                        <th>Cost</th>
+                        <th>Confidence</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>E2E Tests</strong></td>
+                        <td>5-10%</td>
+                        <td>~50 tests</td>
+                        <td>Slow (5-30 min)</td>
+                        <td>High</td>
+                        <td>Very High</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Integration Tests</strong></td>
+                        <td>15-25%</td>
+                        <td>~200 tests</td>
+                        <td>Medium (30sec-5min)</td>
+                        <td>Medium</td>
+                        <td>High</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Unit Tests</strong></td>
+                        <td>70-80%</td>
+                        <td>~800 tests</td>
+                        <td>Fast (&lt;1sec)</td>
+                        <td>Low</td>
+                        <td>Medium</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h4>🎯 Quality Targets:</h4>
+            <ul>
+                <li><strong>Overall Code Coverage:</strong> 85%+ líneas de código</li>
+                <li><strong>Branch Coverage:</strong> 80%+ ramas lógicas</li>
+                <li><strong>Critical Path Coverage:</strong> 100% flujos principales</li>
+                <li><strong>Regression Coverage:</strong> 95%+ funcionalidades existentes</li>
+            </ul>
+        </div>
+
+        <h2>🔬 Unit Testing Strategy</h2>
+        
+        <h3>⚛️ React Native / Frontend Testing</h3>
+        
+        <div class="testing-tool">
+            <h4>🛠️ Frontend Testing Stack</h4>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tool</th>
+                        <th>Purpose</th>
+                        <th>Configuration</th>
+                        <th>Coverage Target</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Jest</strong></td>
+                        <td>Test runner, mocking, assertions</td>
+                        <td>Default + custom config</td>
+                        <td>80% code coverage</td>
+                    </tr>
+                    <tr>
+                        <td><strong>React Native Testing Library</strong></td>
+                        <td>Component rendering, user interaction</td>
+                        <td>@testing-library/react-native</td>
+                        <td>90% component coverage</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Redux Testing</strong></td>
+                        <td>State management, actions, reducers</td>
+                        <td>@reduxjs/toolkit testing utils</td>
+                        <td>95% store coverage</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MSW (Mock Service Worker)</strong></td>
+                        <td>API mocking, network requests</td>
+                        <td>Rest + GraphQL handlers</td>
+                        <td>100% API endpoint coverage</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="test-strategy">
+            <h4>📱 Frontend Unit Test Examples</h4>
+            
+            <div class="code-block">
+// Component Testing Example
+// __tests__/components/SkillCard.test.tsx
+import React from 'react';
+import { render, fireEvent, waitFor } from '@testing-library/react-native';
+import { Provider } from 'react-redux';
+import { SkillCard } from '../../../src/components/SkillCard';
+import { mockStore } from '../../utils/mockStore';
+
+describe('SkillCard Component', () => {
+  let store;
+  
+  beforeEach(() => {
+    store = mockStore({
+      skills: {
+        skills: [],
+        loading: false,
+        error: null
+      },
+      user: {
+        currentUser: mockUser
+      }
+    });
+  });
+
+  it('should render skill information correctly', () => {
+    const mockSkill = {
+      id: '1',
+      title: 'React Native Development',
+      category: 'Programming',
+      level: 'Advanced',
+      instructor: 'John Doe',
+      rating: 4.8,
+      price: 25,
+      duration: 60
+    };
+
+    const { getByText, getByTestId } = render(
+      <Provider store={store}>
+        <SkillCard skill={mockSkill} />
+      </Provider>
+    );
+
+    expect(getByText('React Native Development')).toBeTruthy();
+    expect(getByText('John Doe')).toBeTruthy();
+    expect(getByText('€25/hour')).toBeTruthy();
+    expect(getByTestId('skill-rating')).toHaveTextContent('4.8');
+  });
+
+  it('should handle book session action', async () => {
+    const mockOnBook = jest.fn();
+    const { getByTestId } = render(
+      <Provider store={store}>
+        <SkillCard skill={mockSkill} onBook={mockOnBook} />
+      </Provider>
+    );
+
+    fireEvent.press(getByTestId('book-session-button'));
+    
+    await waitFor(() => {
+      expect(mockOnBook).toHaveBeenCalledWith(mockSkill.id);
+    });
+  });
+
+  it('should show loading state during booking', async () => {
+    const { getByTestId } = render(
+      <Provider store={store}>
+        <SkillCard skill={mockSkill} isBooking={true} />
+      </Provider>
+    );
+
+    expect(getByTestId('booking-loader')).toBeTruthy();
+    expect(getByTestId('book-session-button')).toBeDisabled();
+  });
+});
+
+// Redux Testing Example
+// __tests__/store/skillsSlice.test.ts
+import skillsReducer, {
+  fetchSkills,
+  bookSession,
+  updateSkillRating
+} from '../../../src/store/slices/skillsSlice';
+
+describe('Skills Redux Slice', () => {
+  const initialState = {
+    skills: [],
+    loading: false,
+    error: null,
+    bookingInProgress: false
+  };
+
+  it('should handle fetchSkills.pending', () => {
+    const action = { type: fetchSkills.pending.type };
+    const state = skillsReducer(initialState, action);
+    
+    expect(state.loading).toBe(true);
+    expect(state.error).toBe(null);
+  });
+
+  it('should handle fetchSkills.fulfilled', () => {
+    const mockSkills = [
+      { id: '1', title: 'React Native', category: 'Programming' },
+      { id: '2', title: 'UI/UX Design', category: 'Design' }
+    ];
+    
+    const action = { type: fetchSkills.fulfilled.type, payload: mockSkills };
+    const state = skillsReducer(initialState, action);
+    
+    expect(state.loading).toBe(false);
+    expect(state.skills).toEqual(mockSkills);
+    expect(state.error).toBe(null);
+  });
+
+  it('should handle bookSession async action', async () => {
+    const mockBookingData = {
+      skillId: '1',
+      sessionDate: '2025-09-10',
+      duration: 60
+    };
+    
+    // Test async thunk behavior
+    const dispatch = jest.fn();
+    const getState = jest.fn(() => ({ auth: { token: 'mock-token' } }));
+    
+    await bookSession(mockBookingData)(dispatch, getState);
+    
+    expect(dispatch).toHaveBeenCalledWith(bookSession.pending());
+  });
+});
+
+// API Mocking Example
+// __tests__/api/skillsAPI.test.ts
+import { rest } from 'msw';
+import { setupServer } from 'msw/node';
+import { skillsAPI } from '../../../src/api/skillsAPI';
+
+const server = setupServer(
+  rest.get('/api/skills', (req, res, ctx) => {
+    return res(
+      ctx.json({
+        skills: [
+          { id: '1', title: 'React Native', category: 'Programming' }
+        ],
+        total: 1,
+        page: 1
+      })
+    );
+  }),
+  
+  rest.post('/api/sessions/book', (req, res, ctx) => {
+    return res(
+      ctx.json({
+        sessionId: 'session-123',
+        status: 'confirmed',
+        bookingDate: '2025-09-10T10:00:00Z'
+      })
+    );
+  })
+);
+
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
+
+describe('Skills API', () => {
+  it('should fetch skills with pagination', async () => {
+    const result = await skillsAPI.getSkills({ page: 1, limit: 10 });
+    
+    expect(result.skills).toHaveLength(1);
+    expect(result.skills[0].title).toBe('React Native');
+    expect(result.total).toBe(1);
+  });
+
+  it('should handle booking session', async () => {
+    const bookingData = {
+      skillId: '1',
+      sessionDate: '2025-09-10T10:00:00Z',
+      duration: 60
+    };
+    
+    const result = await skillsAPI.bookSession(bookingData);
+    
+    expect(result.sessionId).toBe('session-123');
+    expect(result.status).toBe('confirmed');
+  });
+});
+            </div>
+        </div>
+
+        <h3>☕ Spring Boot / Backend Testing</h3>
+
+        <div class="testing-tool">
+            <h4>🛠️ Backend Testing Stack</h4>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tool</th>
+                        <th>Purpose</th>
+                        <th>Annotation</th>
+                        <th>Coverage Target</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>JUnit 5</strong></td>
+                        <td>Test framework, assertions</td>
+                        <td>@Test, @ParameterizedTest</td>
+                        <td>85% method coverage</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mockito</strong></td>
+                        <td>Mocking dependencies</td>
+                        <td>@Mock, @Spy, @InjectMocks</td>
+                        <td>90% dependency mocking</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Spring Boot Test</strong></td>
+                        <td>Integration testing</td>
+                        <td>@SpringBootTest, @WebMvcTest</td>
+                        <td>80% controller coverage</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Testcontainers</strong></td>
+                        <td>Database testing</td>
+                        <td>@Testcontainers</td>
+                        <td>95% repository coverage</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="test-strategy">
+            <h4>⚙️ Backend Unit Test Examples</h4>
+            
+            <div class="code-block">
+// Service Layer Testing
+// src/test/java/com/skillswap/service/SkillServiceTest.java
+@ExtendWith(MockitoExtension.class)
+class SkillServiceTest {
+
+    @Mock
+    private SkillRepository skillRepository;
+    
+    @Mock
+    private UserRepository userRepository;
+    
+    @Mock
+    private NotificationService notificationService;
+    
+    @InjectMocks
+    private SkillService skillService;
+    
+    @Test
+    @DisplayName("Should create skill successfully")
+    void shouldCreateSkillSuccessfully() {
+        // Given
+        CreateSkillRequest request = CreateSkillRequest.builder()
+            .title("React Native Development")
+            .category("Programming")
+            .level(SkillLevel.ADVANCED)
+            .hourlyRate(new BigDecimal("25.00"))
+            .build();
+            
+        User instructor = User.builder()
+            .id(1L)
+            .email("instructor@example.com")
+            .verified(true)
+            .build();
+            
+        Skill savedSkill = Skill.builder()
+            .id(1L)
+            .title(request.getTitle())
+            .category(request.getCategory())
+            .instructor(instructor)
+            .build();
+        
+        when(userRepository.findById(1L)).thenReturn(Optional.of(instructor));
+        when(skillRepository.save(any(Skill.class))).thenReturn(savedSkill);
+        
+        // When
+        SkillResponse result = skillService.createSkill(1L, request);
+        
+        // Then
+        assertThat(result).isNotNull();
+        assertThat(result.getTitle()).isEqualTo("React Native Development");
+        assertThat(result.getCategory()).isEqualTo("Programming");
+        
+        verify(skillRepository).save(argThat(skill -> 
+            skill.getTitle().equals("React Native Development") &&
+            skill.getInstructor().equals(instructor)
+        ));
+        verify(notificationService).sendSkillCreatedNotification(savedSkill);
+    }
+    
+    @Test
+    @DisplayName("Should throw exception when user not found")
+    void shouldThrowExceptionWhenUserNotFound() {
+        // Given
+        CreateSkillRequest request = CreateSkillRequest.builder()
+            .title("React Native Development")
+            .build();
+            
+        when(userRepository.findById(1L)).thenReturn(Optional.empty());
+        
+        // When & Then
+        assertThrows(UserNotFoundException.class, 
+            () -> skillService.createSkill(1L, request));
+        
+        verify(skillRepository, never()).save(any());
+        verify(notificationService, never()).sendSkillCreatedNotification(any());
+    }
+    
+    @ParameterizedTest
+    @ValueSource(strings = {"", "  ", "a", "This title is way too long to be valid for our skill creation system"})
+    @DisplayName("Should validate skill title constraints")
+    void shouldValidateSkillTitleConstraints(String invalidTitle) {
+        // Given
+        CreateSkillRequest request = CreateSkillRequest.builder()
+            .title(invalidTitle)
+            .category("Programming")
+            .build();
+            
+        User instructor = User.builder().id(1L).verified(true).build();
+        when(userRepository.findById(1L)).thenReturn(Optional.of(instructor));
+        
+        // When & Then
+        assertThrows(InvalidSkillDataException.class,
+            () -> skillService.createSkill(1L, request));
+    }
+}
+
+// Repository Layer Testing with Testcontainers
+// src/test/java/com/skillswap/repository/SkillRepositoryTest.java
+@DataJpaTest
+@Testcontainers
+class SkillRepositoryTest {
+
+    @Container
+    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:13")
+            .withDatabaseName("skillswap_test")
+            .withUsername("test")
+            .withPassword("test");
+    
+    @DynamicPropertySource
+    static void configureProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.datasource.url", postgres::getJdbcUrl);
+        registry.add("spring.datasource.username", postgres::getUsername);
+        registry.add("spring.datasource.password", postgres::getPassword);
+    }
+    
+    @Autowired
+    private TestEntityManager entityManager;
+    
+    @Autowired
+    private SkillRepository skillRepository;
+    
+    @Test
+    @DisplayName("Should find skills by category")
+    void shouldFindSkillsByCategory() {
+        // Given
+        User instructor = User.builder()
+            .email("instructor@example.com")
+            .firstName("John")
+            .lastName("Doe")
+            .build();
+        entityManager.persistAndFlush(instructor);
+        
+        Skill programmingSkill = Skill.builder()
+            .title("React Native")
+            .category("Programming")
+            .instructor(instructor)
+            .hourlyRate(new BigDecimal("25.00"))
+            .build();
+            
+        Skill designSkill = Skill.builder()
+            .title("UI/UX Design")
+            .category("Design")
+            .instructor(instructor)
+            .hourlyRate(new BigDecimal("30.00"))
+            .build();
+            
+        entityManager.persistAndFlush(programmingSkill);
+        entityManager.persistAndFlush(designSkill);
+        
+        // When
+        List<Skill> programmingSkills = skillRepository.findByCategory("Programming");
+        
+        // Then
+        assertThat(programmingSkills).hasSize(1);
+        assertThat(programmingSkills.get(0).getTitle()).isEqualTo("React Native");
+    }
+    
+    @Test
+    @DisplayName("Should find skills by instructor with rating")
+    void shouldFindSkillsByInstructorWithRating() {
+        // Given - setup test data with ratings
+        User instructor = createAndPersistUser("instructor@example.com");
+        Skill skill = createAndPersistSkill("Java Programming", instructor);
+        
+        // Create some ratings
+        Rating rating1 = Rating.builder().skill(skill).rating(5).build();
+        Rating rating2 = Rating.builder().skill(skill).rating(4).build();
+        entityManager.persistAndFlush(rating1);
+        entityManager.persistAndFlush(rating2);
+        
+        // When
+        List<SkillWithRating> skillsWithRating = 
+            skillRepository.findSkillsWithAverageRatingByInstructor(instructor.getId());
+        
+        // Then
+        assertThat(skillsWithRating).hasSize(1);
+        assertThat(skillsWithRating.get(0).getAverageRating()).isEqualTo(4.5);
+    }
+}
+
+// Controller Layer Testing
+// src/test/java/com/skillswap/controller/SkillControllerTest.java
+@WebMvcTest(SkillController.class)
+class SkillControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+    
+    @MockBean
+    private SkillService skillService;
+    
+    @MockBean
+    private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    
+    @Test
+    @DisplayName("Should create skill successfully")
+    @WithMockUser(roles = "USER")
+    void shouldCreateSkillSuccessfully() throws Exception {
+        // Given
+        CreateSkillRequest request = CreateSkillRequest.builder()
+            .title("React Native Development")
+            .category("Programming")
+            .level(SkillLevel.ADVANCED)
+            .hourlyRate(new BigDecimal("25.00"))
+            .build();
+            
+        SkillResponse response = SkillResponse.builder()
+            .id(1L)
+            .title("React Native Development")
+            .category("Programming")
+            .level(SkillLevel.ADVANCED)
+            .build();
+            
+        when(skillService.createSkill(eq(1L), any(CreateSkillRequest.class)))
+            .thenReturn(response);
+        
+        // When & Then
+        mockMvc.perform(post("/api/skills")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request))
+                .header("Authorization", "Bearer valid-jwt-token"))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.title").value("React Native Development"))
+                .andExpect(jsonPath("$.category").value("Programming"))
+                .andExpect(jsonPath("$.level").value("ADVANCED"));
+                
+        verify(skillService).createSkill(eq(1L), any(CreateSkillRequest.class));
+    }
+    
+    @Test
+    @DisplayName("Should return validation errors for invalid request")
+    @WithMockUser(roles = "USER")
+    void shouldReturnValidationErrorsForInvalidRequest() throws Exception {
+        // Given
+        CreateSkillRequest invalidRequest = CreateSkillRequest.builder()
+            .title("") // Invalid empty title
+            .category("Programming")
+            .hourlyRate(new BigDecimal("-5.00")) // Invalid negative rate
+            .build();
+        
+        // When & Then
+        mockMvc.perform(post("/api/skills")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(invalidRequest))
+                .header("Authorization", "Bearer valid-jwt-token"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.errors").isArray())
+                .andExpect(jsonPath("$.errors[*].field").value(containsInAnyOrder("title", "hourlyRate")));
+    }
+}
+            </code-block>
+        </div>
+
+        <h2>🔗 Integration Testing</h2>
+        
+        <h3>🌐 API Integration Tests</h3>
+        
+        <div class="testing-tool">
+            <h4>🔄 Full Stack Integration Testing</h4>
+            
+            <div class="code-block">
+// Full Integration Test Example
+// src/test/java/com/skillswap/integration/SkillManagementIntegrationTest.java
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Testcontainers
+@TestPropertySource(properties = {
+    "spring.datasource.url=jdbc:tc:postgresql:13:///skillswap_test",
+    "spring.jpa.hibernate.ddl-auto=create-drop"
+})
+class SkillManagementIntegrationTest {
+
+    @Autowired
+    private TestRestTemplate restTemplate;
+    
+    @Autowired
+    private JwtTokenProvider tokenProvider;
+    
+    @Container
+    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:13");
+    
+    @Container
+    static GenericContainer<?> redis = new GenericContainer<>("redis:6-alpine")
+            .withExposedPorts(6379);
+    
+    private String instructorToken;
+    private String studentToken;
+    
+    @BeforeEach
+    void setUp() {
+        // Create test users and tokens
+        instructorToken = createUserAndGetToken("instructor@example.com", "INSTRUCTOR");
+        studentToken = createUserAndGetToken("student@example.com", "STUDENT");
+    }
+    
+    @Test
+    @DisplayName("Complete skill lifecycle: create, book session, rate")
+    void completeSkillLifecycle() {
+        // Step 1: Instructor creates a skill
+        CreateSkillRequest skillRequest = CreateSkillRequest.builder()
+            .title("Advanced React Native")
+            .category("Programming")
+            .level(SkillLevel.ADVANCED)
+            .description("Learn advanced React Native concepts")
+            .hourlyRate(new BigDecimal("35.00"))
+            .build();
+            
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(instructorToken);
+        HttpEntity<CreateSkillRequest> skillEntity = new HttpEntity<>(skillRequest, headers);
+        
+        ResponseEntity<SkillResponse> skillResponse = restTemplate.exchange(
+            "/api/skills",
+            HttpMethod.POST,
+            skillEntity,
+            SkillResponse.class
+        );
+        
+        assertThat(skillResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+        Long skillId = skillResponse.getBody().getId();
+        
+        // Step 2: Student searches for skills
+        ResponseEntity<PagedSkillResponse> searchResponse = restTemplate.exchange(
+            "/api/skills?category=Programming&level=ADVANCED",
+            HttpMethod.GET,
+            null,
+            PagedSkillResponse.class
+        );
+        
+        assertThat(searchResponse.getBody().getContent()).hasSize(1);
+        assertThat(searchResponse.getBody().getContent().get(0).getTitle())
+            .isEqualTo("Advanced React Native");
+        
+        // Step 3: Student books a session
+        BookSessionRequest sessionRequest = BookSessionRequest.builder()
+            .skillId(skillId)
+            .sessionDate(LocalDateTime.now().plusDays(1))
+            .duration(Duration.ofHours(2))
+            .message("Looking forward to learning React Native!")
+            .build();
+            
+        headers.setBearerAuth(studentToken);
+        HttpEntity<BookSessionRequest> sessionEntity = new HttpEntity<>(sessionRequest, headers);
+        
+        ResponseEntity<SessionResponse> sessionResponse = restTemplate.exchange(
+            "/api/sessions/book",
+            HttpMethod.POST,
+            sessionEntity,
+            SessionResponse.class
+        );
+        
+        assertThat(sessionResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+        Long sessionId = sessionResponse.getBody().getId();
+        
+        // Step 4: Complete session and rate
+        CompleteSessionRequest completeRequest = CompleteSessionRequest.builder()
+            .sessionId(sessionId)
+            .rating(5)
+            .feedback("Excellent instructor! Learned a lot.")
+            .build();
+            
+        HttpEntity<CompleteSessionRequest> completeEntity = new HttpEntity<>(completeRequest, headers);
+        
+        ResponseEntity<Void> completeResponse = restTemplate.exchange(
+            "/api/sessions/" + sessionId + "/complete",
+            HttpMethod.POST,
+            completeEntity,
+            Void.class
+        );
+        
+        assertThat(completeResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
+        
+        // Step 5: Verify skill rating was updated
+        ResponseEntity<SkillResponse> updatedSkillResponse = restTemplate.exchange(
+            "/api/skills/" + skillId,
+            HttpMethod.GET,
+            null,
+            SkillResponse.class
+        );
+        
+        assertThat(updatedSkillResponse.getBody().getAverageRating()).isEqualTo(5.0);
+        assertThat(updatedSkillResponse.getBody().getTotalReviews()).isEqualTo(1);
+    }
+    
+    @Test
+    @DisplayName("Payment integration flow")
+    void paymentIntegrationFlow() {
+        // Test complete payment flow with Stripe webhook simulation
+        // This would include creating payment intent, processing payment,
+        // updating session status, sending confirmations, etc.
+    }
+    
+    private String createUserAndGetToken(String email, String role) {
+        RegisterRequest registerRequest = RegisterRequest.builder()
+            .email(email)
+            .password("SecurePassword123!")
+            .firstName("Test")
+            .lastName("User")
+            .build();
+            
+        restTemplate.postForEntity("/api/auth/register", registerRequest, UserResponse.class);
+        
+        LoginRequest loginRequest = LoginRequest.builder()
+            .email(email)
+            .password("SecurePassword123!")
+            .build();
+            
+        ResponseEntity<AuthResponse> loginResponse = restTemplate.postForEntity(
+            "/api/auth/login", 
+            loginRequest, 
+            AuthResponse.class
+        );
+        
+        return loginResponse.getBody().getToken();
+    }
+}
+
+// React Native Integration Tests
+// __tests__/integration/SkillBookingFlow.test.tsx
+import React from 'react';
+import { render, fireEvent, waitFor } from '@testing-library/react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { Provider } from 'react-redux';
+import { rest } from 'msw';
+import { setupServer } from 'msw/react-native';
+
+import App from '../../App';
+import { store } from '../../src/store';
+
+const server = setupServer(
+  rest.get('/api/skills', (req, res, ctx) => {
+    return res(
+      ctx.json({
+        content: [
+          {
+            id: 1,
+            title: 'React Native Development',
+            instructor: 'John Doe',
+            hourlyRate: 25,
+            rating: 4.8
+          }
+        ],
+        totalElements: 1
+      })
+    );
+  }),
+  
+  rest.post('/api/sessions/book', (req, res, ctx) => {
+    return res(
+      ctx.json({
+        id: 'session-123',
+        status: 'CONFIRMED',
+        sessionDate: '2025-09-10T10:00:00Z'
+      })
+    );
+  })
+);
+
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
+
+describe('Skill Booking Integration Flow', () => {
+  it('should complete full booking flow', async () => {
+    const { getByTestId, getByText } = render(
+      <Provider store={store}>
+        <NavigationContainer>
+          <App />
+        </NavigationContainer>
+      </Provider>
+    );
+    
+    // Navigate to skills screen
+    fireEvent.press(getByTestId('skills-tab'));
+    
+    // Wait for skills to load
+    await waitFor(() => {
+      expect(getByText('React Native Development')).toBeTruthy();
+    });
+    
+    // Tap on skill card
+    fireEvent.press(getByTestId('skill-card-1'));
+    
+    // Book session
+    fireEvent.press(getByTestId('book-session-button'));
+    
+    // Fill booking form
+    fireEvent.changeText(getByTestId('session-date-input'), '2025-09-10');
+    fireEvent.changeText(getByTestId('session-time-input'), '10:00');
+    fireEvent.changeText(getByTestId('session-message-input'), 'Looking forward to learning!');
+    
+    // Confirm booking
+    fireEvent.press(getByTestId('confirm-booking-button'));
+    
+    // Wait for success message
+    await waitFor(() => {
+      expect(getByText('Session booked successfully!')).toBeTruthy();
+    }, { timeout: 5000 });
+    
+    // Verify navigation to sessions screen
+    expect(getByTestId('sessions-screen')).toBeTruthy();
+  });
+});
+            </code-block>
+        </div>
+
+        <h2>⚡ Performance Testing</h2>
+        
+        <h3>🏋️ Load Testing Strategy</h3>
+        
+        <div class="performance-benchmark">
+            <h4>📊 Performance Benchmarks & Testing</h4>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Test Type</th>
+                        <th>Tool</th>
+                        <th>Target Metric</th>
+                        <th>Load Pattern</th>
+                        <th>Success Criteria</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Load Testing</strong></td>
+                        <td>JMeter / k6</td>
+                        <td>1000 concurrent users</td>
+                        <td>Gradual ramp-up over 10 min</td>
+                        <td>Response time &lt; 500ms, 0% errors</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stress Testing</strong></td>
+                        <td>JMeter / Artillery</td>
+                        <td>5000 concurrent users</td>
+                        <td>Aggressive ramp-up</td>
+                        <td>Graceful degradation, recovery</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Spike Testing</strong></td>
+                        <td>k6</td>
+                        <td>10x normal load sudden spike</td>
+                        <td>Instant load increase</td>
+                        <td>System stability, auto-scaling</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Volume Testing</strong></td>
+                        <td>Custom scripts</td>
+                        <td>1M+ database records</td>
+                        <td>Large dataset operations</td>
+                        <td>Query performance &lt; 100ms</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Endurance Testing</strong></td>
+                        <td>JMeter</td>
+                        <td>Normal load for 24 hours</td>
+                        <td>Sustained constant load</td>
+                        <td>No memory leaks, stable performance</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="test-strategy">
+            <h4>🚀 Performance Test Examples</h4>
+            
+            <div class="code-block">
+// k6 Performance Test Script
+// performance-tests/skill-search-load-test.js
+import http from 'k6/http';
+import { check, sleep } from 'k6';
+import { Rate } from 'k6/metrics';
+
+// Custom metrics
+const errorRate = new Rate('errors');
+
+// Test configuration
+export const options = {
+  stages: [
+    { duration: '2m', target: 100 },   // Ramp up to 100 users
+    { duration: '5m', target: 100 },   // Stay at 100 users
+    { duration: '2m', target: 200 },   // Ramp up to 200 users
+    { duration: '5m', target: 200 },   // Stay at 200 users
+    { duration: '2m', target: 300 },   // Ramp up to 300 users
+    { duration: '5m', target: 300 },   // Stay at 300 users
+    { duration: '2m', target: 0 },     // Ramp down to 0 users
+  ],
+  thresholds: {
+    http_req_duration: ['p(99)<500'], // 99% of requests must be below 500ms
+    http_req_failed: ['rate<0.1'],    // Error rate must be below 10%
+    errors: ['rate<0.1'],             // Custom error rate
+  },
+};
+
+const BASE_URL = 'https://api.skillswap.com';
+
+export function setup() {
+  // Login and get auth token
+  const loginPayload = {
+    email: 'test@example.com',
+    password: 'TestPassword123!'
+  };
+  
+  const loginRes = http.post(`${BASE_URL}/api/auth/login`, JSON.stringify(loginPayload), {
+    headers: { 'Content-Type': 'application/json' }
+  });
+  
+  return { authToken: loginRes.json('token') };
+}
+
+export default function(data) {
+  const authHeaders = {
+    'Authorization': `Bearer ${data.authToken}`,
+    'Content-Type': 'application/json'
+  };
+  
+  // Test 1: Search skills
+  const searchRes = http.get(`${BASE_URL}/api/skills?category=Programming&page=0&size=20`, {
+    headers: authHeaders
+  });
+  
+  const searchSuccess = check(searchRes, {
+    'search status is 200': (r) => r.status === 200,
+    'search response time < 200ms': (r) => r.timings.duration < 200,
+    'search returns skills': (r) => JSON.parse(r.body).content.length > 0,
+  });
+  
+  errorRate.add(!searchSuccess);
+  
+  if (searchSuccess) {
+    const skills = JSON.parse(searchRes.body).content;
+    const randomSkill = skills[Math.floor(Math.random() * skills.length)];
+    
+    // Test 2: Get skill details
+    const skillDetailRes = http.get(`${BASE_URL}/api/skills/${randomSkill.id}`, {
+      headers: authHeaders
+    });
+    
+    const detailSuccess = check(skillDetailRes, {
+      'skill detail status is 200': (r) => r.status === 200,
+      'skill detail response time < 100ms': (r) => r.timings.duration < 100,
+    });
+    
+    errorRate.add(!detailSuccess);
+    
+    // Test 3: Simulate booking (without actually creating)
+    const bookingPayload = {
+      skillId: randomSkill.id,
+      sessionDate: '2025-09-15T10:00:00Z',
+      duration: 'PT1H',
+      message: 'Performance test booking'
+    };
+    
+    // Simulate booking validation endpoint
+    const validationRes = http.post(`${BASE_URL}/api/sessions/validate-booking`, 
+      JSON.stringify(bookingPayload), { headers: authHeaders });
+    
+    const validationSuccess = check(validationRes, {
+      'booking validation status is 200': (r) => r.status === 200,
+      'booking validation response time < 300ms': (r) => r.timings.duration < 300,
+    });
+    
+    errorRate.add(!validationSuccess);
+  }
+  
+  sleep(1); // Wait 1 second between iterations
+}
+
+export function teardown(data) {
+  // Cleanup if needed
+  console.log('Performance test completed');
+}
+
+// JMeter Test Plan (XML configuration)
+// performance-tests/skillswap-load-test.jmx
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;jmeterTestPlan version="1.2"&gt;
+  &lt;hashTree&gt;
+    &lt;TestPlan testname="SkillSwap Load Test"&gt;
+      &lt;!-- Test plan configuration --&gt;
+      &lt;elementProp name="TestPlan.arguments" elementType="Arguments" guiclass="ArgumentsPanel"&gt;
+        &lt;collectionProp name="Arguments.arguments"&gt;
+          &lt;elementProp name="BASE_URL" elementType="Argument"&gt;
+            &lt;stringProp name="Argument.name"&gt;BASE_URL&lt;/stringProp&gt;
+            &lt;stringProp name="Argument.value"&gt;https://api.skillswap.com&lt;/stringProp&gt;
+          &lt;/elementProp&gt;
+        &lt;/collectionProp&gt;
+      &lt;/elementProp&gt;
+    &lt;/TestPlan&gt;
+    
+    &lt;hashTree&gt;
+      &lt;ThreadGroup testname="Skill Search Users"&gt;
+        &lt;stringProp name="ThreadGroup.num_threads"&gt;500&lt;/stringProp&gt;
+        &lt;stringProp name="ThreadGroup.ramp_time"&gt;300&lt;/stringProp&gt;
+        &lt;stringProp name="ThreadGroup.duration"&gt;600&lt;/stringProp&gt;
+        &lt;boolProp name="ThreadGroup.scheduler"&gt;true&lt;/boolProp&gt;
+      &lt;/ThreadGroup&gt;
+      
+      &lt;hashTree&gt;
+        &lt;!-- HTTP Request: Login --&gt;
+        &lt;HTTPSamplerProxy testname="Login Request"&gt;
+          &lt;stringProp name="HTTPSampler.domain"&gt;${BASE_URL}&lt;/stringProp&gt;
+          &lt;stringProp name="HTTPSampler.path"&gt;/api/auth/login&lt;/stringProp&gt;
+          &lt;stringProp name="HTTPSampler.method"&gt;POST&lt;/stringProp&gt;
+          &lt;stringProp name="HTTPSampler.postBodyRaw"&gt;{"email":"test@example.com","password":"TestPassword123!"}&lt;/stringProp&gt;
+        &lt;/HTTPSamplerProxy&gt;
+        
+        &lt;!-- HTTP Request: Search Skills --&gt;
+        &lt;HTTPSamplerProxy testname="Search Skills"&gt;
+          &lt;stringProp name="HTTPSampler.domain"&gt;${BASE_URL}&lt;/stringProp&gt;
+          &lt;stringProp name="HTTPSampler.path"&gt;/api/skills&lt;/stringProp&gt;
+          &lt;stringProp name="HTTPSampler.method"&gt;GET&lt;/stringProp&gt;
+        &lt;/HTTPSamplerProxy&gt;
+        
+        &lt;!-- Response Assertions --&gt;
+        &lt;ResponseAssertion testname="Response Time Assertion"&gt;
+          &lt;stringProp name="Assertion.test_field"&gt;Assertion.response_time&lt;/stringProp&gt;
+          &lt;stringProp name="Assertion.test_type"&gt;6&lt;/stringProp&gt;
+          &lt;stringProp name="Assertion.test_string"&gt;500&lt;/stringProp&gt;
+        &lt;/ResponseAssertion&gt;
+      &lt;/hashTree&gt;
+    &lt;/hashTree&gt;
+  &lt;/hashTree&gt;
+&lt;/jmeterTestPlan&gt;
+
+// Database Performance Testing
+// performance-tests/database-performance.sql
+-- PostgreSQL Performance Testing Queries
+
+-- Test 1: Skills search with complex filters (should be &lt; 50ms)
+EXPLAIN ANALYZE
+SELECT s.*, u.first_name, u.last_name, AVG(r.rating) as avg_rating
+FROM skills s
+JOIN users u ON s.instructor_id = u.id
+LEFT JOIN ratings r ON s.id = r.skill_id
+WHERE s.category = 'Programming'
+  AND s.level = 'ADVANCED'
+  AND s.hourly_rate BETWEEN 20 AND 50
+  AND s.active = true
+GROUP BY s.id, u.first_name, u.last_name
+ORDER BY avg_rating DESC NULLS LAST
+LIMIT 20;
+
+-- Test 2: User dashboard query (should be &lt; 100ms)
+EXPLAIN ANALYZE
+WITH user_stats AS (
+  SELECT 
+    COUNT(*) as total_sessions,
+    AVG(rating) as avg_rating_received,
+    SUM(CASE WHEN status = 'COMPLETED' THEN 1 ELSE 0 END) as completed_sessions
+  FROM sessions s
+  WHERE s.instructor_id = 1
+    AND s.created_at >= NOW() - INTERVAL '30 days'
+),
+recent_reviews AS (
+  SELECT r.*, s.title as skill_title
+  FROM ratings r
+  JOIN skills s ON r.skill_id = s.id
+  WHERE s.instructor_id = 1
+  ORDER BY r.created_at DESC
+  LIMIT 5
+)
+SELECT * FROM user_stats, recent_reviews;
+
+-- Test 3: Matching algorithm performance (should be &lt; 200ms)
+EXPLAIN ANALYZE
+SELECT 
+  s.*,
+  u.first_name,
+  u.last_name,
+  similarity(s.title, 'React Native') as title_similarity,
+  CASE 
+    WHEN s.level = 'BEGINNER' THEN 3
+    WHEN s.level = 'INTERMEDIATE' THEN 2
+    WHEN s.level = 'ADVANCED' THEN 1
+  END as level_score
+FROM skills s
+JOIN users u ON s.instructor_id = u.id
+WHERE s.active = true
+  AND s.category IN ('Programming', 'Web Development')
+  AND s.instructor_id != 1
+ORDER BY 
+  title_similarity DESC,
+  level_score ASC,
+  (SELECT AVG(rating) FROM ratings WHERE skill_id = s.id) DESC NULLS LAST
+LIMIT 10;
+            </code-block>
+        </div>
+
+        <p><em>Última actualización: 6 de septiembre de 2025</em></p>
+        <p><em>Próxima revisión: Semanal durante desarrollo activo</em></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instalación en Dispositivos - SkillSwap Technical Guide</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c5282;
+            border-bottom: 3px solid #4299e1;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2d3748;
+            margin-top: 30px;
+            border-left: 4px solid #4299e1;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #4a5568;
+            margin-top: 25px;
+        }
+        .installation-step {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #4299e1;
+        }
+        .platform-section {
+            background: #f0fff4;
+            border: 1px solid #9ae6b4;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .warning {
+            background: #fed7d7;
+            border: 1px solid #feb2b2;
+            color: #742a2a;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .success {
+            background: #f0fff4;
+            border: 1px solid #9ae6b4;
+            color: #22543d;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .code-block {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+        }
+        .command-line {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 10px;
+            border-radius: 3px;
+            font-family: monospace;
+            margin: 5px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background: #edf2f7;
+            font-weight: bold;
+        }
+        .device-specs {
+            background: #e6fffa;
+            border: 1px solid #81e6d9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .troubleshooting {
+            background: #fef5e7;
+            border: 1px solid #f6e05e;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .timeline {
+            border-left: 3px solid #4299e1;
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+        .timeline-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        .timeline-date {
+            font-weight: bold;
+            color: #2c5282;
+        }
+        .checklist {
+            background: #f0f9ff;
+            border: 1px solid #7dd3fc;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .version-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin: 2px;
+        }
+        .version-dev { background: #fed7d7; color: #742a2a; }
+        .version-staging { background: #fef5e7; color: #7c2d12; }
+        .version-prod { background: #dcfce7; color: #14532d; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 Instalación en Dispositivos - SkillSwap</h1>
+        
+        <p><strong>Guía Completa</strong> para instalación, testing y distribución de SkillSwap en dispositivos móviles</p>
+        
+        <h2>🏗️ Configuración del Entorno de Desarrollo</h2>
+        
+        <h3>📋 Requisitos del Sistema</h3>
+        
+        <div class="device-specs">
+            <h4>💻 Estación de Desarrollo</h4>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Componente</th>
+                        <th>macOS</th>
+                        <th>Windows</th>
+                        <th>Linux</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>RAM Mínima</td>
+                        <td>16GB</td>
+                        <td>16GB</td>
+                        <td>16GB</td>
+                    </tr>
+                    <tr>
+                        <td>Storage</td>
+                        <td>100GB libres</td>
+                        <td>100GB libres</td>
+                        <td>100GB libres</td>
+                    </tr>
+                    <tr>
+                        <td>Procesador</td>
+                        <td>Intel i5/M1+</td>
+                        <td>Intel i5/AMD Ryzen 5+</td>
+                        <td>Intel i5/AMD Ryzen 5+</td>
+                    </tr>
+                    <tr>
+                        <td>OS Version</td>
+                        <td>macOS 12+</td>
+                        <td>Windows 10/11</td>
+                        <td>Ubuntu 20.04+</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>🔧 Instalación de Herramientas Base</h3>
+
+        <div class="installation-step">
+            <h4>1️⃣ Node.js & npm</h4>
+            
+            <div class="command-line">
+                # macOS (usando Homebrew)
+                brew install node@18
+                
+                # Windows (usando Chocolatey)  
+                choco install nodejs --version=18.17.0
+                
+                # Linux (usando NodeSource)
+                curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+                sudo apt-get install -y nodejs
+            </div>
+            
+            <div class="success">
+                ✅ <strong>Verificación:</strong> <code>node --version</code> debe mostrar v18.17.0+
+            </div>
+        </div>
+
+        <div class="installation-step">
+            <h4>2️⃣ React Native CLI & Dependencies</h4>
+            
+            <div class="command-line">
+                # Instalación global de React Native CLI
+                npm install -g @react-native-community/cli
+                
+                # Expo CLI (para testing rápido)
+                npm install -g @expo/cli
+                
+                # Flipper (para debugging)
+                npm install -g flipper
+            </div>
+        </div>
+
+        <div class="installation-step">
+            <h4>3️⃣ Java Development Kit (JDK)</h4>
+            
+            <div class="command-line">
+                # macOS
+                brew install openjdk@11
+                sudo ln -sfn /usr/local/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
+                
+                # Windows
+                choco install openjdk11
+                
+                # Linux
+                sudo apt install openjdk-11-jdk
+            </div>
+            
+            <div class="code-block">
+# Configurar JAVA_HOME en .bashrc/.zshrc
+export JAVA_HOME=/usr/local/opt/openjdk@11/libexec/openjdk.jdk/Contents/Home
+export PATH=$JAVA_HOME/bin:$PATH
+            </div>
+        </div>
+
+        <h2>📱 Configuración por Plataforma</h2>
+
+        <h3>🍎 iOS Setup</h3>
+
+        <div class="platform-section">
+            <h4>🔧 Herramientas iOS</h4>
+            
+            <div class="installation-step">
+                <h5>Xcode & Command Line Tools</h5>
+                <div class="command-line">
+                    # Instalar Xcode desde App Store (14.0+)
+                    # Luego instalar command line tools
+                    sudo xcode-select --install
+                    
+                    # Aceptar licencia
+                    sudo xcodebuild -license accept
+                </div>
+            </div>
+
+            <div class="installation-step">
+                <h5>CocoaPods</h5>
+                <div class="command-line">
+                    # Instalar CocoaPods
+                    sudo gem install cocoapods
+                    
+                    # Verificar instalación
+                    pod --version
+                </div>
+            </div>
+
+            <div class="installation-step">
+                <h5>iOS Simulator</h5>
+                <div class="command-line">
+                    # Listar simuladores disponibles
+                    xcrun simctl list devices
+                    
+                    # Crear simulador personalizado
+                    xcrun simctl create "SkillSwap Test" "iPhone 14 Pro" "iOS 16.0"
+                </div>
+            </div>
+
+            <div class="device-specs">
+                <h5>📱 Dispositivos de Testing iOS</h5>
+                <ul>
+                    <li><strong>iPhone 14 Pro:</strong> iOS 16.0+ (Primary test device)</li>
+                    <li><strong>iPhone 13:</strong> iOS 15.0+ (Compatibility testing)</li>
+                    <li><strong>iPhone SE (3rd gen):</strong> iOS 15.0+ (Small screen testing)</li>
+                    <li><strong>iPad Air:</strong> iOS 15.0+ (Tablet experience)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="platform-section">
+            <h4>🤖 Android Setup</h4>
+            
+            <div class="installation-step">
+                <h5>Android Studio & SDK</h5>
+                
+                <div class="command-line">
+                    # macOS (usando Homebrew)
+                    brew install --cask android-studio
+                    
+                    # Windows - descargar desde developer.android.com
+                    # Linux - descargar desde developer.android.com
+                </div>
+                
+                <div class="code-block">
+# Configurar Android SDK en .bashrc/.zshrc
+export ANDROID_HOME=$HOME/Library/Android/sdk  # macOS
+export ANDROID_HOME=$HOME/Android/Sdk          # Linux
+export ANDROID_HOME=%LOCALAPPDATA%\Android\Sdk # Windows
+
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+                </div>
+            </div>
+
+            <div class="installation-step">
+                <h5>Android Virtual Device (AVD)</h5>
+                
+                <div class="command-line">
+                    # Listar AVDs
+                    emulator -list-avds
+                    
+                    # Crear AVD desde command line
+                    avdmanager create avd -n SkillSwap_Test -k "system-images;android-33;google_apis;x86_64"
+                    
+                    # Iniciar emulador
+                    emulator -avd SkillSwap_Test
+                </div>
+            </div>
+
+            <div class="device-specs">
+                <h5>📱 Dispositivos de Testing Android</h5>
+                <ul>
+                    <li><strong>Pixel 7:</strong> Android 13+ (Primary test device)</li>
+                    <li><strong>Samsung Galaxy S23:</strong> Android 13+ (Samsung UI testing)</li>
+                    <li><strong>OnePlus 10:</strong> Android 12+ (OxygenOS testing)</li>
+                    <li><strong>Tablet Android:</strong> Android 12+ (Tablet experience)</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>🚀 Proceso de Instalación de SkillSwap</h2>
+
+        <h3>📦 Clonar y Setup del Proyecto</h3>
+
+        <div class="installation-step">
+            <h4>1️⃣ Clonar Repositorio</h4>
+            
+            <div class="command-line">
+                # Clonar proyecto
+                git clone https://github.com/mauricio-acuna/skillswap.git
+                cd skillswap
+                
+                # Verificar branches disponibles
+                git branch -a
+                
+                # Cambiar a branch de desarrollo
+                git checkout develop
+            </div>
+        </div>
+
+        <div class="installation-step">
+            <h4>2️⃣ Instalación de Dependencies</h4>
+            
+            <div class="command-line">
+                # Install Node dependencies
+                npm install
+                
+                # iOS dependencies (solo en macOS)
+                cd ios && pod install && cd ..
+                
+                # Android - limpiar y build
+                cd android && ./gradlew clean && cd ..
+            </div>
+            
+            <div class="warning">
+                ⚠️ <strong>Nota:</strong> Si encuentras errores de CocoaPods, ejecuta <code>pod repo update</code> antes de <code>pod install</code>
+            </div>
+        </div>
+
+        <div class="installation-step">
+            <h4>3️⃣ Configuración de Entorno</h4>
+            
+            <div class="code-block">
+# .env.development
+API_BASE_URL=http://localhost:8080/api
+WEBSOCKET_URL=ws://localhost:8080/ws
+ENVIRONMENT=development
+DEBUG_MODE=true
+FLIPPER_ENABLED=true
+
+# Firebase Configuration
+FIREBASE_API_KEY=your_dev_api_key
+FIREBASE_PROJECT_ID=skillswap-dev
+FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+
+# Analytics
+ANALYTICS_ENABLED=false
+CRASH_REPORTING_ENABLED=true
+
+# Payment Testing
+STRIPE_PUBLISHABLE_KEY=pk_test_...
+PAYPAL_CLIENT_ID=test_client_id
+            </div>
+        </div>
+
+        <h3>▶️ Running the App</h3>
+
+        <div class="installation-step">
+            <h4>🍎 iOS Development</h4>
+            
+            <div class="command-line">
+                # Metro bundler (en terminal separado)
+                npx react-native start
+                
+                # iOS Simulator
+                npx react-native run-ios
+                
+                # Dispositivo específico
+                npx react-native run-ios --device "iPhone de Mauricio"
+                
+                # Simulator específico
+                npx react-native run-ios --simulator="iPhone 14 Pro"
+            </div>
+        </div>
+
+        <div class="installation-step">
+            <h4>🤖 Android Development</h4>
+            
+            <div class="command-line">
+                # Metro bundler (en terminal separado)
+                npx react-native start
+                
+                # Android Emulator
+                npx react-native run-android
+                
+                # Dispositivo específico via ADB
+                adb devices
+                npx react-native run-android --deviceId=device_id
+            </div>
+        </div>
+
+        <h2>🔧 Testing en Dispositivos Físicos</h2>
+
+        <h3>📱 iOS Physical Device Testing</h3>
+
+        <div class="installation-step">
+            <h4>1️⃣ Developer Account Setup</h4>
+            
+            <div class="checklist">
+                <h5>✅ Requisitos:</h5>
+                <ul>
+                    <li>Apple Developer Account ($99/año)</li>
+                    <li>Dispositivo iOS con iOS 13.0+</li>
+                    <li>Cable Lightning/USB-C</li>
+                    <li>Xcode configurado con tu Apple ID</li>
+                </ul>
+            </div>
+
+            <div class="command-line">
+                # Configurar signing automático en Xcode
+                # 1. Abrir ios/SkillSwap.xcworkspace en Xcode
+                # 2. Seleccionar proyecto SkillSwap
+                # 3. Signing & Capabilities -> Automatically manage signing
+                # 4. Seleccionar tu Team (Developer Account)
+            </div>
+        </div>
+
+        <div class="installation-step">
+            <h4>2️⃣ Device Registration</h4>
+            
+            <div class="code-block">
+// Obtener UDID del dispositivo
+// Conectar iPhone y abrir Xcode
+// Window -> Devices and Simulators
+// Copiar el Identifier (UDID)
+
+// Registrar en Apple Developer Portal:
+// 1. developer.apple.com -> Certificates, IDs & Profiles
+// 2. Devices -> Register New Device
+// 3. Pegar UDID y nombrar dispositivo
+            </div>
+        </div>
+
+        <div class="installation-step">
+            <h4>3️⃣ Instalación en Device</h4>
+            
+            <div class="command-line">
+                # Build para dispositivo específico
+                npx react-native run-ios --device "iPhone de Mauricio"
+                
+                # O desde Xcode (más control)
+                # Product -> Destination -> Tu dispositivo
+                # Product -> Run (Cmd+R)
+            </div>
+            
+            <div class="warning">
+                ⚠️ <strong>Primera instalación:</strong> En el dispositivo, ve a Settings → General → VPN & Device Management → Developer App → Trust
+            </div>
+        </div>
+
+        <h3>🤖 Android Physical Device Testing</h3>
+
+        <div class="installation-step">
+            <h4>1️⃣ Enable Developer Options</h4>
+            
+            <div class="checklist">
+                <h5>🔧 Activar Developer Mode:</h5>
+                <ol>
+                    <li>Settings → About phone</li>
+                    <li>Tap "Build number" 7 veces</li>
+                    <li>Settings → System → Developer options</li>
+                    <li>Enable "USB debugging"</li>
+                    <li>Enable "Install via USB"</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="installation-step">
+            <h4>2️⃣ ADB Connection</h4>
+            
+            <div class="command-line">
+                # Verificar dispositivos conectados
+                adb devices
+                
+                # Si no aparece, verificar drivers USB
+                # Windows: instalar drivers del fabricante
+                # macOS/Linux: generalmente plug-and-play
+                
+                # Test connection
+                adb shell echo "Connection successful"
+            </div>
+        </div>
+
+        <div class="installation-step">
+            <h4>3️⃣ Instalación Direct</h4>
+            
+            <div class="command-line">
+                # Install APK directamente
+                npx react-native run-android
+                
+                # O build APK y install manual
+                cd android
+                ./gradlew assembleDebug
+                adb install app/build/outputs/apk/debug/app-debug.apk
+            </div>
+        </div>
+
+        <h2>📋 Testing Checklist por Dispositivo</h2>
+
+        <h3>🧪 Functional Testing</h3>
+
+        <div class="checklist">
+            <h4>👤 User Authentication Flow</h4>
+            <ul>
+                <li>[ ] Registration con email/social media</li>
+                <li>[ ] Email verification</li>
+                <li>[ ] Login/logout functionality</li>
+                <li>[ ] Password reset flow</li>
+                <li>[ ] Biometric authentication (si disponible)</li>
+            </ul>
+        </div>
+
+        <div class="checklist">
+            <h4>🎯 Core Features</h4>
+            <ul>
+                <li>[ ] Skill profile creation/editing</li>
+                <li>[ ] Skill search y filtering</li>
+                <li>[ ] User matching algorithm</li>
+                <li>[ ] Video call functionality (WebRTC)</li>
+                <li>[ ] In-app messaging</li>
+                <li>[ ] Payment integration</li>
+                <li>[ ] Rating y review system</li>
+            </ul>
+        </div>
+
+        <div class="checklist">
+            <h4>📱 Device Specific Testing</h4>
+            <ul>
+                <li>[ ] Camera access (profile photos)</li>
+                <li>[ ] Microphone access (video calls)</li>
+                <li>[ ] Push notifications</li>
+                <li>[ ] Background app refresh</li>
+                <li>[ ] Network connectivity changes</li>
+                <li>[ ] Battery optimization</li>
+                <li>[ ] Memory usage under load</li>
+            </ul>
+        </div>
+
+        <h3>📊 Performance Testing</h3>
+
+        <div class="device-specs">
+            <h4>⚡ Performance Benchmarks</h4>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Target</th>
+                        <th>Testing Method</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>App Launch Time</td>
+                        <td>&lt; 3 seconds</td>
+                        <td>Flipper Performance Monitor</td>
+                    </tr>
+                    <tr>
+                        <td>Screen Transition</td>
+                        <td>&lt; 300ms</td>
+                        <td>React DevTools Profiler</td>
+                    </tr>
+                    <tr>
+                        <td>API Response Time</td>
+                        <td>&lt; 500ms</td>
+                        <td>Network tab debugging</td>
+                    </tr>
+                    <tr>
+                        <td>Memory Usage</td>
+                        <td>&lt; 150MB</td>
+                        <td>Xcode Instruments / Android Profiler</td>
+                    </tr>
+                    <tr>
+                        <td>Battery Drain</td>
+                        <td>&lt; 5%/hour</td>
+                        <td>Device battery settings</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>🏪 Distribución en Stores</h2>
+
+        <h3>🍎 App Store iOS Distribution</h3>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">Step 1: App Store Connect Setup</div>
+                <ul>
+                    <li>Create App ID en developer portal</li>
+                    <li>Configure App Store Connect listing</li>
+                    <li>Upload app metadata, screenshots, descriptions</li>
+                    <li>Configure pricing y availability</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">Step 2: Build y Archive</div>
+                <div class="command-line">
+                    # Crear build de producción
+                    npx react-native run-ios --configuration Release
+                    
+                    # O desde Xcode:
+                    # Product -> Scheme -> Edit Scheme -> Run -> Release
+                    # Product -> Archive
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">Step 3: Upload a App Store</div>
+                <ul>
+                    <li>Xcode Organizer → Upload to App Store</li>
+                    <li>App Store Connect → TestFlight para beta testing</li>
+                    <li>Internal testing con team</li>
+                    <li>External testing con usuarios beta</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">Step 4: App Review Process</div>
+                <ul>
+                    <li>Submit for Review</li>
+                    <li>App Review (24-48 horas typical)</li>
+                    <li>Address feedback si es necesario</li>
+                    <li>Release to App Store</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>🤖 Google Play Store Distribution</h3>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">Step 1: Google Play Console Setup</div>
+                <ul>
+                    <li>Create developer account ($25 one-time fee)</li>
+                    <li>Create new app listing</li>
+                    <li>Configure store listing (title, description, screenshots)</li>
+                    <li>Set up content rating questionnaire</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">Step 2: Generate Signed APK</div>
+                <div class="command-line">
+                    # Generar keystore (solo primera vez)
+                    keytool -genkey -v -keystore skillswap-release-key.keystore -alias skillswap -keyalg RSA -keysize 2048 -validity 10000
+                    
+                    # Build release APK
+                    cd android
+                    ./gradlew assembleRelease
+                    
+                    # AAB (recomendado para Play Store)
+                    ./gradlew bundleRelease
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">Step 3: Upload y Testing</div>
+                <ul>
+                    <li>Upload AAB a Play Console</li>
+                    <li>Internal testing track</li>
+                    <li>Closed testing con usuarios beta</li>
+                    <li>Open testing (opcional)</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">Step 4: Production Release</div>
+                <ul>
+                    <li>Roll out por stages (5% → 20% → 50% → 100%)</li>
+                    <li>Monitor crash reports y reviews</li>
+                    <li>Hotfix deployment si es necesario</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>🐛 Troubleshooting Common Issues</h2>
+
+        <div class="troubleshooting">
+            <h4>🍎 iOS Issues</h4>
+            
+            <h5>Build Failures:</h5>
+            <div class="command-line">
+                # Clean build folder
+                cd ios && xcodebuild clean && cd ..
+                
+                # Reset Metro cache
+                npx react-native start --reset-cache
+                
+                # Pod issues
+                cd ios && pod deintegrate && pod install && cd ..
+                
+                # Derived data cleanup
+                rm -rf ~/Library/Developer/Xcode/DerivedData/*
+            </div>
+            
+            <h5>Simulator Issues:</h5>
+            <div class="command-line">
+                # Reset simulator
+                xcrun simctl erase all
+                
+                # Kill simulator process
+                sudo killall Simulator
+                
+                # Reset Metro bundler
+                npx react-native start --reset-cache
+            </div>
+        </div>
+
+        <div class="troubleshooting">
+            <h4>🤖 Android Issues</h4>
+            
+            <h5>Build Failures:</h5>
+            <div class="command-line">
+                # Clean Gradle cache
+                cd android && ./gradlew clean && cd ..
+                
+                # Reset Metro cache
+                npx react-native start --reset-cache
+                
+                # Rebuild project
+                npx react-native run-android --reset-cache
+                
+                # ADB issues
+                adb kill-server && adb start-server
+            </div>
+            
+            <h5>Emulator Issues:</h5>
+            <div class="command-line">
+                # Cold boot emulator
+                emulator -avd SkillSwap_Test -cold-boot
+                
+                # Wipe emulator data
+                emulator -avd SkillSwap_Test -wipe-data
+                
+                # Check available RAM
+                emulator -avd SkillSwap_Test -memory 4096
+            </div>
+        </div>
+
+        <h3>🔍 Debug Tools y Logging</h3>
+
+        <div class="installation-step">
+            <h4>📊 Flipper Integration</h4>
+            
+            <div class="code-block">
+// flipper.js configuration
+import {flipperTransform} from 'react-native-flipper';
+
+if (__DEV__) {
+  // Network debugging
+  flipper.addPlugin({
+    getId() { return 'NetworkPlugin'; },
+    onConnect(connection) {
+      // Log network requests
+    },
+    onDisconnect() {},
+    runInBackground() { return false; }
+  });
+  
+  // Redux debugging
+  flipper.addPlugin({
+    getId() { return 'ReduxPlugin'; },
+    onConnect(connection) {
+      // Log Redux actions
+    }
+  });
+}
+            </div>
+        </div>
+
+        <div class="installation-step">
+            <h4>📱 Remote Debugging</h4>
+            
+            <div class="command-line">
+                # React Native Debugger
+                npm install -g react-native-debugger
+                
+                # Chrome DevTools
+                # Shake device → Debug → Debug with Chrome
+                
+                # Safari Web Inspector (iOS)
+                # Safari → Develop → Simulator → JSContext
+            </div>
+        </div>
+
+        <h2>📈 Monitoring & Analytics</h2>
+
+        <div class="device-specs">
+            <h4>📊 Production Monitoring Setup</h4>
+            
+            <div class="code-block">
+// Analytics & Crash Reporting
+import crashlytics from '@react-native-firebase/crashlytics';
+import analytics from '@react-native-firebase/analytics';
+
+// Crash reporting
+crashlytics().log('User signed in.');
+crashlytics().recordError(new Error('Something went wrong'));
+
+// Custom analytics
+analytics().logEvent('skill_search', {
+  skill_category: 'programming',
+  search_term: 'react native'
+});
+
+// Performance monitoring
+import perf from '@react-native-firebase/perf';
+
+const trace = perf().newTrace('skill_matching_algorithm');
+await trace.start();
+// ... matching logic
+await trace.stop();
+            </div>
+        </div>
+
+        <div class="success">
+            <h4>✅ Production Readiness Checklist</h4>
+            <ul>
+                <li>[ ] All features tested en dispositivos físicos</li>
+                <li>[ ] Performance benchmarks alcanzados</li>
+                <li>[ ] Crash reporting configurado</li>
+                <li>[ ] Analytics y user tracking implementado</li>
+                <li>[ ] Push notifications funcionando</li>
+                <li>[ ] App store listings completados</li>
+                <li>[ ] Legal compliance (GDPR, Terms, Privacy)</li>
+                <li>[ ] Beta testing completado</li>
+                <li>[ ] Rollback plan preparado</li>
+                <li>[ ] Customer support process definido</li>
+            </ul>
+        </div>
+
+        <p><em>Última actualización: 6 de septiembre de 2025</em></p>
+        <p><em>Próxima revisión: Mensual durante desarrollo activo</em></p>
+    </div>
+</body>
+</html>

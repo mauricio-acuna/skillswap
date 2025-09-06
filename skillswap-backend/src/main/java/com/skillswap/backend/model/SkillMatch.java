@@ -81,8 +81,20 @@ public class SkillMatch {
     private String learnerPreferredSchedule;
 
     // Match metadata
-    @Column(name = "matched_at", nullable = false)
-    private LocalDateTime matchedAt = LocalDateTime.now();
+    @Column(name = "message", columnDefinition = "TEXT")
+    @Size(max = 1000, message = "Message must not exceed 1000 characters")
+    private String message;
+
+    @Column(name = "compatibility_score", precision = 5, scale = 2)
+    @DecimalMin(value = "0.0", message = "Compatibility score cannot be negative")
+    @DecimalMax(value = "1.0", message = "Compatibility score cannot exceed 1.0")
+    private BigDecimal compatibilityScore;
+
+    @Column(name = "requested_at")
+    private LocalDateTime requestedAt;
+
+    @Column(name = "matched_at")
+    private LocalDateTime matchedAt;
 
     @Column(name = "accepted_at")
     private LocalDateTime acceptedAt;
@@ -107,6 +119,9 @@ public class SkillMatch {
 
     @Column(name = "completed_at")
     private LocalDateTime completedAt;
+
+    @Column(name = "cancelled_at")
+    private LocalDateTime cancelledAt;
 
     // Rating and feedback
     @Column(name = "teacher_rating")
@@ -145,7 +160,7 @@ public class SkillMatch {
 
     // Enums
     public enum MatchStatus {
-        PENDING, ACCEPTED, REJECTED, EXPIRED, IN_PROGRESS, COMPLETED, CANCELLED
+        PENDING, ACTIVE, ACCEPTED, REJECTED, EXPIRED, IN_PROGRESS, COMPLETED, CANCELLED
     }
 
     public enum MatchType {
@@ -362,6 +377,14 @@ public class SkillMatch {
         this.completedAt = completedAt;
     }
 
+    public LocalDateTime getCancelledAt() {
+        return cancelledAt;
+    }
+
+    public void setCancelledAt(LocalDateTime cancelledAt) {
+        this.cancelledAt = cancelledAt;
+    }
+
     public Integer getTeacherRating() {
         return teacherRating;
     }
@@ -408,6 +431,34 @@ public class SkillMatch {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public BigDecimal getCompatibilityScore() {
+        return compatibilityScore;
+    }
+
+    public void setCompatibilityScore(BigDecimal compatibilityScore) {
+        this.compatibilityScore = compatibilityScore;
+    }
+
+    public void setCompatibilityScore(double compatibilityScore) {
+        this.compatibilityScore = BigDecimal.valueOf(compatibilityScore);
+    }
+
+    public LocalDateTime getRequestedAt() {
+        return requestedAt;
+    }
+
+    public void setRequestedAt(LocalDateTime requestedAt) {
+        this.requestedAt = requestedAt;
     }
 
     @Override
