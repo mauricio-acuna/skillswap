@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deployment & Tiendas - SkillSwap</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c5282;
+            border-bottom: 3px solid #4299e1;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2d3748;
+            margin-top: 30px;
+            border-left: 4px solid #4299e1;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #4a5568;
+            margin-top: 25px;
+        }
+        .platform-card {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .deployment-phase {
+            background: #edf2f7;
+            border-left: 4px solid #3182ce;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .code-block {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+        }
+        .warning {
+            background: #fed7d7;
+            border: 1px solid #feb2b2;
+            color: #742a2a;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .best-practice {
+            background: #e6fffa;
+            border: 1px solid #81e6d9;
+            color: #234e52;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .checklist {
+            background: #f0fff4;
+            border: 1px solid #9ae6b4;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .cost-breakdown {
+            background: #fef5e7;
+            border: 1px solid #f6e05e;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background: #edf2f7;
+            font-weight: bold;
+        }
+        .timeline {
+            border-left: 3px solid #4299e1;
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+        .timeline-item {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        .timeline-date {
+            font-weight: bold;
+            color: #2c5282;
+        }
+        .store-requirements {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .ios-card {
+            border-left: 4px solid #007AFF;
+        }
+        .android-card {
+            border-left: 4px solid #3DDC84;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Deployment & Tiendas Oficiales - SkillSwap</h1>
+        
+        <p><strong>Guía Completa</strong> para el despliegue en producción y publicación en App Store y Google Play</p>
+        
+        <h2>📱 Estrategia de Lanzamiento</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">Semana 1-2: Preparación Pre-Launch</div>
+                <ul>
+                    <li>Setup de cuentas de desarrollador (Apple, Google)</li>
+                    <li>Configuración de infraestructura de producción</li>
+                    <li>Implementación de CI/CD pipelines</li>
+                    <li>Testing exhaustivo en dispositivos reales</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">Semana 3: Beta Testing</div>
+                <ul>
+                    <li>TestFlight (iOS) y Play Console Internal Testing</li>
+                    <li>100 beta testers por plataforma</li>
+                    <li>Recolección de feedback y métricas</li>
+                    <li>Bug fixes críticos</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">Semana 4: Soft Launch</div>
+                <ul>
+                    <li>Lanzamiento en 1 país (España)</li>
+                    <li>Monitoreo intensivo 24/7</li>
+                    <li>Optimización basada en datos reales</li>
+                    <li>Preparación para expansión</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">Semana 5-8: Rollout Gradual</div>
+                <ul>
+                    <li>Expansión a Francia, Alemania</li>
+                    <li>Reino Unido, Italia</li>
+                    <li>Resto de Europa</li>
+                    <li>Marketing y PR campaign</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>📱 App Store Requirements</h2>
+
+        <div class="store-requirements">
+            <div class="platform-card ios-card">
+                <h3>🍎 Apple App Store</h3>
+                
+                <div class="checklist">
+                    <strong>✅ Requisitos Técnicos</strong>
+                    <ul>
+                        <li>iOS 13.0+ compatibility</li>
+                        <li>iPhone y iPad support</li>
+                        <li>64-bit architecture</li>
+                        <li>App size &lt; 4GB (recommended &lt; 200MB)</li>
+                        <li>Privacy Policy URL obligatoria</li>
+                        <li>HTTPS para todas las conexiones</li>
+                    </ul>
+                </div>
+
+                <div class="warning">
+                    <strong>⚠️ Aspectos Críticos Apple</strong>
+                    <ul>
+                        <li><strong>Monetización:</strong> Apple toma 30% de comisiones en-app</li>
+                        <li><strong>Review time:</strong> 24-48 horas (puede ser hasta 7 días)</li>
+                        <li><strong>Rejection risks:</strong> UGC moderation, payments fuera de Apple</li>
+                        <li><strong>Privacy:</strong> Muy estrictos con tracking y permisos</li>
+                    </ul>
+                </div>
+
+                <h4>📋 App Store Assets</h4>
+                <div class="code-block">
+Assets requeridos:
+├── App Icon
+│   ├── 1024x1024 (App Store)
+│   ├── 180x180 (iPhone)
+│   ├── 120x120 (iPhone)
+│   └── 76x76, 152x152 (iPad)
+├── Screenshots
+│   ├── iPhone 6.7" (1290x2796) - 3 obligatorios
+│   ├── iPhone 6.5" (1242x2688) - 3 obligatorios
+│   ├── iPhone 5.5" (1242x2208) - opcional
+│   └── iPad Pro 12.9" (2048x2732) - opcional
+├── App Preview Videos
+│   ├── iPhone (máx 30s, .mov)
+│   └── iPad (máx 30s, .mov)
+└── Metadata
+    ├── Título (máx 30 caracteres)
+    ├── Subtítulo (máx 30 caracteres)
+    ├── Descripción (máx 4000 caracteres)
+    └── Keywords (máx 100 caracteres)
+                </div>
+            </div>
+
+            <div class="platform-card android-card">
+                <h3>🤖 Google Play Store</h3>
+                
+                <div class="checklist">
+                    <strong>✅ Requisitos Técnicos</strong>
+                    <ul>
+                        <li>Android 8.0+ (API level 26+)</li>
+                        <li>Target SDK API 33+ (Android 13)</li>
+                        <li>AAB (Android App Bundle) format</li>
+                        <li>App size &lt; 150MB (base APK)</li>
+                        <li>64-bit support obligatorio</li>
+                        <li>Privacy Policy obligatoria</li>
+                    </ul>
+                </div>
+
+                <div class="warning">
+                    <strong>⚠️ Aspectos Críticos Google</strong>
+                    <ul>
+                        <li><strong>Monetización:</strong> Google toma 30% primera año, 15% después</li>
+                        <li><strong>Review time:</strong> 1-3 días (hasta 7 días para nuevas cuentas)</li>
+                        <li><strong>Rejection risks:</strong> Permissions innecesarios, UGC</li>
+                        <li><strong>Política:</strong> Muy estrictos con spam y engagement artificial</li>
+                    </ul>
+                </div>
+
+                <h4>📋 Google Play Assets</h4>
+                <div class="code-block">
+Assets requeridos:
+├── App Icon
+│   ├── 512x512 (Play Store)
+│   ├── 192x192, 144x144, 96x96, 72x72, 48x48
+├── Screenshots
+│   ├── Teléfonos (320-3840px, mín 2, máx 8)
+│   ├── Tablets 7" (600-7680px, opcional)
+│   └── Tablets 10" (1080-7680px, opcional)
+├── Feature Graphic
+│   └── 1024x500 (obligatorio)
+├── Promo Video
+│   └── YouTube URL (opcional)
+└── Store Listing
+    ├── Título (máx 50 caracteres)
+    ├── Descripción corta (máx 80 caracteres)
+    ├── Descripción completa (máx 4000 caracteres)
+    └── No hay keywords separadas (van en descripción)
+                </div>
+            </div>
+        </div>
+
+        <h2>🏗️ Infraestructura de Producción</h2>
+
+        <h3>☁️ AWS Architecture</h3>
+        
+        <div class="deployment-phase">
+            <strong>Arquitectura Recomendada Multi-Región</strong>
+            <div class="code-block">
+Production Architecture:
+├── Route 53 (DNS global)
+├── CloudFront (CDN global)
+├── ALB (Application Load Balancer)
+├── ECS Fargate (Container orchestration)
+│   ├── Auth Service (2 instances)
+│   ├── User Service (3 instances)
+│   ├── Skill Service (2 instances)
+│   ├── Match Service (3 instances)
+│   └── Session Service (2 instances)
+├── RDS PostgreSQL (Multi-AZ)
+│   ├── Master (db.r6g.xlarge)
+│   └── Read Replica (db.r6g.large)
+├── ElastiCache Redis (3 node cluster)
+├── S3 (File storage)
+├── SES (Email service)
+└── CloudWatch (Monitoring)
+            </div>
+        </div>
+
+        <h3>🐳 Docker Configuration</h3>
+
+        <div class="code-block">
+# Dockerfile.backend - Optimizado para producción
+FROM openjdk:17-jre-slim
+
+# Optimizaciones JVM para producción
+ENV JAVA_OPTS="-Xms1g -Xmx2g -XX:+UseG1GC -XX:MaxGCPauseMillis=200 \
+    -XX:+UseStringDeduplication -Djava.security.egd=file:/dev/./urandom"
+
+# Usuario no-root para seguridad
+RUN groupadd -r skillswap && useradd -r -g skillswap skillswap
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost:8080/actuator/health || exit 1
+
+COPY --chown=skillswap:skillswap target/skillswap-backend.jar app.jar
+
+USER skillswap
+
+EXPOSE 8080
+
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app.jar"]
+        </div>
+
+        <div class="code-block">
+# docker-compose.prod.yml - Para staging y testing
+version: '3.8'
+
+services:
+  skillswap-backend:
+    image: skillswap/backend:${VERSION}
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=production
+      - DATABASE_URL=${DATABASE_URL}
+      - REDIS_URL=${REDIS_URL}
+      - JWT_SECRET=${JWT_SECRET}
+    depends_on:
+      - postgres
+      - redis
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: skillswap
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+        </div>
+
+        <h2>🔄 CI/CD Pipeline</h2>
+
+        <h3>📱 Mobile CI/CD (GitHub Actions + Fastlane)</h3>
+
+        <div class="code-block">
+# .github/workflows/mobile-release.yml
+name: Mobile Release
+
+on:
+  push:
+    tags:
+      - 'mobile-v*'
+
+jobs:
+  ios-release:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup React Native
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: mobile/package-lock.json
+      
+      - name: Install dependencies
+        run: |
+          cd mobile
+          npm ci
+      
+      - name: Setup Ruby for Fastlane
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+          working-directory: mobile/ios
+      
+      - name: Build and deploy iOS
+        env:
+          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY: ${{ secrets.ASC_KEY }}
+        run: |
+          cd mobile/ios
+          bundle exec fastlane release
+
+  android-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      
+      - name: Setup React Native
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: mobile/package-lock.json
+      
+      - name: Install dependencies
+        run: |
+          cd mobile
+          npm ci
+      
+      - name: Build Android Release
+        env:
+          ANDROID_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        run: |
+          cd mobile/android
+          ./gradlew bundleRelease
+      
+      - name: Upload to Play Store
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT }}
+          packageName: com.skillswap.app
+          releaseFiles: mobile/android/app/build/outputs/bundle/release/app-release.aab
+          track: production
+        </div>
+
+        <h3>⚙️ Backend CI/CD</h3>
+
+        <div class="code-block">
+# .github/workflows/backend-deploy.yml
+name: Backend Deploy
+
+on:
+  push:
+    branches: [main]
+    paths: ['backend/**']
+
+jobs:
+  test-and-deploy:
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_PASSWORD: test
+          POSTGRES_DB: skillswap_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      
+      - name: Run Tests
+        run: |
+          cd backend
+          ./mvnw test
+      
+      - name: Build Docker Image
+        run: |
+          cd backend
+          docker build -t skillswap/backend:${{ github.sha }} .
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+      
+      - name: Push to ECR
+        run: |
+          aws ecr get-login-password | docker login --username AWS --password-stdin ${{ secrets.ECR_REGISTRY }}
+          docker tag skillswap/backend:${{ github.sha }} ${{ secrets.ECR_REGISTRY }}/skillswap/backend:${{ github.sha }}
+          docker push ${{ secrets.ECR_REGISTRY }}/skillswap/backend:${{ github.sha }}
+      
+      - name: Deploy to ECS
+        run: |
+          aws ecs update-service \
+            --cluster skillswap-production \
+            --service skillswap-backend \
+            --force-new-deployment
+        </div>
+
+        <h2>🎯 Monitoring & Alerts</h2>
+
+        <div class="best-practice">
+            <strong>📊 Métricas de Producción Críticas</strong>
+            
+            <h4>Application Metrics:</h4>
+            <ul>
+                <li><strong>API Response Time:</strong> p50, p95, p99</li>
+                <li><strong>Error Rate:</strong> Por endpoint y status code</li>
+                <li><strong>Throughput:</strong> Requests per second</li>
+                <li><strong>Database Performance:</strong> Query time, connection pool</li>
+                <li><strong>Cache Hit Rate:</strong> Redis performance</li>
+            </ul>
+
+            <h4>Infrastructure Metrics:</h4>
+            <ul>
+                <li><strong>CPU/Memory Usage:</strong> Por servicio</li>
+                <li><strong>Network I/O:</strong> Bandwidth, latency</li>
+                <li><strong>Disk Usage:</strong> Storage, IOPS</li>
+                <li><strong>Container Health:</strong> ECS service status</li>
+            </ul>
+
+            <h4>Business Metrics:</h4>
+            <ul>
+                <li><strong>User Registration Rate:</strong> Daily signups</li>
+                <li><strong>Session Completion Rate:</strong> Success rate</li>
+                <li><strong>Match Success Rate:</strong> Accepted/total matches</li>
+                <li><strong>Revenue Metrics:</strong> Transaction volume</li>
+            </ul>
+        </div>
+
+        <h3>🚨 Alerting Strategy</h3>
+
+        <div class="code-block">
+# CloudWatch Alarms Configuration
+Production Alerts:
+├── Critical (P0) - 5 min response
+│   ├── API Error Rate > 5%
+│   ├── Database Down
+│   ├── ECS Service Unhealthy
+│   └── Memory Usage > 90%
+├── High (P1) - 30 min response
+│   ├── Response Time p95 > 1s
+│   ├── Database Slow Queries > 2s
+│   ├── Cache Hit Rate < 80%
+│   └── Disk Usage > 85%
+└── Medium (P2) - 2 hour response
+    ├── Registration Rate Drop > 50%
+    ├── Session Completion Rate < 70%
+    └── CDN Cache Miss Rate > 30%
+        </div>
+
+        <h2>💰 Costos de Infraestructura</h2>
+
+        <div class="cost-breakdown">
+            <strong>💸 Estimación de Costos Mensuales</strong>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Servicio</th>
+                        <th>MVP (1K users)</th>
+                        <th>Growth (50K users)</th>
+                        <th>Scale (500K users)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ECS Fargate</td>
+                        <td>$50</td>
+                        <td>$300</td>
+                        <td>$1,500</td>
+                    </tr>
+                    <tr>
+                        <td>RDS PostgreSQL</td>
+                        <td>$80</td>
+                        <td>$400</td>
+                        <td>$2,000</td>
+                    </tr>
+                    <tr>
+                        <td>ElastiCache Redis</td>
+                        <td>$30</td>
+                        <td>$150</td>
+                        <td>$800</td>
+                    </tr>
+                    <tr>
+                        <td>S3 + CloudFront</td>
+                        <td>$20</td>
+                        <td>$100</td>
+                        <td>$500</td>
+                    </tr>
+                    <tr>
+                        <td>Load Balancer</td>
+                        <td>$25</td>
+                        <td>$50</td>
+                        <td>$100</td>
+                    </tr>
+                    <tr>
+                        <td>Monitoring/Logging</td>
+                        <td>$30</td>
+                        <td>$100</td>
+                        <td>$300</td>
+                    </tr>
+                    <tr>
+                        <td>Backup/DR</td>
+                        <td>$20</td>
+                        <td>$80</td>
+                        <td>$200</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total Mensual</strong></td>
+                        <td><strong>$255</strong></td>
+                        <td><strong>$1,180</strong></td>
+                        <td><strong>$5,400</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><em>Costos en USD, pueden variar según región y uso real</em></p>
+        </div>
+
+        <h2>🔐 Seguridad en Producción</h2>
+
+        <div class="warning">
+            <strong>🛡️ Security Checklist Obligatorio</strong>
+            
+            <h4>Network Security:</h4>
+            <ul>
+                <li>VPC con subnets privadas para database</li>
+                <li>Security Groups restrictivos (solo puertos necesarios)</li>
+                <li>NACLs como segunda capa de protección</li>
+                <li>WAF en CloudFront para DDoS protection</li>
+            </ul>
+
+            <h4>Application Security:</h4>
+            <ul>
+                <li>Secrets en AWS Secrets Manager (no hardcoded)</li>
+                <li>JWT con rotación automática</li>
+                <li>Rate limiting en API Gateway</li>
+                <li>Input validation y sanitization</li>
+                <li>HTTPS obligatorio (TLS 1.2+)</li>
+            </ul>
+
+            <h4>Data Security:</h4>
+            <ul>
+                <li>Database encryption at rest y in transit</li>
+                <li>S3 bucket encryption y políticas restrictivas</li>
+                <li>Backup encryption</li>
+                <li>GDPR compliance (data retention, deletion)</li>
+            </ul>
+        </div>
+
+        <h2>📊 Post-Launch Monitoring</h2>
+
+        <div class="checklist">
+            <strong>📈 Métricas Primera Semana Post-Launch</strong>
+            
+            <h4>Day 1-3: Stability Focus</h4>
+            <ul>
+                <li>Zero downtime target</li>
+                <li>Error rate &lt; 0.1%</li>
+                <li>Response time monitoring</li>
+                <li>Crash-free sessions &gt; 99.9%</li>
+            </ul>
+
+            <h4>Day 4-7: Performance Optimization</h4>
+            <ul>
+                <li>Database query optimization</li>
+                <li>Cache hit rate optimization</li>
+                <li>Mobile performance tuning</li>
+                <li>User experience metrics</li>
+            </ul>
+
+            <h4>Week 2-4: Feature Adoption</h4>
+            <ul>
+                <li>User registration funnel</li>
+                <li>Feature usage analytics</li>
+                <li>Session completion rates</li>
+                <li>Retention metrics</li>
+            </ul>
+        </div>
+
+        <p><em>Última actualización: 6 de septiembre de 2025</em></p>
+    </div>
+</body>
+</html>

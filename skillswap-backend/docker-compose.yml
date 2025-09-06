@@ -1,0 +1,108 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: skillswap-postgres
+    environment:
+      POSTGRES_DB: skillswap_dev
+      POSTGRES_USER: skillswap_user
+      POSTGRES_PASSWORD: skillswap_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    networks:
+      - skillswap-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U skillswap_user -d skillswap_dev"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: skillswap-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - skillswap-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # SkillSwap Backend Application
+  skillswap-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: skillswap-backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      DATABASE_URL: jdbc:postgresql://postgres:5432/skillswap_dev
+      DATABASE_USERNAME: skillswap_user
+      DATABASE_PASSWORD: skillswap_password
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      JWT_SECRET: myDevSecretKey123456789012345678901234567890
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - skillswap-network
+    volumes:
+      - ./logs:/app/logs
+      - ./uploads:/app/uploads
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Adminer (Database Management UI)
+  adminer:
+    image: adminer:latest
+    container_name: skillswap-adminer
+    ports:
+      - "8081:8080"
+    environment:
+      ADMINER_DEFAULT_SERVER: postgres
+    networks:
+      - skillswap-network
+    depends_on:
+      - postgres
+
+  # Redis Commander (Redis Management UI)
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: skillswap-redis-commander
+    ports:
+      - "8082:8081"
+    environment:
+      REDIS_HOSTS: local:redis:6379
+    networks:
+      - skillswap-network
+    depends_on:
+      - redis
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  skillswap-network:
+    driver: bridge

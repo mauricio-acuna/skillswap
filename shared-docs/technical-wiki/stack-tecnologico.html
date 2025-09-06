@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack Tecnológico - SkillSwap</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c5282;
+            border-bottom: 3px solid #4299e1;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2d3748;
+            margin-top: 30px;
+            border-left: 4px solid #4299e1;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #4a5568;
+            margin-top: 25px;
+        }
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .tech-card {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.2s;
+        }
+        .tech-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .tech-title {
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .version-info {
+            background: #e2e8f0;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .pros, .cons {
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .pros {
+            background: #f0fff4;
+            border-left: 4px solid #38a169;
+        }
+        .cons {
+            background: #fef5e7;
+            border-left: 4px solid #ed8936;
+        }
+        .code-block {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+        }
+        .warning {
+            background: #fed7d7;
+            border: 1px solid #feb2b2;
+            color: #742a2a;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .best-practice {
+            background: #e6fffa;
+            border: 1px solid #81e6d9;
+            color: #234e52;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .migration-path {
+            background: #edf2f7;
+            border: 1px solid #cbd5e0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏗️ Stack Tecnológico SkillSwap</h1>
+        
+        <p><strong>Guía Técnica Completa</strong> para el desarrollo, mantenimiento y evolución de la plataforma SkillSwap</p>
+        
+        <h2>📱 Frontend - React Native</h2>
+        
+        <div class="tech-stack">
+            <div class="tech-card">
+                <div class="tech-title">React Native 0.72+</div>
+                <div class="version-info">
+                    Versión recomendada: 0.72.x<br>
+                    Node.js: 18.x LTS<br>
+                    NPM: 9.x
+                </div>
+                
+                <div class="pros-cons">
+                    <div class="pros">
+                        <strong>✅ Ventajas</strong>
+                        <ul>
+                            <li>Desarrollo multiplataforma</li>
+                            <li>Performance nativa</li>
+                            <li>Hot reload</li>
+                            <li>Gran ecosistema</li>
+                            <li>Reutilización de código 85%+</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <strong>⚠️ Consideraciones</strong>
+                        <ul>
+                            <li>Curva de aprendizaje inicial</li>
+                            <li>Dependencia de third-party libs</li>
+                            <li>Bridge overhead</li>
+                            <li>Platform-specific adjustments</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tech-card">
+                <div class="tech-title">TypeScript 5.0+</div>
+                <div class="version-info">
+                    Versión recomendada: 5.1.x<br>
+                    Strict mode: enabled<br>
+                    Target: ES2020
+                </div>
+                
+                <div class="best-practice">
+                    <strong>🎯 Best Practices</strong>
+                    <ul>
+                        <li>Usar interfaces para props y state</li>
+                        <li>Evitar 'any', usar 'unknown' si es necesario</li>
+                        <li>Implementar discriminated unions para estados</li>
+                        <li>Usar utility types (Partial, Pick, Omit)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h3>📦 Librerías Frontend Esenciales</h3>
+        
+        <div class="code-block">
+{
+  "dependencies": {
+    "@react-navigation/native": "^6.1.7",
+    "@react-navigation/stack": "^6.3.17",
+    "@reduxjs/toolkit": "^1.9.5",
+    "react-redux": "^8.1.1",
+    "react-native-reanimated": "^3.3.0",
+    "react-native-gesture-handler": "^2.12.0",
+    "react-native-vector-icons": "^10.0.0",
+    "react-native-webrtc": "^118.0.1",
+    "react-native-push-notification": "^8.1.1",
+    "react-native-image-picker": "^5.6.0",
+    "react-native-keychain": "^8.1.2",
+    "axios": "^1.4.0",
+    "react-hook-form": "^7.45.1",
+    "react-native-paper": "^5.9.1"
+  }
+}
+        </div>
+
+        <h2>⚙️ Backend - Spring Boot</h2>
+
+        <div class="tech-stack">
+            <div class="tech-card">
+                <div class="tech-title">Spring Boot 3.1+</div>
+                <div class="version-info">
+                    Spring Boot: 3.1.x<br>
+                    Java: 17 LTS<br>
+                    Maven: 3.9.x
+                </div>
+                
+                <div class="pros-cons">
+                    <div class="pros">
+                        <strong>✅ Ventajas</strong>
+                        <ul>
+                            <li>Ecosistema maduro</li>
+                            <li>Auto-configuración</li>
+                            <li>Excelente tooling</li>
+                            <li>Performance enterprise</li>
+                            <li>Seguridad robusta</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <strong>⚠️ Consideraciones</strong>
+                        <ul>
+                            <li>Mayor consumo de memoria</li>
+                            <li>Startup time más alto</li>
+                            <li>Complejidad en configuración avanzada</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tech-card">
+                <div class="tech-title">PostgreSQL 15+</div>
+                <div class="version-info">
+                    PostgreSQL: 15.x<br>
+                    Connection Pool: HikariCP<br>
+                    ORM: Spring Data JPA
+                </div>
+                
+                <div class="best-practice">
+                    <strong>🗄️ Database Best Practices</strong>
+                    <ul>
+                        <li>Usar índices compuestos para consultas frecuentes</li>
+                        <li>Implementar soft deletes para datos críticos</li>
+                        <li>Versionado de schema con Flyway</li>
+                        <li>Conexiones pooled con HikariCP</li>
+                        <li>Read replicas para consultas pesadas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h3>🔧 Dependencias Backend Críticas</h3>
+
+        <div class="code-block">
+&lt;dependencies&gt;
+    &lt;!-- Core Spring --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    
+    &lt;!-- Security & JWT --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;io.jsonwebtoken&lt;/groupId&gt;
+        &lt;artifactId&gt;jjwt-api&lt;/artifactId&gt;
+        &lt;version&gt;0.11.5&lt;/version&gt;
+    &lt;/dependency&gt;
+    
+    &lt;!-- Database --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.postgresql&lt;/groupId&gt;
+        &lt;artifactId&gt;postgresql&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    
+    &lt;!-- WebSocket --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-websocket&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    
+    &lt;!-- Validation --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+        </div>
+
+        <h2>🔄 Arquitectura & Patrones</h2>
+
+        <h3>📐 Arquitectura Hexagonal (Ports & Adapters)</h3>
+        
+        <div class="migration-path">
+            <strong>🏗️ Estructura Recomendada</strong>
+            <div class="code-block">
+src/main/java/com/skillswap/
+├── domain/           # Entidades de negocio
+│   ├── models/       # User, Skill, Match, Session
+│   ├── ports/        # Interfaces (repositories, services)
+│   └── services/     # Lógica de negocio
+├── infrastructure/   # Implementaciones técnicas
+│   ├── persistence/  # JPA repositories
+│   ├── web/         # REST controllers
+│   ├── security/    # JWT, OAuth2
+│   └── external/    # APIs externas (Agora, FCM)
+├── application/     # Casos de uso
+│   ├── usecases/    # RegisterUser, MatchUsers
+│   └── handlers/    # Command/Query handlers
+└── config/          # Configuración Spring
+            </div>
+        </div>
+
+        <h3>🎯 Patrones de Diseño Implementados</h3>
+
+        <div class="tech-stack">
+            <div class="tech-card">
+                <div class="tech-title">CQRS (Command Query Responsibility Segregation)</div>
+                <p><strong>Uso:</strong> Separar operaciones de lectura y escritura para mejor performance</p>
+                <div class="best-practice">
+                    <strong>Implementación:</strong>
+                    <ul>
+                        <li>Commands para crear/modificar datos</li>
+                        <li>Queries para consultas optimizadas</li>
+                        <li>Event sourcing para matching algorithm</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tech-card">
+                <div class="tech-title">Repository Pattern</div>
+                <p><strong>Uso:</strong> Abstracción de acceso a datos</p>
+                <div class="code-block">
+public interface UserRepository extends JpaRepository&lt;User, Long&gt; {
+    Optional&lt;User&gt; findByEmail(String email);
+    List&lt;User&gt; findBySkillsContaining(Skill skill);
+    
+    @Query("SELECT u FROM User u WHERE u.location = :location")
+    List&lt;User&gt; findNearbyUsers(@Param("location") String location);
+}
+                </div>
+            </div>
+        </div>
+
+        <h2>🔐 Seguridad & Autenticación</h2>
+
+        <h3>🛡️ JWT Implementation</h3>
+        
+        <div class="warning">
+            <strong>⚠️ Consideraciones Críticas de Seguridad</strong>
+            <ul>
+                <li>Access tokens: 15 minutos de duración</li>
+                <li>Refresh tokens: 7 días, rotación obligatoria</li>
+                <li>Almacenamiento seguro en Keychain (iOS) / Keystore (Android)</li>
+                <li>Revocación de tokens en logout</li>
+                <li>Rate limiting en endpoints de auth</li>
+            </ul>
+        </div>
+
+        <div class="code-block">
+// JWT Configuration
+@Configuration
+public class JwtConfig {
+    
+    @Value("${jwt.secret}")
+    private String secret;
+    
+    @Value("${jwt.access-token-validity:900}") // 15 minutes
+    private int accessTokenValidity;
+    
+    @Value("${jwt.refresh-token-validity:604800}") // 7 days
+    private int refreshTokenValidity;
+    
+    public String generateAccessToken(User user) {
+        return Jwts.builder()
+            .setSubject(user.getEmail())
+            .setIssuedAt(new Date())
+            .setExpiration(new Date(System.currentTimeMillis() + accessTokenValidity * 1000))
+            .signWith(SignatureAlgorithm.HS512, secret)
+            .compact();
+    }
+}
+        </div>
+
+        <h3>🌍 GDPR Compliance</h3>
+        
+        <div class="best-practice">
+            <strong>📋 Implementación GDPR</strong>
+            <ul>
+                <li><strong>Consentimiento explícito:</strong> Checkbox obligatorio en registro</li>
+                <li><strong>Derecho al olvido:</strong> Endpoint DELETE /users/{id}/gdpr</li>
+                <li><strong>Portabilidad de datos:</strong> Export JSON completo del usuario</li>
+                <li><strong>Minimización de datos:</strong> Solo recopilar datos necesarios</li>
+                <li><strong>Retention policy:</strong> Auto-delete de datos inactivos después de 2 años</li>
+                <li><strong>Audit trail:</strong> Log de todos los accesos y modificaciones de datos</li>
+            </ul>
+        </div>
+
+        <h2>📊 Gestión de Estado Frontend</h2>
+
+        <h3>🔄 Redux Toolkit</h3>
+
+        <div class="code-block">
+// Store Structure
+src/store/
+├── slices/
+│   ├── authSlice.ts      # Usuario, tokens, estado de auth
+│   ├── skillsSlice.ts    # Skills del usuario, categorías
+│   ├── matchesSlice.ts   # Matches, requests, suggestions
+│   ├── sessionsSlice.ts  # Sesiones programadas, historial
+│   └── uiSlice.ts        # Loading states, modals, notifications
+├── api/
+│   ├── authApi.ts        # RTK Query para auth
+│   ├── skillsApi.ts      # RTK Query para skills
+│   └── baseApi.ts        # Configuración base
+└── index.ts              # Store configuration
+        </div>
+
+        <div class="best-practice">
+            <strong>🎯 Redux Best Practices</strong>
+            <ul>
+                <li>Usar RTK Query para todas las llamadas a API</li>
+                <li>Normalization de datos con createEntityAdapter</li>
+                <li>Memoization con createSelector para performance</li>
+                <li>Persistence selectiva con redux-persist</li>
+                <li>DevTools habilitadas solo en desarrollo</li>
+            </ul>
+        </div>
+
+        <h2>🚀 Performance & Optimización</h2>
+
+        <h3>📱 Mobile Performance</h3>
+
+        <div class="tech-stack">
+            <div class="tech-card">
+                <div class="tech-title">React Native Performance</div>
+                <div class="best-practice">
+                    <strong>Optimizaciones Críticas:</strong>
+                    <ul>
+                        <li><strong>Lazy loading:</strong> Screens cargadas bajo demanda</li>
+                        <li><strong>Image optimization:</strong> WebP format, múltiples resoluciones</li>
+                        <li><strong>FlatList optimization:</strong> getItemLayout, removeClippedSubviews</li>
+                        <li><strong>Bundle splitting:</strong> Code splitting por features</li>
+                        <li><strong>Memory management:</strong> Cleanup de listeners y subscriptions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tech-card">
+                <div class="tech-title">Backend Performance</div>
+                <div class="best-practice">
+                    <strong>Optimizaciones Servidor:</strong>
+                    <ul>
+                        <li><strong>Database indexing:</strong> Índices en foreign keys</li>
+                        <li><strong>Connection pooling:</strong> HikariCP optimizado</li>
+                        <li><strong>Caching:</strong> Redis para sesiones y datos frecuentes</li>
+                        <li><strong>JVM tuning:</strong> Garbage collection optimizado</li>
+                        <li><strong>Async processing:</strong> @Async para operaciones pesadas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h3>📈 Monitoring & Observability</h3>
+
+        <div class="code-block">
+# Métricas Críticas a Monitorear
+
+## Frontend (React Native)
+- Crash rate &lt; 0.1%
+- ANR (Application Not Responding) &lt; 0.5%
+- Cold start time &lt; 3 segundos
+- Memory usage &lt; 150MB promedio
+- Bundle size &lt; 25MB
+
+## Backend (Spring Boot)
+- Response time p95 &lt; 500ms
+- Error rate &lt; 0.1%
+- Throughput &gt; 1000 RPS
+- Memory usage &lt; 2GB
+- Database connection pool utilization &lt; 80%
+
+## Business Metrics
+- User registration conversion &gt; 15%
+- Session completion rate &gt; 80%
+- Monthly active users retention &gt; 40%
+- Average session duration &gt; 30 minutes
+        </div>
+
+        <h2>🛠️ Herramientas de Desarrollo</h2>
+
+        <div class="migration-path">
+            <strong>🔧 DevOps Stack Recomendado</strong>
+            <ul>
+                <li><strong>CI/CD:</strong> GitHub Actions + Fastlane</li>
+                <li><strong>Code Quality:</strong> SonarQube + ESLint + Checkstyle</li>
+                <li><strong>Testing:</strong> Jest + Detox + JUnit + TestContainers</li>
+                <li><strong>Monitoring:</strong> New Relic + Firebase Crashlytics</li>
+                <li><strong>Error Tracking:</strong> Sentry</li>
+                <li><strong>Analytics:</strong> Firebase Analytics + Mixpanel</li>
+            </ul>
+        </div>
+
+        <div class="warning">
+            <strong>⚠️ Herramientas Obligatorias para Calidad</strong>
+            <p>Estas herramientas deben estar configuradas desde el primer día para mantener la calidad del código:</p>
+            <ul>
+                <li>Pre-commit hooks con Husky</li>
+                <li>Prettier para formateo automático</li>
+                <li>ESLint con reglas estrictas</li>
+                <li>Unit tests con coverage mínimo del 80%</li>
+                <li>Integration tests para flujos críticos</li>
+            </ul>
+        </div>
+
+        <p><em>Última actualización: 6 de septiembre de 2025</em></p>
+    </div>
+</body>
+</html>

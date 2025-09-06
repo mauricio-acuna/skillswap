@@ -1,12 +1,199 @@
-# SkillSwap Frontend - PRD Específico
-## React Native Mobile App (iOS + Android)
+# SkillSwap Frontend - React Native Mobile App
 
-### 🎯 SCOPE DEL FRONTEND
+## 🎯 Current Status: ✅ PROJECT INITIALIZED
 
-Este documento es específico para el desarrollo del **frontend mobile de SkillSwap**. Para contexto completo, consultar:
-- `../shared-docs/PRD.md` - PRD general del proyecto
-- `../shared-docs/SkillSwap-TechnicalSpecs.md` - Especificaciones técnicas
-- `../shared-docs/MercadoObjetivo.md` - Análisis de mercado
+**Sprint 1-2: Foundation & Setup**  
+**Completed:** React Native project initialization  
+**Next:** Navigation setup & Authentication screens
+
+---
+
+## 🚀 Quick Start
+
+```bash
+# Once Node.js 16+ is installed:
+./scripts/setup-env.sh    # Setup environment
+npm start                 # Start Metro bundler
+npm run ios              # Run on iOS
+npm run android          # Run on Android
+```
+
+---
+
+## 📱 About SkillSwap
+
+SkillSwap is a mobile application for skill exchange and learning. Users can:
+- Share their skills with others
+- Learn new skills from community members  
+- Schedule video sessions for skill exchange
+- Earn and spend credits in the skill economy
+- Connect with like-minded learners
+
+## 🏗️ Architecture
+
+### Tech Stack
+- **React Native 0.72+** with TypeScript
+- **Redux Toolkit** + RTK Query (State + API)
+- **React Navigation 6** (Stack + Tab + Drawer)
+- **React Native Paper** (UI Components)
+- **React Hook Form** (Forms & Validation)
+- **React Native WebRTC** (Video calling)
+- **Socket.io Client** (Real-time events)
+- **i18next** (5 languages: EN, ES, FR, DE, IT)
+
+### Features
+- 🔐 Authentication (Email, OAuth2, Biometric)
+- 👤 User Profile Management
+- 🎯 Skill Discovery & Management
+- 🤝 Smart Matching Algorithm
+- 📅 Session Scheduling & Management
+- 📞 In-app Video Calling
+- 💰 Credit System
+- 🔔 Push Notifications
+- 🌍 European Localization (GDPR Compliant)
+- 📱 Offline Capabilities
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+├── components/          # Reusable UI components
+├── screens/            # App screens/pages
+├── navigation/         # Navigation configuration
+├── services/           # External service integrations
+├── store/              # Redux store & slices
+├── styles/             # Theming & styling
+├── types/              # TypeScript definitions
+├── utils/              # Utility functions
+├── hooks/              # Custom React hooks
+├── assets/             # Images, fonts, animations
+├── i18n/               # Internationalization
+└── config/             # App configuration
+```
+
+---
+
+## 🎨 Design System
+
+### Color Palette
+- **Primary:** Blue (#2196F3) - Brand color
+- **Secondary:** Purple (#9C27B0) - Accent color
+- **Success:** Green (#4CAF50)
+- **Warning:** Orange (#FF9800)
+- **Error:** Red (#F44336)
+
+### Typography
+- **Headings:** H1-H6 with proper hierarchy
+- **Body:** Body1, Body2 for content
+- **UI:** Button, Caption, Overline styles
+
+---
+
+## 🔄 Development Workflow
+
+### Git Workflow
+```bash
+git checkout -b feature/user-story-name
+# Develop feature
+git commit -m "feat: implement user story description"
+git push origin feature/user-story-name
+# Create Pull Request
+```
+
+### Code Quality
+- **ESLint:** Code linting with TypeScript rules
+- **Prettier:** Code formatting
+- **TypeScript:** Type safety
+- **Jest:** Unit & integration testing
+- **Detox:** E2E testing (configured)
+
+---
+
+## 🧪 Testing Strategy
+
+### Unit Testing
+```bash
+npm test                 # Run all tests
+npm test -- --watch     # Watch mode
+npm test -- --coverage  # Coverage report
+```
+
+### E2E Testing
+```bash
+npm run e2e:ios         # E2E tests on iOS
+npm run e2e:android     # E2E tests on Android
+```
+
+---
+
+## 🚀 Deployment
+
+### iOS
+```bash
+npm run build:ios:release
+# Then use Xcode for App Store deployment
+```
+
+### Android
+```bash
+npm run build:android:release
+# Then use Android Studio for Play Store deployment
+```
+
+---
+
+## 🌍 Localization
+
+Supported languages:
+- 🇬🇧 English (default)
+- 🇪🇸 Spanish
+- 🇫🇷 French
+- 🇩🇪 German
+- 🇮🇹 Italian
+
+GDPR compliant with proper consent management.
+
+---
+
+## 📊 Roadmap
+
+### Sprint 1-2: Foundation & Setup ✅
+- [x] React Native project initialization
+- [ ] Navigation setup
+- [ ] Authentication screens
+- [ ] Basic component library
+
+### Sprint 3-4: Core Features
+- [ ] User profile management
+- [ ] Skill management
+- [ ] Matching interface
+- [ ] Session scheduling
+
+### Sprint 5-6: Advanced Features
+- [ ] Video calling
+- [ ] Real-time features
+- [ ] Push notifications
+- [ ] Offline capabilities
+
+### Sprint 7-8: Polish & Launch
+- [ ] Multi-language support
+- [ ] GDPR compliance
+- [ ] App store preparation
+- [ ] Performance optimization
+
+---
+
+## 🤝 Contributing
+
+This is the frontend implementation of SkillSwap. 
+
+For backend coordination, see: `../shared-docs/`
+
+---
+
+*Last updated: 6 de septiembre de 2025*
 
 ---
 

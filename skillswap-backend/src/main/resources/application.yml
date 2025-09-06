@@ -1,0 +1,181 @@
+# SkillSwap Backend Configuration
+
+spring:
+  application:
+    name: skillswap-backend
+  
+  profiles:
+    active: dev
+  
+  # Database Configuration
+  datasource:
+    url: ${DATABASE_URL:jdbc:h2:mem:skillswap}
+    username: ${DATABASE_USERNAME:sa}
+    password: ${DATABASE_PASSWORD:}
+    driver-class-name: ${DATABASE_DRIVER:org.h2.Driver}
+  
+  # JPA Configuration
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: ${HIBERNATE_DIALECT:org.hibernate.dialect.H2Dialect}
+        '[format_sql]': true
+        '[use_sql_comments]': true
+    open-in-view: false
+  
+  # H2 Console (Development only)
+  h2:
+    console:
+      enabled: false
+  
+  # Flyway Configuration
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+    table: flyway_schema_history
+  
+  # Redis Configuration
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      timeout: 2000ms
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+  
+  # Security Configuration
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID:}
+            client-secret: ${GOOGLE_CLIENT_SECRET:}
+            scope: openid,profile,email
+          github:
+            client-id: ${GITHUB_CLIENT_ID:}
+            client-secret: ${GITHUB_CLIENT_SECRET:}
+            scope: user:email
+  
+  # Email Configuration
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  
+  # File Upload Configuration
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+# Server Configuration
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /api/v1
+  compression:
+    enabled: true
+  http2:
+    enabled: true
+
+# Actuator Configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: when-authorized
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
+# Application Specific Configuration
+skillswap:
+  # JWT Configuration
+  jwt:
+    secret: ${JWT_SECRET:mySecretKey123456789012345678901234567890}
+    access-token-expiration: 900000      # 15 minutes
+    refresh-token-expiration: 604800000  # 7 days
+    issuer: skillswap-backend
+  
+  # CORS Configuration
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000,http://localhost:8081}
+    allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+    allowed-headers: "*"
+    allow-credentials: true
+    max-age: 3600
+  
+  # Business Rules
+  credits:
+    initial-balance: 10
+    session-cost: 5
+    session-reward: 3
+    bonus-multiplier: 1.2
+  
+  # File Storage
+  storage:
+    upload-dir: ${UPLOAD_DIR:./uploads}
+    max-file-size: 10485760  # 10MB
+    allowed-types: jpg,jpeg,png,pdf,doc,docx
+  
+  # External Services
+  agora:
+    app-id: ${AGORA_APP_ID:}
+    app-certificate: ${AGORA_APP_CERTIFICATE:}
+  
+  sendgrid:
+    api-key: ${SENDGRID_API_KEY:}
+    from-email: ${FROM_EMAIL:noreply@skillswap.com}
+    from-name: SkillSwap Team
+  
+  # Rate Limiting
+  rate-limit:
+    requests-per-hour: 1000
+    burst-capacity: 100
+
+# Logging Configuration
+logging:
+  level:
+    '[com.skillswap]': INFO
+    '[org.springframework.security]': DEBUG
+    '[org.hibernate.SQL]': DEBUG
+    '[org.hibernate.type.descriptor.sql.BasicBinder]': TRACE
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/skillswap-backend.log
+
+# Springdoc OpenAPI Configuration
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    disable-swagger-default-url: true
+  show-actuator: true

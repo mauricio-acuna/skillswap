@@ -16,7 +16,10 @@
 
 ```
 📁 appMultiplatform/
-├── 📚 shared-docs/                    # Documentación compartida
+├── � BACKLOG.md                      # Sprint 1 User Stories (34 pts)
+├── 🔄 TASK-COORDINATION.md            # Multi-Agent Workflow Protocol  
+├── 📊 PROGRESS-TRACKING.md            # Sprint Progress & Metrics
+├── �📚 shared-docs/                    # Documentación compartida
 │   ├── 📋 PRD.md                      # Product Requirements Document
 │   ├── 🎯 MercadoObjetivo.md          # Análisis mercado + 3 propuestas
 │   ├── 🔧 SkillSwap-TechnicalSpecs.md # Especificaciones técnicas
@@ -44,7 +47,12 @@
 
 ### 🎯 **Asignación de Agentes**
 
-#### **🔧 Agent Backend**
+#### **� Agent Product Manager**
+- **Workspace:** `code /Users/mauricio/Proyectos/appMultiplatform/`
+- **Responsabilidad:** User Stories, Sprint Planning, Task Coordination
+- **Archivos:** `BACKLOG.md`, `TASK-COORDINATION.md`, `PROGRESS-TRACKING.md`
+
+#### **�🔧 Agent Backend**
 - **Workspace:** `code skillswap-backend/`
 - **Responsabilidad:** API REST, Database, Security, Integrations
 - **Documentación:** `skillswap-backend/README.md`

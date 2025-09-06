@@ -456,13 +456,13 @@ CREATE TABLE credit_transactions (
 ## 🚀 ROADMAP BACKEND (8 Sprints)
 
 ### Sprint 1-2: Foundation (4 semanas)
-- [ ] Project setup con Spring Boot 3.1+
+- [x] Project setup con Spring Boot 3.1+
 - [ ] Database configuration (H2 + PostgreSQL profiles)
 - [ ] Basic security setup (JWT + CORS)
 - [ ] User entity y authentication endpoints
 - [ ] Basic CRUD operations para usuarios
-- [ ] Swagger documentation setup
-- [ ] Docker configuration
+- [x] Swagger documentation setup
+- [x] Docker configuration
 
 ### Sprint 3-4: Core Entities (4 semanas)
 - [ ] Skill management system

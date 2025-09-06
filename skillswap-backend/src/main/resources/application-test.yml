@@ -1,0 +1,51 @@
+# Test Configuration
+spring:
+  profiles:
+    active: test
+  
+  # H2 Database for Testing
+  datasource:
+    url: jdbc:h2:mem:skillswap-test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: 
+    driver-class-name: org.h2.Driver
+  
+  # JPA Configuration for Testing
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        '[format_sql]': false
+        '[use_sql_comments]': false
+  
+  # Flyway disabled for testing
+  flyway:
+    enabled: false
+  
+  # Embedded Redis for testing
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+# Test Server Configuration
+server:
+  port: 0  # Random port for testing
+
+# Test Logging (minimal)
+logging:
+  level:
+    '[com.skillswap]': INFO
+    '[org.springframework.security]': WARN
+    '[org.hibernate.SQL]': WARN
+    root: WARN
+
+# Test JWT (fast and simple)
+skillswap:
+  jwt:
+    secret: testSecretKey123456789012345678901234567890
+    access-token-expiration: 3600000      # 1 hour for tests
+    refresh-token-expiration: 7200000     # 2 hours for tests

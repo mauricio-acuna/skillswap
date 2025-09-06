@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escalabilidad & Performance - SkillSwap</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c5282;
+            border-bottom: 3px solid #4299e1;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2d3748;
+            margin-top: 30px;
+            border-left: 4px solid #4299e1;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #4a5568;
+            margin-top: 25px;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .metric-card {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2c5282;
+        }
+        .metric-label {
+            color: #4a5568;
+            font-size: 0.9em;
+        }
+        .architecture-diagram {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            white-space: pre-line;
+        }
+        .scaling-phase {
+            background: #edf2f7;
+            border-left: 4px solid #3182ce;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .performance-tip {
+            background: #e6fffa;
+            border: 1px solid #81e6d9;
+            color: #234e52;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .bottleneck-warning {
+            background: #fed7d7;
+            border: 1px solid #feb2b2;
+            color: #742a2a;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .code-block {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+        }
+        .load-test-results {
+            background: #f0fff4;
+            border: 1px solid #9ae6b4;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background: #edf2f7;
+            font-weight: bold;
+        }
+        .phase-indicator {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .phase-mvp { background: #bee3f8; color: #2c5282; }
+        .phase-growth { background: #fbb6ce; color: #97266d; }
+        .phase-scale { background: #c6f6d5; color: #22543d; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📈 Escalabilidad & Performance - SkillSwap</h1>
+        
+        <p><strong>Guía de Escalabilidad</strong> desde MVP hasta 1M+ usuarios activos mensuales</p>
+        
+        <h2>🎯 Objetivos de Performance por Fase</h2>
+        
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value">1K</div>
+                <div class="metric-label">Usuarios MVP</div>
+                <span class="phase-indicator phase-mvp">Fase 1</span>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">50K</div>
+                <div class="metric-label">Usuarios Growth</div>
+                <span class="phase-indicator phase-growth">Fase 2</span>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">500K</div>
+                <div class="metric-label">Usuarios Scale</div>
+                <span class="phase-indicator phase-scale">Fase 3</span>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">1M+</div>
+                <div class="metric-label">Usuarios Enterprise</div>
+                <span class="phase-indicator phase-scale">Fase 4</span>
+            </div>
+        </div>
+
+        <h2>🏗️ Arquitectura Evolutiva</h2>
+
+        <h3>📊 Fase 1: MVP (1K usuarios)</h3>
+        <div class="scaling-phase">
+            <strong>Arquitectura Monolítica Simple</strong>
+            <div class="architecture-diagram">
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│   React Native  │───▶│   Spring Boot    │───▶│   PostgreSQL    │
+│   (iOS/Android) │    │   (Monolith)     │    │   (Single DB)   │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
+                                │
+                                ▼
+                       ┌──────────────────┐
+                       │   Redis Cache    │
+                       │   (Sessions)     │
+                       └──────────────────┘
+            </div>
+            
+            <strong>Especificaciones Técnicas:</strong>
+            <ul>
+                <li><strong>Server:</strong> 2 vCPU, 4GB RAM, 50GB SSD</li>
+                <li><strong>Database:</strong> PostgreSQL 15, 2 vCPU, 4GB RAM</li>
+                <li><strong>Cache:</strong> Redis 1GB RAM</li>
+                <li><strong>CDN:</strong> CloudFlare básico</li>
+                <li><strong>Deployment:</strong> Docker en VPS single-region</li>
+            </ul>
+            
+            <div class="performance-tip">
+                <strong>💡 Optimizaciones Críticas MVP:</strong>
+                <ul>
+                    <li>Connection pooling con HikariCP (10 conexiones máx)</li>
+                    <li>Índices básicos en User.email, Skill.category</li>
+                    <li>Cache de sesiones JWT en Redis (TTL 15min)</li>
+                    <li>Lazy loading en React Native screens</li>
+                    <li>Image compression automática</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>🚀 Fase 2: Growth (50K usuarios)</h3>
+        <div class="scaling-phase">
+            <strong>Microservicios + Load Balancer</strong>
+            <div class="architecture-diagram">
+                       ┌─────────────────┐
+                       │  Load Balancer  │
+                       │   (nginx/ALB)   │
+                       └─────────┬───────┘
+                                 │
+              ┌──────────────────┼──────────────────┐
+              │                  │                  │
+    ┌─────────▼─────────┐ ┌──────▼──────┐ ┌──────▼──────┐
+    │   Auth Service    │ │ User Service│ │Match Service│
+    │   (Spring Boot)   │ │(Spring Boot)│ │(Spring Boot)│
+    └───────────────────┘ └─────────────┘ └─────────────┘
+              │                  │                  │
+              └──────────────────┼──────────────────┘
+                                 │
+                    ┌────────────▼────────────┐
+                    │   PostgreSQL Cluster   │
+                    │  (Master + 2 Replicas) │
+                    └─────────────────────────┘
+            </div>
+            
+            <strong>Especificaciones Técnicas:</strong>
+            <ul>
+                <li><strong>Load Balancer:</strong> ALB con health checks</li>
+                <li><strong>App Servers:</strong> 3x (4 vCPU, 8GB RAM cada uno)</li>
+                <li><strong>Database:</strong> Master (8 vCPU, 16GB) + 2 Read Replicas</li>
+                <li><strong>Cache:</strong> Redis Cluster 3 nodos, 8GB total</li>
+                <li><strong>CDN:</strong> CloudFlare Pro con image optimization</li>
+            </ul>
+
+            <div class="bottleneck-warning">
+                <strong>⚠️ Cuellos de Botella Esperados:</strong>
+                <ul>
+                    <li><strong>Database writes:</strong> Matching algorithm genera muchas escrituras</li>
+                    <li><strong>Real-time connections:</strong> WebSocket connections límite del servidor</li>
+                    <li><strong>File uploads:</strong> Profile images y session recordings</li>
+                    <li><strong>Search performance:</strong> Skills search se vuelve lento</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>⚡ Fase 3: Scale (500K usuarios)</h3>
+        <div class="scaling-phase">
+            <strong>Microservicios + Event-Driven + CDN</strong>
+            <div class="architecture-diagram">
+    ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+    │   React Native  │───▶│   API Gateway   │───▶│  Auth Service   │
+    │                 │    │   (Kong/AWS)    │    │                 │
+    └─────────────────┘    └─────────┬───────┘    └─────────────────┘
+                                     │
+                   ┌─────────────────┼─────────────────┐
+                   │                 │                 │
+         ┌─────────▼─────────┐ ┌─────▼─────┐ ┌──────▼──────┐
+         │  User Service     │ │  Skill    │ │   Match     │
+         │                   │ │ Service   │ │  Service    │
+         └───────────────────┘ └───────────┘ └─────────────┘
+                   │                 │                 │
+                   └─────────────────┼─────────────────┘
+                                     │
+                            ┌────────▼────────┐
+                            │   Event Bus     │
+                            │   (Kafka/SQS)   │
+                            └─────────────────┘
+                                     │
+                    ┌────────────────┼────────────────┐
+                    │                │                │
+          ┌─────────▼─────────┐ ┌────▼────┐ ┌──────▼──────┐
+          │ PostgreSQL Shards │ │ Redis   │ │ElasticSearch│
+          │    (3 shards)     │ │Cluster  │ │  (Search)   │
+          └───────────────────┘ └─────────┘ └─────────────┘
+            </div>
+            
+            <strong>Especificaciones Técnicas:</strong>
+            <ul>
+                <li><strong>API Gateway:</strong> Kong o AWS API Gateway</li>
+                <li><strong>Services:</strong> 5+ microservicios, auto-scaling</li>
+                <li><strong>Database:</strong> PostgreSQL sharding por región/skill type</li>
+                <li><strong>Search:</strong> ElasticSearch cluster para skills search</li>
+                <li><strong>Message Queue:</strong> Apache Kafka para events</li>
+                <li><strong>Cache:</strong> Redis cluster multi-layer</li>
+                <li><strong>File Storage:</strong> AWS S3 + CloudFront CDN</li>
+            </ul>
+        </div>
+
+        <h2>📊 Métricas de Performance Críticas</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Métrica</th>
+                    <th>MVP Target</th>
+                    <th>Growth Target</th>
+                    <th>Scale Target</th>
+                    <th>Herramienta</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>API Response Time (p95)</td>
+                    <td>&lt; 800ms</td>
+                    <td>&lt; 500ms</td>
+                    <td>&lt; 200ms</td>
+                    <td>New Relic, DataDog</td>
+                </tr>
+                <tr>
+                    <td>Database Query Time (p95)</td>
+                    <td>&lt; 500ms</td>
+                    <td>&lt; 200ms</td>
+                    <td>&lt; 100ms</td>
+                    <td>pg_stat_statements</td>
+                </tr>
+                <tr>
+                    <td>Mobile App Cold Start</td>
+                    <td>&lt; 4s</td>
+                    <td>&lt; 3s</td>
+                    <td>&lt; 2s</td>
+                    <td>Firebase Performance</td>
+                </tr>
+                <tr>
+                    <td>Concurrent Users</td>
+                    <td>100</td>
+                    <td>5,000</td>
+                    <td>50,000</td>
+                    <td>Load Testing</td>
+                </tr>
+                <tr>
+                    <td>Error Rate</td>
+                    <td>&lt; 1%</td>
+                    <td>&lt; 0.1%</td>
+                    <td>&lt; 0.01%</td>
+                    <td>Sentry, Rollbar</td>
+                </tr>
+                <tr>
+                    <td>Database Connections</td>
+                    <td>20 max</td>
+                    <td>100 max</td>
+                    <td>500+ max</td>
+                    <td>HikariCP metrics</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>🎯 Estrategias de Optimización</h2>
+
+        <h3>🗄️ Database Performance</h3>
+        
+        <div class="performance-tip">
+            <strong>📈 Optimizaciones Progresivas de BD</strong>
+            
+            <h4>Fase MVP:</h4>
+            <div class="code-block">
+-- Índices básicos obligatorios
+CREATE INDEX idx_users_email ON users(email);
+CREATE INDEX idx_skills_category ON skills(category_id);
+CREATE INDEX idx_user_skills_user_id ON user_skills(user_id);
+CREATE INDEX idx_matches_users ON matches(user_id_1, user_id_2);
+CREATE INDEX idx_sessions_user_id ON sessions(user_id);
+
+-- Índice compuesto para matching
+CREATE INDEX idx_user_skills_composite ON user_skills(skill_id, proficiency_level, user_id);
+            </div>
+
+            <h4>Fase Growth:</h4>
+            <div class="code-block">
+-- Partitioning por fecha
+CREATE TABLE sessions_2025_q1 PARTITION OF sessions
+    FOR VALUES FROM ('2025-01-01') TO ('2025-04-01');
+
+-- Índices parciales para queries frecuentes
+CREATE INDEX idx_active_users ON users(id) WHERE is_active = true;
+CREATE INDEX idx_pending_matches ON matches(created_at) WHERE status = 'pending';
+
+-- Índices de texto para búsqueda
+CREATE INDEX idx_skills_name_gin ON skills USING gin(to_tsvector('english', name));
+            </div>
+
+            <h4>Fase Scale:</h4>
+            <div class="code-block">
+-- Database sharding strategy
+-- Shard 1: Users with ID 1-1000000 (Europe West)
+-- Shard 2: Users with ID 1000001-2000000 (Europe Central)
+-- Shard 3: Users with ID 2000001+ (Europe East)
+
+-- Read replicas por región
+-- Master: Frankfurt (writes)
+-- Replica 1: London (UK reads)
+-- Replica 2: Paris (France reads)
+-- Replica 3: Milan (Italy reads)
+            </div>
+        </div>
+
+        <h3>📱 Frontend Performance</h3>
+
+        <div class="performance-tip">
+            <strong>⚡ React Native Optimizations</strong>
+            
+            <h4>Bundle Optimization:</h4>
+            <div class="code-block">
+// metro.config.js - Code splitting
+module.exports = {
+  resolver: {
+    assetExts: ['bin', 'txt', 'jpg', 'png', 'json', 'webp'],
+  },
+  transformer: {
+    getTransformOptions: async () => ({
+      transform: {
+        experimentalImportSupport: false,
+        inlineRequires: true, // Lazy loading
+      },
+    }),
+  },
+};
+
+// Dynamic imports para lazy loading
+const ProfileScreen = lazy(() => import('./screens/ProfileScreen'));
+const MatchingScreen = lazy(() => import('./screens/MatchingScreen'));
+            </div>
+
+            <h4>Memory Management:</h4>
+            <div class="code-block">
+// useEffect cleanup pattern
+useEffect(() => {
+  const subscription = websocket.subscribe(handleMessage);
+  const interval = setInterval(fetchUpdates, 30000);
+  
+  return () => {
+    subscription.unsubscribe();
+    clearInterval(interval);
+  };
+}, []);
+
+// Image optimization
+const optimizedImage = {
+  uri: imageUrl,
+  cache: 'force-cache',
+  headers: { 'Cache-Control': 'max-age=3600' }
+};
+            </div>
+        </div>
+
+        <h3>🚀 Backend Performance</h3>
+
+        <div class="performance-tip">
+            <strong>⚙️ Spring Boot Optimizations</strong>
+            
+            <h4>JVM Tuning:</h4>
+            <div class="code-block">
+# application.yml - Production settings
+server:
+  tomcat:
+    max-threads: 200
+    min-spare-threads: 25
+    accept-count: 100
+    max-connections: 8192
+
+spring:
+  datasource:
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      idle-timeout: 300000
+      max-lifetime: 1200000
+      leak-detection-threshold: 60000
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 50
+        cache:
+          use_second_level_cache: true
+          region:
+            factory_class: org.hibernate.cache.jcache.JCacheRegionFactory
+            </div>
+
+            <h4>Caching Strategy:</h4>
+            <div class="code-block">
+@Service
+public class SkillService {
+    
+    @Cacheable(value = "skills", key = "#categoryId")
+    public List&lt;Skill&gt; getSkillsByCategory(Long categoryId) {
+        return skillRepository.findByCategoryId(categoryId);
+    }
+    
+    @Cacheable(value = "user-skills", key = "#userId")
+    public List&lt;UserSkill&gt; getUserSkills(Long userId) {
+        return userSkillRepository.findByUserId(userId);
+    }
+    
+    @CacheEvict(value = "user-skills", key = "#userId")
+    public void updateUserSkills(Long userId, List&lt;UserSkill&gt; skills) {
+        // Update logic
+    }
+}
+            </div>
+        </div>
+
+        <h2>🧪 Load Testing Strategy</h2>
+
+        <div class="load-test-results">
+            <strong>📊 Load Testing Scenarios</strong>
+            
+            <h4>Scenario 1: Peak Usage</h4>
+            <ul>
+                <li><strong>Users:</strong> 1000 concurrent (MVP), 10K (Growth), 100K (Scale)</li>
+                <li><strong>Duration:</strong> 30 minutos</li>
+                <li><strong>Pattern:</strong> Ramp up over 5 minutes, steady load, ramp down</li>
+                <li><strong>Actions:</strong> Login (20%), Browse skills (30%), Match requests (25%), Video sessions (25%)</li>
+            </ul>
+
+            <h4>Scenario 2: Spike Testing</h4>
+            <ul>
+                <li><strong>Pattern:</strong> Normal load → 10x spike for 5 minutes → return to normal</li>
+                <li><strong>Objetivo:</strong> Verificar auto-scaling y recovery</li>
+                <li><strong>Success criteria:</strong> No errors &gt; 1%, response time &lt; 2x normal</li>
+            </ul>
+
+            <h4>Scenario 3: Endurance Testing</h4>
+            <ul>
+                <li><strong>Duration:</strong> 8 horas continuous load</li>
+                <li><strong>Objetivo:</strong> Detectar memory leaks y performance degradation</li>
+                <li><strong>Monitoreo:</strong> JVM heap, database connections, response times</li>
+            </ul>
+        </div>
+
+        <h3>🛠️ Load Testing Tools</h3>
+
+        <div class="code-block">
+# JMeter Test Plan Structure
+TestPlan/
+├── User_Registration_Load.jmx
+├── Authentication_Load.jmx
+├── Skills_Management_Load.jmx
+├── Matching_Algorithm_Load.jmx
+├── Video_Sessions_Load.jmx
+└── End_to_End_Flow.jmx
+
+# K6 Script Example
+import http from 'k6/http';
+import { check } from 'k6';
+
+export let options = {
+  stages: [
+    { duration: '5m', target: 100 },  // Ramp up
+    { duration: '10m', target: 100 }, // Stay at 100 users
+    { duration: '5m', target: 0 },    // Ramp down
+  ],
+};
+
+export default function() {
+  // Login flow
+  let loginResponse = http.post('http://api.skillswap.com/auth/login', {
+    email: 'test@example.com',
+    password: 'password123'
+  });
+  
+  check(loginResponse, {
+    'login successful': (r) => r.status === 200,
+    'response time < 500ms': (r) => r.timings.duration < 500,
+  });
+}
+        </div>
+
+        <h2>📈 Monitoring & Alerting</h2>
+
+        <div class="bottleneck-warning">
+            <strong>🚨 Critical Alerts Configuration</strong>
+            
+            <h4>P0 - Critical (5min response)</h4>
+            <ul>
+                <li>API error rate &gt; 5%</li>
+                <li>Database down or connections exhausted</li>
+                <li>Memory usage &gt; 90%</li>
+                <li>Disk space &gt; 85%</li>
+                <li>Authentication service down</li>
+            </ul>
+
+            <h4>P1 - High (30min response)</h4>
+            <ul>
+                <li>Response time p95 &gt; 2x baseline</li>
+                <li>Cache hit rate &lt; 80%</li>
+                <li>Database slow queries &gt; 1000ms</li>
+                <li>WebSocket connection failures &gt; 10%</li>
+            </ul>
+
+            <h4>P2 - Medium (4h response)</h4>
+            <ul>
+                <li>User registration conversion &lt; 10%</li>
+                <li>Session completion rate &lt; 70%</li>
+                <li>Mobile app crash rate &gt; 1%</li>
+                <li>CDN cache miss rate &gt; 30%</li>
+            </ul>
+        </div>
+
+        <h2>🎯 Performance Budget</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Resource</th>
+                    <th>MVP Budget</th>
+                    <th>Growth Budget</th>
+                    <th>Scale Budget</th>
+                    <th>Monitoring</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Mobile Bundle Size</td>
+                    <td>&lt; 30MB</td>
+                    <td>&lt; 25MB</td>
+                    <td>&lt; 20MB</td>
+                    <td>Bundle analyzer</td>
+                </tr>
+                <tr>
+                    <td>API Payload Size</td>
+                    <td>&lt; 100KB</td>
+                    <td>&lt; 50KB</td>
+                    <td>&lt; 25KB</td>
+                    <td>Network monitoring</td>
+                </tr>
+                <tr>
+                    <td>Database Query Count</td>
+                    <td>&lt; 10/request</td>
+                    <td>&lt; 5/request</td>
+                    <td>&lt; 3/request</td>
+                    <td>APM tools</td>
+                </tr>
+                <tr>
+                    <td>Memory Usage (Backend)</td>
+                    <td>&lt; 2GB</td>
+                    <td>&lt; 4GB</td>
+                    <td>&lt; 8GB/instance</td>
+                    <td>JVM metrics</td>
+                </tr>
+                <tr>
+                    <td>Cold Start Time</td>
+                    <td>&lt; 5s</td>
+                    <td>&lt; 3s</td>
+                    <td>&lt; 2s</td>
+                    <td>Application metrics</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p><em>Última actualización: 6 de septiembre de 2025</em></p>
+    </div>
+</body>
+</html>
