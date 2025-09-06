@@ -2,48 +2,19 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AuthStackParamList } from './navigationTypes';
 
-// Import screens (will be created)
-// import WelcomeScreen from '@screens/auth/WelcomeScreen';
-// import LoginScreen from '@screens/auth/LoginScreen';
-// import RegisterScreen from '@screens/auth/RegisterScreen';
-// import ForgotPasswordScreen from '@screens/auth/ForgotPasswordScreen';
-// import EmailVerificationScreen from '@screens/auth/EmailVerificationScreen';
-// import GDPRConsentScreen from '@screens/auth/GDPRConsentScreen';
+// Import actual screens
+import { 
+  WelcomeScreen, 
+  LoginScreen, 
+  RegisterScreen, 
+  ForgotPasswordScreen 
+} from '@screens/auth';
 
-// Temporary placeholder screens
+// Temporary placeholder screens for future implementation
 import { View, Text, StyleSheet } from 'react-native';
 import { colors } from '@styles/theme';
 
 const Stack = createStackNavigator<AuthStackParamList>();
-
-// Placeholder screens
-const WelcomeScreen = () => (
-  <View style={styles.container}>
-    <Text style={styles.title}>Welcome to SkillSwap</Text>
-    <Text style={styles.subtitle}>Connect, Learn, Grow</Text>
-  </View>
-);
-
-const LoginScreen = () => (
-  <View style={styles.container}>
-    <Text style={styles.title}>Login</Text>
-    <Text style={styles.subtitle}>Sign in to your account</Text>
-  </View>
-);
-
-const RegisterScreen = () => (
-  <View style={styles.container}>
-    <Text style={styles.title}>Create Account</Text>
-    <Text style={styles.subtitle}>Join the SkillSwap community</Text>
-  </View>
-);
-
-const ForgotPasswordScreen = () => (
-  <View style={styles.container}>
-    <Text style={styles.title}>Reset Password</Text>
-    <Text style={styles.subtitle}>We'll help you recover your account</Text>
-  </View>
-);
 
 const EmailVerificationScreen = () => (
   <View style={styles.container}>
@@ -104,23 +75,6 @@ const AuthNavigator: React.FC = () => {
         component={ForgotPasswordScreen}
         options={{
           title: 'Reset Password',
-          headerBackTitleVisible: false,
-        }}
-      />
-      <Stack.Screen 
-        name="EmailVerification" 
-        component={EmailVerificationScreen}
-        options={{
-          title: 'Verify Email',
-          headerBackTitleVisible: false,
-          headerLeft: () => null, // Prevent going back during verification
-        }}
-      />
-      <Stack.Screen 
-        name="GDPRConsent" 
-        component={GDPRConsentScreen}
-        options={{
-          title: 'Privacy Settings',
           headerBackTitleVisible: false,
         }}
       />

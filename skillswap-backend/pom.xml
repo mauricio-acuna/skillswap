@@ -57,6 +57,12 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         
+        <!-- WebSocket para chat en tiempo real -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+        
         <!-- Database -->
         <dependency>
             <groupId>org.postgresql</groupId>

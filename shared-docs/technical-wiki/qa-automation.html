@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA Automation & Quality Assurance - SkillSwap</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c5282;
+            border-bottom: 3px solid #4299e1;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2d3748;
+            margin-top: 30px;
+            border-left: 4px solid #4299e1;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #4a5568;
+            margin-top: 25px;
+        }
+        .qa-framework {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #4299e1;
+        }
+        .automation-tool {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .test-case {
+            background: #f0fff4;
+            border: 1px solid #9ae6b4;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .quality-gate {
+            background: #e6fffa;
+            border: 1px solid #81e6d9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .bug-severity {
+            background: #fef5e7;
+            border: 1px solid #f6e05e;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .warning {
+            background: #fed7d7;
+            border: 1px solid #feb2b2;
+            color: #742a2a;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .success {
+            background: #f0fff4;
+            border: 1px solid #9ae6b4;
+            color: #22543d;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .code-block {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background: #edf2f7;
+            font-weight: bold;
+        }
+        .timeline {
+            border-left: 3px solid #4299e1;
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+        .timeline-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        .timeline-date {
+            font-weight: bold;
+            color: #2c5282;
+        }
+        .defect-lifecycle {
+            background: #f0f9ff;
+            border: 1px solid #7dd3fc;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .accessibility-check {
+            background: #fef5e7;
+            border: 1px solid #f6e05e;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .security-test {
+            background: #fed7d7;
+            border: 1px solid #feb2b2;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 QA Automation & Quality Assurance - SkillSwap</h1>
+        
+        <p><strong>Comprehensive Quality Framework</strong> para asegurar excelencia en calidad, automatización y user experience</p>
+        
+        <h2>🎯 QA Strategy Framework</h2>
+        
+        <div class="qa-framework">
+            <h3>📋 Quality Assurance Methodology</h3>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>QA Phase</th>
+                        <th>Activities</th>
+                        <th>Tools</th>
+                        <th>Exit Criteria</th>
+                        <th>Automation %</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Test Planning</strong></td>
+                        <td>Test strategy, scope definition, resource allocation</td>
+                        <td>TestRail, Jira, Confluence</td>
+                        <td>Approved test plan</td>
+                        <td>10%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Test Design</strong></td>
+                        <td>Test cases, scenarios, data preparation</td>
+                        <td>TestRail, Xray, Gherkin</td>
+                        <td>Test cases reviewed & approved</td>
+                        <td>25%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Test Execution</strong></td>
+                        <td>Manual testing, automated runs, bug reporting</td>
+                        <td>Selenium, Appium, Postman</td>
+                        <td>All test cases executed</td>
+                        <td>70%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Defect Management</strong></td>
+                        <td>Bug tracking, regression testing, resolution verification</td>
+                        <td>Jira, Bugzilla, TestRail</td>
+                        <td>All critical bugs resolved</td>
+                        <td>40%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Test Closure</strong></td>
+                        <td>Test summary report, lessons learned, metrics</td>
+                        <td>Custom dashboards, Reports</td>
+                        <td>Quality gate criteria met</td>
+                        <td>90%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>🏗️ Quality Gates & Release Criteria</h3>
+
+        <div class="quality-gate">
+            <h4>✅ Release Quality Gates</h4>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Quality Gate</th>
+                        <th>Criteria</th>
+                        <th>Threshold</th>
+                        <th>Blocker Level</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Code Quality</strong></td>
+                        <td>SonarQube Quality Gate</td>
+                        <td>A rating</td>
+                        <td>🔴 Blocker</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Test Coverage</strong></td>
+                        <td>Unit + Integration test coverage</td>
+                        <td>&gt; 85%</td>
+                        <td>🔴 Blocker</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Critical Bugs</strong></td>
+                        <td>P1/P2 severity bugs</td>
+                        <td>0 open bugs</td>
+                        <td>🔴 Blocker</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Performance</strong></td>
+                        <td>Load test results</td>
+                        <td>&lt; 500ms p95</td>
+                        <td>🟡 Warning</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Security</strong></td>
+                        <td>OWASP security scan</td>
+                        <td>No High/Critical issues</td>
+                        <td>🔴 Blocker</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Accessibility</strong></td>
+                        <td>WCAG 2.1 AA compliance</td>
+                        <td>&gt; 95% compliance</td>
+                        <td>🟡 Warning</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>🤖 Test Automation Framework</h2>
+
+        <h3>📱 Mobile App Automation</h3>
+
+        <div class="automation-tool">
+            <h4>🔧 Mobile Testing Stack</h4>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tool</th>
+                        <th>Purpose</th>
+                        <th>Platform Support</th>
+                        <th>Test Types</th>
+                        <th>Cost/Month</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Appium</strong></td>
+                        <td>Cross-platform mobile automation</td>
+                        <td>iOS, Android</td>
+                        <td>Functional, Regression</td>
+                        <td>€0 (Open source)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Detox (React Native)</strong></td>
+                        <td>Gray box e2e testing</td>
+                        <td>iOS, Android</td>
+                        <td>E2E, Integration</td>
+                        <td>€0 (Open source)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>BrowserStack</strong></td>
+                        <td>Cloud device testing</td>
+                        <td>iOS, Android, Web</td>
+                        <td>Cross-device, Visual</td>
+                        <td>€29-€199</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Firebase Test Lab</strong></td>
+                        <td>Google cloud testing</td>
+                        <td>Android, iOS</td>
+                        <td>Compatibility, Performance</td>
+                        <td>€0.80/hour device</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Maestro</strong></td>
+                        <td>Simple mobile UI testing</td>
+                        <td>iOS, Android</td>
+                        <td>UI flows, User journeys</td>
+                        <td>€0 (Open source)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="test-case">
+            <h4>📱 Mobile Automation Examples</h4>
+            
+            <div class="code-block">
+// Detox E2E Test Example
+// e2e/skillBooking.e2e.js
+import { device, element, by, expect } from 'detox';
+
+describe('Skill Booking Flow', () => {
+  beforeAll(async () => {
+    await device.launchApp();
+  });
+
+  beforeEach(async () => {
+    await device.reloadReactNative();
+  });
+
+  it('should complete skill booking successfully', async () => {
+    // Login
+    await element(by.id('email-input')).typeText('student@example.com');
+    await element(by.id('password-input')).typeText('SecurePassword123!');
+    await element(by.id('login-button')).tap();
+    
+    // Wait for home screen
+    await expect(element(by.id('home-screen'))).toBeVisible();
+    
+    // Navigate to skills
+    await element(by.id('skills-tab')).tap();
+    await expect(element(by.id('skills-screen'))).toBeVisible();
+    
+    // Search for skill
+    await element(by.id('search-input')).typeText('React Native');
+    await element(by.id('search-button')).tap();
+    
+    // Wait for search results
+    await waitFor(element(by.id('skill-card-0')))
+      .toBeVisible()
+      .withTimeout(5000);
+    
+    // Tap on first skill
+    await element(by.id('skill-card-0')).tap();
+    
+    // Verify skill details screen
+    await expect(element(by.id('skill-details-screen'))).toBeVisible();
+    await expect(element(by.text('React Native Development'))).toBeVisible();
+    
+    // Book session
+    await element(by.id('book-session-button')).tap();
+    
+    // Fill booking form
+    await element(by.id('session-date-picker')).tap();
+    await element(by.text('15')).tap(); // Select day 15
+    await element(by.text('Done')).tap();
+    
+    await element(by.id('session-time-picker')).tap();
+    await element(by.text('10:00 AM')).tap();
+    await element(by.text('Done')).tap();
+    
+    await element(by.id('session-message-input'))
+      .typeText('Looking forward to learning React Native!');
+    
+    // Confirm booking
+    await element(by.id('confirm-booking-button')).tap();
+    
+    // Wait for success message
+    await waitFor(element(by.text('Session booked successfully!')))
+      .toBeVisible()
+      .withTimeout(10000);
+    
+    // Verify navigation to my sessions
+    await expect(element(by.id('my-sessions-screen'))).toBeVisible();
+    
+    // Verify booked session appears
+    await expect(element(by.text('React Native Development'))).toBeVisible();
+    await expect(element(by.text('Upcoming'))).toBeVisible();
+  });
+
+  it('should handle booking errors gracefully', async () => {
+    // Login and navigate to skill booking
+    await element(by.id('email-input')).typeText('student@example.com');
+    await element(by.id('password-input')).typeText('SecurePassword123!');
+    await element(by.id('login-button')).tap();
+    
+    await element(by.id('skills-tab')).tap();
+    await element(by.id('skill-card-0')).tap();
+    await element(by.id('book-session-button')).tap();
+    
+    // Try to book without selecting date
+    await element(by.id('confirm-booking-button')).tap();
+    
+    // Verify error message
+    await expect(element(by.text('Please select a session date')))
+      .toBeVisible();
+    
+    // Verify form is still visible
+    await expect(element(by.id('booking-form'))).toBeVisible();
+  });
+
+  it('should handle network failures during booking', async () => {
+    // Simulate network failure
+    await device.setURLBlacklist(['.*api/sessions.*']);
+    
+    // Attempt booking
+    await element(by.id('email-input')).typeText('student@example.com');
+    await element(by.id('password-input')).typeText('SecurePassword123!');
+    await element(by.id('login-button')).tap();
+    
+    await element(by.id('skills-tab')).tap();
+    await element(by.id('skill-card-0')).tap();
+    await element(by.id('book-session-button')).tap();
+    
+    // Fill form and submit
+    await element(by.id('session-date-picker')).tap();
+    await element(by.text('15')).tap();
+    await element(by.text('Done')).tap();
+    
+    await element(by.id('confirm-booking-button')).tap();
+    
+    // Verify network error handling
+    await expect(element(by.text('Network error. Please try again.')))
+      .toBeVisible();
+    
+    // Verify retry button appears
+    await expect(element(by.id('retry-button'))).toBeVisible();
+    
+    // Clear blacklist and retry
+    await device.setURLBlacklist([]);
+    await element(by.id('retry-button')).tap();
+    
+    // Verify success after retry
+    await waitFor(element(by.text('Session booked successfully!')))
+      .toBeVisible()
+      .withTimeout(10000);
+  });
+});
+
+// Appium Test Example (for cross-platform testing)
+// appium-tests/skillSearch.test.js
+const { remote } = require('webdriverio');
+
+const opts = {
+  path: '/wd/hub',
+  port: 4723,
+  capabilities: {
+    platformName: 'iOS',
+    platformVersion: '16.0',
+    deviceName: 'iPhone 14 Pro',
+    app: '/path/to/SkillSwap.app',
+    bundleId: 'com.skillswap.app',
+    automationName: 'XCUITest'
+  }
+};
+
+describe('Cross-Platform Skill Search', () => {
+  let driver;
+
+  beforeAll(async () => {
+    driver = await remote(opts);
+  });
+
+  afterAll(async () => {
+    await driver.deleteSession();
+  });
+
+  it('should search for skills across platforms', async () => {
+    // Wait for app to load
+    await driver.pause(3000);
+    
+    // Find and tap skills tab
+    const skillsTab = await driver.$('~skills-tab');
+    await skillsTab.waitForDisplayed({ timeout: 10000 });
+    await skillsTab.click();
+    
+    // Find search input
+    const searchInput = await driver.$('~search-input');
+    await searchInput.waitForDisplayed({ timeout: 5000 });
+    await searchInput.setValue('JavaScript');
+    
+    // Tap search button
+    const searchButton = await driver.$('~search-button');
+    await searchButton.click();
+    
+    // Wait for results
+    await driver.pause(2000);
+    
+    // Verify results
+    const skillCards = await driver.$$('~skill-card');
+    expect(skillCards.length).toBeGreaterThan(0);
+    
+    // Verify first result contains JavaScript
+    const firstCard = skillCards[0];
+    const cardText = await firstCard.getText();
+    expect(cardText.toLowerCase()).toContain('javascript');
+  });
+});
+
+// Maestro Test Example (YAML-based)
+// maestro-tests/skill-booking-flow.yaml
+appId: com.skillswap.app
+---
+- launchApp
+- tapOn: "Login"
+- inputText: "student@example.com"
+- tapOn: "Password"
+- inputText: "SecurePassword123!"
+- tapOn: "Sign In"
+
+- assertVisible: "Home"
+- tapOn: "Skills"
+- assertVisible: "Skill Search"
+
+- tapOn: "Search skills..."
+- inputText: "React Native"
+- tapOn: "Search"
+
+- assertVisible: "React Native Development"
+- tapOn: "React Native Development"
+- assertVisible: "Book Session"
+
+- tapOn: "Book Session"
+- tapOn: "Select Date"
+- tapOn: "15"
+- tapOn: "Select Time"
+- tapOn: "10:00 AM"
+- inputText: "Looking forward to learning!"
+- tapOn: "Confirm Booking"
+
+- assertVisible: "Session booked successfully!"
+- assertVisible: "My Sessions"
+            </code-block>
+        </div>
+
+        <h3>🌐 Web & API Automation</h3>
+
+        <div class="automation-tool">
+            <h4>🔧 Web & API Testing Stack</h4>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tool</th>
+                        <th>Purpose</th>
+                        <th>Technology</th>
+                        <th>Test Types</th>
+                        <th>Maintenance Effort</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Playwright</strong></td>
+                        <td>Modern web automation</td>
+                        <td>JavaScript/TypeScript</td>
+                        <td>E2E, Cross-browser</td>
+                        <td>Low</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cypress</strong></td>
+                        <td>Frontend testing</td>
+                        <td>JavaScript</td>
+                        <td>E2E, Component</td>
+                        <td>Low</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Newman (Postman)</strong></td>
+                        <td>API testing</td>
+                        <td>JSON collections</td>
+                        <td>API, Integration</td>
+                        <td>Very Low</td>
+                    </tr>
+                    <tr>
+                        <td><strong>REST Assured</strong></td>
+                        <td>Java API testing</td>
+                        <td>Java</td>
+                        <td>API, Contract</td>
+                        <td>Medium</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TestCafe</strong></td>
+                        <td>Cross-browser testing</td>
+                        <td>JavaScript/TypeScript</td>
+                        <td>E2E, Visual</td>
+                        <td>Low</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="test-case">
+            <h4>🌐 Web & API Automation Examples</h4>
+            
+            <div class="code-block">
+// Playwright E2E Test
+// tests/web/skill-management.spec.ts
+import { test, expect, Page } from '@playwright/test';
+
+test.describe('Skill Management Web Portal', () => {
+  let page: Page;
+
+  test.beforeEach(async ({ browser }) => {
+    page = await browser.newPage();
+    await page.goto('https://admin.skillswap.com');
+    
+    // Login as admin
+    await page.fill('[data-testid="email"]', 'admin@skillswap.com');
+    await page.fill('[data-testid="password"]', 'AdminPassword123!');
+    await page.click('[data-testid="login-button"]');
+    
+    // Wait for dashboard
+    await expect(page.locator('h1')).toContainText('Admin Dashboard');
+  });
+
+  test('should create and manage skills', async () => {
+    // Navigate to skills management
+    await page.click('text=Skills Management');
+    await expect(page).toHaveURL(/.*\/skills/);
+    
+    // Create new skill
+    await page.click('[data-testid="create-skill-button"]');
+    
+    await page.fill('[data-testid="skill-title"]', 'Advanced TypeScript');
+    await page.selectOption('[data-testid="skill-category"]', 'Programming');
+    await page.selectOption('[data-testid="skill-level"]', 'ADVANCED');
+    await page.fill('[data-testid="skill-description"]', 'Learn advanced TypeScript concepts');
+    await page.fill('[data-testid="hourly-rate"]', '40');
+    
+    // Upload skill image
+    await page.setInputFiles('[data-testid="skill-image"]', 'test-files/typescript-logo.png');
+    
+    // Submit form
+    await page.click('[data-testid="submit-skill"]');
+    
+    // Verify success
+    await expect(page.locator('.success-message')).toContainText('Skill created successfully');
+    
+    // Verify skill appears in list
+    await expect(page.locator('[data-testid="skills-table"]')).toContainText('Advanced TypeScript');
+  });
+
+  test('should handle skill approval workflow', async () => {
+    // Navigate to pending approvals
+    await page.click('text=Pending Approvals');
+    
+    // Find first pending skill
+    const firstPendingSkill = page.locator('[data-testid="pending-skill"]').first();
+    await expect(firstPendingSkill).toBeVisible();
+    
+    // Review skill details
+    await firstPendingSkill.click();
+    await expect(page.locator('[data-testid="skill-review-modal"]')).toBeVisible();
+    
+    // Approve skill
+    await page.click('[data-testid="approve-button"]');
+    await page.fill('[data-testid="approval-comment"]', 'Skill meets quality standards');
+    await page.click('[data-testid="confirm-approval"]');
+    
+    // Verify approval
+    await expect(page.locator('.success-message')).toContainText('Skill approved');
+    
+    // Verify skill moved to approved list
+    await page.click('text=Approved Skills');
+    await expect(page.locator('[data-testid="approved-skills"]')).toContainText('Advanced TypeScript');
+  });
+
+  test('should validate form inputs', async () => {
+    await page.click('text=Skills Management');
+    await page.click('[data-testid="create-skill-button"]');
+    
+    // Try to submit empty form
+    await page.click('[data-testid="submit-skill"]');
+    
+    // Verify validation errors
+    await expect(page.locator('[data-testid="title-error"]')).toContainText('Title is required');
+    await expect(page.locator('[data-testid="category-error"]')).toContainText('Category is required');
+    await expect(page.locator('[data-testid="rate-error"]')).toContainText('Hourly rate is required');
+    
+    // Test invalid data
+    await page.fill('[data-testid="skill-title"]', 'ab'); // Too short
+    await page.fill('[data-testid="hourly-rate"]', '-5'); // Negative rate
+    
+    await page.click('[data-testid="submit-skill"]');
+    
+    await expect(page.locator('[data-testid="title-error"]')).toContainText('Title must be at least 3 characters');
+    await expect(page.locator('[data-testid="rate-error"]')).toContainText('Rate must be positive');
+  });
+});
+
+// API Testing with Newman/Postman
+// api-tests/skillswap-api.postman_collection.json
+{
+  "info": {
+    "name": "SkillSwap API Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{authToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "exec": [
+          "// Auto-login before each request",
+          "if (!pm.environment.get('authToken')) {",
+          "  pm.sendRequest({",
+          "    url: pm.environment.get('baseUrl') + '/api/auth/login',",
+          "    method: 'POST',",
+          "    header: {",
+          "      'Content-Type': 'application/json'",
+          "    },",
+          "    body: {",
+          "      mode: 'raw',",
+          "      raw: JSON.stringify({",
+          "        email: pm.environment.get('testEmail'),",
+          "        password: pm.environment.get('testPassword')",
+          "      })",
+          "    }",
+          "  }, function (err, res) {",
+          "    if (!err) {",
+          "      const token = res.json().token;",
+          "      pm.environment.set('authToken', token);",
+          "    }",
+          "  });",
+          "}"
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication Tests",
+      "item": [
+        {
+          "name": "Login with valid credentials",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{testEmail}}\",\n  \"password\": \"{{testPassword}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response contains token', function () {",
+                  "  const responseJson = pm.response.json();",
+                  "  pm.expect(responseJson).to.have.property('token');",
+                  "  pm.expect(responseJson.token).to.be.a('string');",
+                  "  pm.environment.set('authToken', responseJson.token);",
+                  "});",
+                  "",
+                  "pm.test('Response time is less than 500ms', function () {",
+                  "  pm.expect(pm.response.responseTime).to.be.below(500);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Login with invalid credentials",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"invalid@example.com\",\n  \"password\": \"wrongpassword\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 401', function () {",
+                  "  pm.response.to.have.status(401);",
+                  "});",
+                  "",
+                  "pm.test('Error message is correct', function () {",
+                  "  const responseJson = pm.response.json();",
+                  "  pm.expect(responseJson.message).to.include('Invalid credentials');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Skills API Tests",
+      "item": [
+        {
+          "name": "Create skill",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Advanced React Testing\",\n  \"category\": \"Programming\",\n  \"level\": \"ADVANCED\",\n  \"description\": \"Learn advanced React testing techniques\",\n  \"hourlyRate\": 35.00\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/skills",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "skills"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 201', function () {",
+                  "  pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "pm.test('Skill created successfully', function () {",
+                  "  const responseJson = pm.response.json();",
+                  "  pm.expect(responseJson).to.have.property('id');",
+                  "  pm.expect(responseJson.title).to.equal('Advanced React Testing');",
+                  "  pm.environment.set('createdSkillId', responseJson.id);",
+                  "});",
+                  "",
+                  "pm.test('Required fields are present', function () {",
+                  "  const responseJson = pm.response.json();",
+                  "  pm.expect(responseJson).to.have.all.keys('id', 'title', 'category', 'level', 'description', 'hourlyRate', 'instructor', 'createdAt');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get skill by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/skills/{{createdSkillId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "skills", "{{createdSkillId}}"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Skill details are correct', function () {",
+                  "  const responseJson = pm.response.json();",
+                  "  pm.expect(responseJson.title).to.equal('Advanced React Testing');",
+                  "  pm.expect(responseJson.category).to.equal('Programming');",
+                  "  pm.expect(responseJson.level).to.equal('ADVANCED');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+// REST Assured API Test (Java)
+// src/test/java/com/skillswap/api/SkillsAPITest.java
+@TestMethodOrder(OrderAnnotation.class)
+public class SkillsAPITest {
+    
+    private static String authToken;
+    private static String skillId;
+    
+    @BeforeAll
+    static void setup() {
+        RestAssured.baseURI = "https://api.skillswap.com";
+        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
+        
+        // Get auth token
+        Response loginResponse = given()
+            .contentType(ContentType.JSON)
+            .body(Map.of(
+                "email", "test@example.com",
+                "password", "TestPassword123!"
+            ))
+        .when()
+            .post("/api/auth/login")
+        .then()
+            .statusCode(200)
+            .extract().response();
+            
+        authToken = loginResponse.jsonPath().getString("token");
+    }
+    
+    @Test
+    @Order(1)
+    @DisplayName("Should create skill successfully")
+    void shouldCreateSkill() {
+        Map<String, Object> skillData = Map.of(
+            "title", "Advanced Spring Boot",
+            "category", "Programming",
+            "level", "ADVANCED",
+            "description", "Learn advanced Spring Boot concepts",
+            "hourlyRate", 40.0
+        );
+        
+        Response response = given()
+            .header("Authorization", "Bearer " + authToken)
+            .contentType(ContentType.JSON)
+            .body(skillData)
+        .when()
+            .post("/api/skills")
+        .then()
+            .statusCode(201)
+            .body("title", equalTo("Advanced Spring Boot"))
+            .body("category", equalTo("Programming"))
+            .body("level", equalTo("ADVANCED"))
+            .body("hourlyRate", equalTo(40.0f))
+            .body("id", notNullValue())
+            .extract().response();
+            
+        skillId = response.jsonPath().getString("id");
+    }
+    
+    @Test
+    @Order(2)
+    @DisplayName("Should search skills with filters")
+    void shouldSearchSkillsWithFilters() {
+        given()
+            .queryParam("category", "Programming")
+            .queryParam("level", "ADVANCED")
+            .queryParam("minRate", 30)
+            .queryParam("maxRate", 50)
+        .when()
+            .get("/api/skills")
+        .then()
+            .statusCode(200)
+            .body("content", hasSize(greaterThan(0)))
+            .body("content[0].category", equalTo("Programming"))
+            .body("content[0].level", equalTo("ADVANCED"))
+            .body("content[0].hourlyRate", allOf(greaterThanOrEqualTo(30.0f), lessThanOrEqualTo(50.0f)));
+    }
+    
+    @Test
+    @Order(3)
+    @DisplayName("Should validate skill creation with invalid data")
+    void shouldValidateSkillCreation() {
+        Map<String, Object> invalidSkillData = Map.of(
+            "title", "", // Empty title
+            "category", "InvalidCategory",
+            "level", "INVALID_LEVEL",
+            "hourlyRate", -5.0 // Negative rate
+        );
+        
+        given()
+            .header("Authorization", "Bearer " + authToken)
+            .contentType(ContentType.JSON)
+            .body(invalidSkillData)
+        .when()
+            .post("/api/skills")
+        .then()
+            .statusCode(400)
+            .body("errors", hasSize(greaterThan(0)))
+            .body("errors.field", hasItems("title", "category", "level", "hourlyRate"));
+    }
+    
+    @Test
+    @Order(4)
+    @DisplayName("Should handle rate limiting")
+    void shouldHandleRateLimiting() {
+        // Make multiple rapid requests to trigger rate limiting
+        for (int i = 0; i < 100; i++) {
+            Response response = given()
+                .header("Authorization", "Bearer " + authToken)
+            .when()
+                .get("/api/skills")
+            .then()
+                .extract().response();
+                
+            if (response.getStatusCode() == 429) {
+                // Rate limit hit, verify response
+                response.then()
+                    .header("Retry-After", notNullValue())
+                    .body("message", containsString("rate limit"));
+                break;
+            }
+        }
+    }
+}
+            </code-block>
+        </div>
+
+        <h2>🔒 Security & Accessibility Testing</h2>
+
+        <h3>🛡️ Security Testing Framework</h3>
+
+        <div class="security-test">
+            <h4>🔐 Security Testing Checklist</h4>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Security Aspect</th>
+                        <th>Tool</th>
+                        <th>Test Type</th>
+                        <th>Frequency</th>
+                        <th>Critical Level</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>OWASP Top 10</strong></td>
+                        <td>OWASP ZAP, SonarQube</td>
+                        <td>Static + Dynamic</td>
+                        <td>Every build</td>
+                        <td>🔴 Critical</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Authentication</strong></td>
+                        <td>Manual + Automated</td>
+                        <td>Functional</td>
+                        <td>Every release</td>
+                        <td>🔴 Critical</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Authorization</strong></td>
+                        <td>Custom scripts</td>
+                        <td>Access control</td>
+                        <td>Every release</td>
+                        <td>🔴 Critical</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Protection</strong></td>
+                        <td>Manual testing</td>
+                        <td>GDPR compliance</td>
+                        <td>Monthly</td>
+                        <td>🟡 High</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Input Validation</strong></td>
+                        <td>Burp Suite, Custom</td>
+                        <td>Injection attacks</td>
+                        <td>Every build</td>
+                        <td>🔴 Critical</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>♿ Accessibility Testing</h3>
+
+        <div class="accessibility-check">
+            <h4>🌐 WCAG 2.1 AA Compliance Testing</h4>
+            
+            <div class="code-block">
+// Accessibility Testing with Playwright
+// tests/accessibility/wcag-compliance.spec.ts
+import { test, expect } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
+
+test.describe('WCAG 2.1 AA Compliance', () => {
+  test('should pass accessibility audit on skills page', async ({ page }) => {
+    await page.goto('https://skillswap.com/skills');
+    
+    const accessibilityScanResults = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+      .analyze();
+    
+    expect(accessibilityScanResults.violations).toEqual([]);
+  });
+
+  test('should have proper heading hierarchy', async ({ page }) => {
+    await page.goto('https://skillswap.com/skills');
+    
+    const headings = await page.locator('h1, h2, h3, h4, h5, h6').all();
+    
+    // Verify h1 exists and is unique
+    const h1Elements = await page.locator('h1').count();
+    expect(h1Elements).toBe(1);
+    
+    // Verify heading hierarchy
+    for (let i = 0; i < headings.length - 1; i++) {
+      const currentLevel = await headings[i].textContent();
+      const nextLevel = await headings[i + 1].textContent();
+      
+      // Add custom heading hierarchy validation logic
+    }
+  });
+
+  test('should have keyboard navigation support', async ({ page }) => {
+    await page.goto('https://skillswap.com/skills');
+    
+    // Test Tab navigation
+    await page.keyboard.press('Tab');
+    let focusedElement = await page.locator(':focus');
+    await expect(focusedElement).toBeVisible();
+    
+    // Test Skip link
+    await page.keyboard.press('Tab');
+    const skipLink = await page.locator('text=Skip to main content');
+    if (await skipLink.isVisible()) {
+      await skipLink.click();
+      const mainContent = await page.locator('main, #main-content');
+      await expect(mainContent).toBeFocused();
+    }
+  });
+
+  test('should have proper color contrast', async ({ page }) => {
+    await page.goto('https://skillswap.com/skills');
+    
+    const accessibilityScanResults = await new AxeBuilder({ page })
+      .withTags(['color-contrast'])
+      .analyze();
+    
+    expect(accessibilityScanResults.violations).toEqual([]);
+  });
+
+  test('should have alt text for images', async ({ page }) => {
+    await page.goto('https://skillswap.com/skills');
+    
+    const images = await page.locator('img').all();
+    
+    for (const image of images) {
+      const alt = await image.getAttribute('alt');
+      const role = await image.getAttribute('role');
+      
+      // Images should have alt text or be marked as decorative
+      expect(alt !== null || role === 'presentation').toBe(true);
+      
+      if (alt !== null) {
+        expect(alt.trim().length).toBeGreaterThan(0);
+      }
+    }
+  });
+});
+
+// Mobile Accessibility Testing
+// mobile-tests/accessibility.test.js
+describe('Mobile Accessibility', () => {
+  it('should have proper touch targets', async () => {
+    const buttons = await element(by.type('TouchableOpacity')).all();
+    
+    for (const button of buttons) {
+      const size = await button.getSize();
+      
+      // WCAG 2.1 AA requires minimum 44x44 points
+      expect(size.width).toBeGreaterThanOrEqual(44);
+      expect(size.height).toBeGreaterThanOrEqual(44);
+    }
+  });
+
+  it('should support screen readers', async () => {
+    // Test VoiceOver/TalkBack accessibility labels
+    const skillCard = element(by.id('skill-card-0'));
+    
+    const accessibilityLabel = await skillCard.getAttributes();
+    expect(accessibilityLabel.label).toBeDefined();
+    expect(accessibilityLabel.label.length).toBeGreaterThan(0);
+  });
+
+  it('should handle dynamic content announcements', async () => {
+    // Test that loading states are announced
+    await element(by.id('search-button')).tap();
+    
+    const loadingIndicator = element(by.id('loading-indicator'));
+    const loadingLabel = await loadingIndicator.getAttributes();
+    
+    expect(loadingLabel.label).toContain('Loading');
+  });
+});
+            </code-block>
+        </div>
+
+        <h2>📋 Manual Testing & Exploratory Testing</h2>
+
+        <h3>🎭 User Experience Testing</h3>
+
+        <div class="test-case">
+            <h4>👤 User Journey Test Scenarios</h4>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>User Journey</th>
+                        <th>Test Scenario</th>
+                        <th>Success Criteria</th>
+                        <th>Priority</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>New User Onboarding</strong></td>
+                        <td>Complete registration to first skill booking</td>
+                        <td>User completes booking within 10 minutes</td>
+                        <td>P1</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Skill Discovery</strong></td>
+                        <td>Search and filter to find relevant skills</td>
+                        <td>User finds desired skill within 3 searches</td>
+                        <td>P1</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Session Management</strong></td>
+                        <td>Book, reschedule, and cancel sessions</td>
+                        <td>All actions complete without errors</td>
+                        <td>P1</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Payment Flow</strong></td>
+                        <td>Complete payment for premium features</td>
+                        <td>Payment processed within 30 seconds</td>
+                        <td>P1</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Video Session</strong></td>
+                        <td>Join and participate in video call</td>
+                        <td>Audio/video quality is acceptable</td>
+                        <td>P2</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rating & Review</strong></td>
+                        <td>Rate session and leave feedback</td>
+                        <td>Review appears immediately</td>
+                        <td>P2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>🐛 Bug Management & Defect Lifecycle</h3>
+
+        <div class="defect-lifecycle">
+            <h4>🔄 Defect Management Process</h4>
+            
+            <div class="bug-severity">
+                <h5>🚨 Bug Severity & Priority Matrix</h5>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Severity</th>
+                            <th>Definition</th>
+                            <th>Examples</th>
+                            <th>Response Time</th>
+                            <th>Resolution Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>P1 - Critical</strong></td>
+                            <td>System down, data loss, security breach</td>
+                            <td>App crashes on startup, payment failures</td>
+                            <td>1 hour</td>
+                            <td>24 hours</td>
+                        </tr>
+                        <tr>
+                            <td><strong>P2 - High</strong></td>
+                            <td>Major feature broken, affects many users</td>
+                            <td>Cannot book sessions, search not working</td>
+                            <td>4 hours</td>
+                            <td>3 days</td>
+                        </tr>
+                        <tr>
+                            <td><strong>P3 - Medium</strong></td>
+                            <td>Feature issue, workaround available</td>
+                            <td>UI glitches, minor performance issues</td>
+                            <td>24 hours</td>
+                            <td>1 week</td>
+                        </tr>
+                        <tr>
+                            <td><strong>P4 - Low</strong></td>
+                            <td>Cosmetic issues, enhancement requests</td>
+                            <td>Text alignment, color inconsistencies</td>
+                            <td>1 week</td>
+                            <td>Next release</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <p><em>Última actualización: 6 de septiembre de 2025</em></p>
+        <p><em>Próxima revisión: Bi-semanal durante ciclos de testing activos</em></p>
+    </div>
+</body>
+</html>
