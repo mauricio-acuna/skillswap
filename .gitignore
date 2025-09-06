@@ -1,0 +1,185 @@
+# ===============================
+# SKILLSWAP PROJECT GITIGNORE
+# ===============================
+
+# ================================
+# SYSTEM FILES
+# ================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+
+# ================================
+# BACKEND (Spring Boot)
+# ================================
+skillswap-backend/target/
+skillswap-backend/*.jar
+skillswap-backend/*.war
+skillswap-backend/*.nar
+skillswap-backend/*.ear
+skillswap-backend/*.zip
+skillswap-backend/*.tar.gz
+skillswap-backend/*.rar
+
+# Maven
+skillswap-backend/.mvn/wrapper/maven-wrapper.jar
+skillswap-backend/.mvn/wrapper/maven-wrapper.properties
+
+# IDE
+skillswap-backend/.idea/
+skillswap-backend/*.iws
+skillswap-backend/*.iml
+skillswap-backend/*.ipr
+skillswap-backend/.vscode/
+skillswap-backend/.settings/
+skillswap-backend/.project
+skillswap-backend/.classpath
+skillswap-backend/.factorypath
+
+# Logs
+skillswap-backend/logs/
+skillswap-backend/*.log
+skillswap-backend/log/
+
+# H2 Database
+skillswap-backend/*.db
+skillswap-backend/*.mv.db
+skillswap-backend/*.trace.db
+
+# Spring Boot
+skillswap-backend/application-*.yml
+skillswap-backend/application-*.yaml
+skillswap-backend/application-*.properties
+
+# ================================
+# FRONTEND (React Native)
+# ================================
+
+# Dependencies
+skillswap-frontend/node_modules/
+skillswap-frontend/npm-debug.log*
+skillswap-frontend/yarn-debug.log*
+skillswap-frontend/yarn-error.log*
+
+# Metro
+skillswap-frontend/.metro-health-check*
+skillswap-frontend/metro.config.js
+
+# OSX
+skillswap-frontend/.DS_Store
+
+# Xcode
+skillswap-frontend/ios/build/
+skillswap-frontend/ios/DerivedData/
+skillswap-frontend/ios/*.pbxuser
+skillswap-frontend/ios/!default.pbxuser
+skillswap-frontend/ios/*.mode1v3
+skillswap-frontend/ios/!default.mode1v3
+skillswap-frontend/ios/*.mode2v3
+skillswap-frontend/ios/!default.mode2v3
+skillswap-frontend/ios/*.perspectivev3
+skillswap-frontend/ios/!default.perspectivev3
+skillswap-frontend/ios/xcuserdata
+skillswap-frontend/ios/*.xccheckout
+skillswap-frontend/ios/*.moved-aside
+skillswap-frontend/ios/Pods/
+skillswap-frontend/ios/*.xcuserstate
+skillswap-frontend/ios/project.xcworkspace
+
+# Android/IntelliJ
+skillswap-frontend/android/build/
+skillswap-frontend/android/.idea
+skillswap-frontend/android/.gradle
+skillswap-frontend/android/local.properties
+skillswap-frontend/android/*.iml
+skillswap-frontend/android/keystore.properties
+skillswap-frontend/android/app/release/
+
+# Fastlane
+skillswap-frontend/fastlane/report.xml
+skillswap-frontend/fastlane/Preview.html
+skillswap-frontend/fastlane/screenshots
+skillswap-frontend/fastlane/test_output
+
+# Bundle artifacts
+skillswap-frontend/*.jsbundle
+
+# CocoaPods
+skillswap-frontend/ios/Pods/
+
+# Expo
+skillswap-frontend/.expo/
+skillswap-frontend/dist/
+skillswap-frontend/web-build/
+
+# Environment variables
+skillswap-frontend/.env
+skillswap-frontend/.env.local
+skillswap-frontend/.env.development.local
+skillswap-frontend/.env.test.local
+skillswap-frontend/.env.production.local
+
+# Testing
+skillswap-frontend/coverage/
+skillswap-frontend/.nyc_output
+
+# ================================
+# SHARED ENVIRONMENT FILES
+# ================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ================================
+# DOCKER
+# ================================
+docker-compose.override.yml
+.docker/
+
+# ================================
+# CERTIFICATES & SECRETS
+# ================================
+*.pem
+*.key
+*.cert
+*.crt
+*.p12
+*.keystore
+
+# ================================
+# TEMPORARY FILES
+# ================================
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# ================================
+# EDITOR SPECIFIC
+# ================================
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+.idea/
+*.sublime-*
+
+# ================================
+# DOCUMENTATION BUILDS
+# ================================
+shared-docs/build/
+shared-docs/dist/
+
+# ================================
+# DATABASE DUMPS
+# ================================
+*.sql
+*.dump
+*.backup
