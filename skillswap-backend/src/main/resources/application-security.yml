@@ -1,0 +1,228 @@
+# Security-Enhanced Configuration for SkillSwap Backend
+# Production-ready security settings
+
+# Logging Configuration
+logging:
+  level:
+    root: INFO
+    com.skillswap.backend: DEBUG
+    SECURITY_AUDIT: INFO
+    com.skillswap.backend.security: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.web.servlet.HandlerInterceptor: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+  
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%X{username:-ANONYMOUS}] [%X{ipAddress:-UNKNOWN}] [%X{sessionId:-NO_SESSION}] %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%X{username:-ANONYMOUS}] [%X{ipAddress:-UNKNOWN}] [%X{sessionId:-NO_SESSION}] %logger{36} - %msg%n"
+  
+  file:
+    name: logs/skillswap-backend.log
+  
+  logback:
+    rollingpolicy:
+      max-file-size: 100MB
+      max-history: 30
+      total-size-cap: 1GB
+
+# Spring Application Configuration
+spring:
+  application:
+    name: skillswap-backend
+  
+  # Database Configuration with Security
+  datasource:
+    url: jdbc:mysql://localhost:3306/skillswap?useSSL=true&requireSSL=true&verifyServerCertificate=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: ${DB_USERNAME:skillswap_user}
+    password: ${DB_PASSWORD:skillswap_password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      leak-detection-threshold: 60000
+  
+  # JPA Security Settings
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+        jdbc:
+          batch_size: 20
+        order_inserts: true
+        order_updates: true
+  
+  # Flyway Configuration
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    validate-on-migrate: true
+  
+  # Redis Configuration for Rate Limiting
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      timeout: 2000ms
+      jedis:
+        pool:
+          max-active: 10
+          max-idle: 5
+          min-idle: 1
+  
+  # Servlet Configuration
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+      enabled: true
+  
+  # MVC Configuration
+  mvc:
+    throw-exception-if-no-handler-found: true
+  
+  web:
+    resources:
+      add-mappings: false
+  
+  # Profile Configuration
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:development}
+
+# Server Configuration
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    session:
+      timeout: 30m
+      cookie:
+        http-only: true
+        secure: true
+        same-site: strict
+
+# Management/Actuator Security
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: when-authorized
+  security:
+    enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+      percentiles:
+        http.server.requests: 0.5,0.95,0.99
+      slo:
+        http.server.requests: 50ms,100ms,200ms,300ms,500ms,1s
+
+# Custom Application Properties
+skillswap:
+  # JWT Configuration
+  jwt:
+    secret: ${JWT_SECRET:defaultSecretKeyThatShouldBeChangedInProduction123456789}
+    expiration: 3600000
+    refresh:
+      expiration: 86400000
+  
+  # CORS Configuration
+  cors:
+    allowed:
+      origins: ${CORS_ORIGINS:http://localhost:3000,http://localhost:8100}
+      methods: GET,POST,PUT,DELETE,OPTIONS
+      headers: "*"
+    allow:
+      credentials: true
+  
+  # WebSocket Configuration
+  websocket:
+    allowed:
+      origins: ${WEBSOCKET_ORIGINS:http://localhost:3000,http://localhost:8100}
+  
+  # Encryption Configuration
+  encryption:
+    key: ${ENCRYPTION_KEY:}
+  
+  # Security Configuration
+  security:
+    rate-limit:
+      default-requests-per-minute: 60
+      auth-requests-per-minute: 5
+      credit-transfer-per-hour: 10
+      video-session-per-hour: 20
+    
+    headers:
+      content-security-policy: "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' ws: wss:; font-src 'self'; object-src 'none'; media-src 'self'; frame-src 'none';"
+      strict-transport-security: "max-age=31536000; includeSubDomains; preload"
+      x-frame-options: "DENY"
+      x-content-type-options: "nosniff"
+      x-xss-protection: "1; mode=block"
+      referrer-policy: "strict-origin-when-cross-origin"
+
+---
+# Development Profile
+spring:
+  config:
+    activate:
+      on-profile: development
+
+logging:
+  level:
+    com.skillswap.backend.security: TRACE
+
+server:
+  servlet:
+    session:
+      cookie:
+        secure: false
+
+skillswap:
+  security:
+    rate-limit:
+      default-requests-per-minute: 120
+
+---
+# Production Profile
+spring:
+  config:
+    activate:
+      on-profile: production
+  
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:skillswap}?useSSL=true&requireSSL=true&verifyServerCertificate=true&serverTimezone=UTC
+
+logging:
+  level:
+    root: WARN
+    com.skillswap.backend: INFO
+    SECURITY_AUDIT: INFO
+
+server:
+  servlet:
+    session:
+      cookie:
+        secure: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

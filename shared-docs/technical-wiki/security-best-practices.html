@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔒 Security Best Practices - SkillSwap</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #dc2626;
+            border-bottom: 3px solid #ef4444;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2d3748;
+            margin-top: 30px;
+            border-left: 4px solid #ef4444;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #4a5568;
+            margin-top: 25px;
+        }
+        .security-level {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #dc2626;
+        }
+        .vulnerability {
+            background: #fffbeb;
+            border: 1px solid #fed7aa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #f59e0b;
+        }
+        .secure-practice {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #16a34a;
+        }
+        .critical-risk {
+            background: #fef2f2;
+            border: 1px solid #fca5a5;
+            color: #7f1d1d;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .medium-risk {
+            background: #fffbeb;
+            border: 1px solid #fed7aa;
+            color: #92400e;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .low-risk {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #14532d;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .code-block {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background: #edf2f7;
+            font-weight: bold;
+        }
+        .owasp-top10 {
+            background: #7c2d12;
+            color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .recommendation {
+            background: #dbeafe;
+            border: 1px solid #93c5fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .implementation-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .status-implemented {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+        .status-partial {
+            background: #fef3c7;
+            color: #d97706;
+        }
+        .status-missing {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        .status-critical {
+            background: #7f1d1d;
+            color: white;
+        }
+        .checklist {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .framework-analysis {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .gdpr-compliance {
+            background: #ede9fe;
+            border: 1px solid #c4b5fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .pentest-finding {
+            background: #1e1b4b;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔒 Security Best Practices Analysis - SkillSwap</h1>
+        
+        <p><strong>Comprehensive Security Audit</strong> del sistema SkillSwap, evaluando implementaciones actuales y identificando mejoras críticas para evadir intrusiones.</p>
+        
+        <h2>📊 Security Assessment Overview</h2>
+        
+        <div class="security-level">
+            <h3>🎯 Current Security Level: MODERATE</h3>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Security Domain</th>
+                        <th>Implementation Status</th>
+                        <th>Risk Level</th>
+                        <th>Priority</th>
+                        <th>OWASP Coverage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Authentication</strong></td>
+                        <td><span class="implementation-status status-partial">PARTIAL</span></td>
+                        <td>🟡 Medium</td>
+                        <td>High</td>
+                        <td>A07:2021</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Authorization</strong></td>
+                        <td><span class="implementation-status status-implemented">IMPLEMENTED</span></td>
+                        <td>🟢 Low</td>
+                        <td>Medium</td>
+                        <td>A01:2021</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Protection</strong></td>
+                        <td><span class="implementation-status status-missing">MISSING</span></td>
+                        <td>🔴 High</td>
+                        <td>Critical</td>
+                        <td>A02:2021</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Input Validation</strong></td>
+                        <td><span class="implementation-status status-partial">PARTIAL</span></td>
+                        <td>🟡 Medium</td>
+                        <td>High</td>
+                        <td>A03:2021</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Session Management</strong></td>
+                        <td><span class="implementation-status status-implemented">IMPLEMENTED</span></td>
+                        <td>🟢 Low</td>
+                        <td>Medium</td>
+                        <td>A07:2021</td>
+                    </tr>
+                    <tr>
+                        <td><strong>API Security</strong></td>
+                        <td><span class="implementation-status status-partial">PARTIAL</span></td>
+                        <td>🟡 Medium</td>
+                        <td>High</td>
+                        <td>A09:2021</td>
+                    </tr>
+                    <tr>
+                        <td><strong>HTTPS/TLS</strong></td>
+                        <td><span class="implementation-status status-missing">MISSING</span></td>
+                        <td>🔴 High</td>
+                        <td>Critical</td>
+                        <td>A02:2021</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Error Handling</strong></td>
+                        <td><span class="implementation-status status-critical">VULNERABLE</span></td>
+                        <td>🔴 Critical</td>
+                        <td>Critical</td>
+                        <td>A09:2021</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>🚨 Critical Security Vulnerabilities Found</h2>
+
+        <h3>🔴 High-Priority Vulnerabilities</h3>
+
+        <div class="critical-risk">
+            <h4>🚨 CRITICAL: CORS Wildcard Configuration</h4>
+            <p><strong>Finding:</strong> <code>@CrossOrigin(origins = "*", maxAge = 3600)</code> permite requests desde cualquier origen</p>
+            
+            <div class="code-block">
+// VULNERABLE: AuthController.java
+@CrossOrigin(origins = "*", maxAge = 3600)
+public class AuthController {
+    // Permite acceso desde cualquier dominio
+}
+
+// SECURE ALTERNATIVE:
+@CrossOrigin(
+    origins = {
+        "https://skillswap.app",
+        "https://api.skillswap.app",
+        "https://admin.skillswap.app"
+    },
+    allowedHeaders = {"Authorization", "Content-Type"},
+    allowCredentials = true,
+    maxAge = 3600
+)
+            </div>
+            
+            <p><strong>Impact:</strong> Permite ataques CSRF, acceso no autorizado desde dominios maliciosos</p>
+            <p><strong>Remediation:</strong> Configurar orígenes específicos y validar en SecurityConfig</p>
+        </div>
+
+        <div class="critical-risk">
+            <h4>🚨 CRITICAL: JWT Secret Key Hardcoded</h4>
+            <p><strong>Finding:</strong> JWT secret key tiene valor por defecto débil</p>
+            
+            <div class="code-block">
+// VULNERABLE: JwtTokenProvider.java
+@Value("${app.jwt.secret:skillswap-secret-key-that-should-be-changed-in-production}")
+private String jwtSecret;
+
+// SECURE IMPLEMENTATION:
+@Value("${app.jwt.secret}")
+private String jwtSecret;
+
+// application-production.yml
+app:
+  jwt:
+    secret: ${JWT_SECRET} # 256-bit random key from environment
+    expiration: 900000    # 15 minutes instead of 24 hours
+    refresh-expiration: 604800000 # 7 days
+            </div>
+            
+            <p><strong>Impact:</strong> Permite forja de tokens JWT, escalación de privilegios</p>
+            <p><strong>Remediation:</strong> Usar secreto de 256 bits aleatorio desde variables de entorno</p>
+        </div>
+
+        <div class="critical-risk">
+            <h4>🚨 CRITICAL: Information Disclosure in Error Responses</h4>
+            <p><strong>Finding:</strong> Respuestas de error exponen información sensible del sistema</p>
+            
+            <div class="code-block">
+// VULNERABLE: Información de stack traces en producción
+} catch (Exception ex) {
+    logger.error("Password reset error", ex);
+    return ResponseEntity.badRequest()
+        .body(new ApiResponse(false, "Invalid or expired reset token"));
+}
+
+// SECURE ERROR HANDLING:
+@ControllerAdvice
+public class GlobalExceptionHandler {
+    
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity<ApiResponse> handleAuthError(AuthenticationException ex) {
+        // Log completo para desarrollo
+        logger.error("Authentication failed", ex);
+        
+        // Respuesta genérica para cliente
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+            .body(new ApiResponse(false, "Authentication failed"));
+    }
+    
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ApiResponse> handleGenericError(Exception ex) {
+        logger.error("Unexpected error", ex);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+            .body(new ApiResponse(false, "An error occurred"));
+    }
+}
+            </div>
+        </div>
+
+        <h3>🟡 Medium-Priority Vulnerabilities</h3>
+
+        <div class="medium-risk">
+            <h4>⚠️ MEDIUM: JWT Token Expiration Too Long</h4>
+            <p><strong>Finding:</strong> Access tokens válidos por 24 horas (demasiado tiempo)</p>
+            <p><strong>Recommendation:</strong> Reducir a 15-30 minutos máximo</p>
+            
+            <div class="code-block">
+# application.yml - CURRENT (VULNERABLE)
+app:
+  jwt:
+    expiration: 86400000  # 24 hours - TOO LONG
+
+# RECOMMENDED CONFIGURATION
+app:
+  jwt:
+    expiration: 900000    # 15 minutes
+    refresh-expiration: 604800000 # 7 days max
+            </div>
+        </div>
+
+        <div class="medium-risk">
+            <h4>⚠️ MEDIUM: Missing Rate Limiting Implementation</h4>
+            <p><strong>Finding:</strong> No hay protección contra brute force en endpoints de autenticación</p>
+            <p><strong>Impact:</strong> Permite ataques de fuerza bruta contra credenciales</p>
+        </div>
+
+        <div class="medium-risk">
+            <h4>⚠️ MEDIUM: Insufficient Input Validation</h4>
+            <p><strong>Finding:</strong> Validación básica en DTOs, falta sanitización robusta</p>
+            <p><strong>Impact:</strong> Posibles ataques de inyección y XSS</p>
+        </div>
+
+        <h2>🛡️ OWASP Top 10 Compliance Analysis</h2>
+
+        <div class="owasp-top10">
+            <h3>📋 OWASP Top 10 2021 Compliance Status</h3>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>OWASP Risk</th>
+                        <th>Description</th>
+                        <th>Current Status</th>
+                        <th>SkillSwap Implementation</th>
+                        <th>Action Required</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>A01 - Broken Access Control</strong></td>
+                        <td>Insuficiente control de acceso</td>
+                        <td>🟡 PARTIAL</td>
+                        <td>JWT + Spring Security roles</td>
+                        <td>Implementar RBAC granular</td>
+                    </tr>
+                    <tr>
+                        <td><strong>A02 - Cryptographic Failures</strong></td>
+                        <td>Fallas criptográficas</td>
+                        <td>🔴 HIGH RISK</td>
+                        <td>BCrypt (bueno), JWT secret débil</td>
+                        <td>Fortalecer JWT secret, añadir TLS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>A03 - Injection</strong></td>
+                        <td>Ataques de inyección</td>
+                        <td>🟡 MEDIUM</td>
+                        <td>JPA (previene SQL injection)</td>
+                        <td>Validación input robusta</td>
+                    </tr>
+                    <tr>
+                        <td><strong>A04 - Insecure Design</strong></td>
+                        <td>Diseño inseguro</td>
+                        <td>🟢 LOW</td>
+                        <td>Arquitectura separada Backend/Frontend</td>
+                        <td>Threat modeling completo</td>
+                    </tr>
+                    <tr>
+                        <td><strong>A05 - Security Misconfiguration</strong></td>
+                        <td>Configuración insegura</td>
+                        <td>🔴 HIGH RISK</td>
+                        <td>CORS wildcard, defaults inseguros</td>
+                        <td>Hardening configuración</td>
+                    </tr>
+                    <tr>
+                        <td><strong>A06 - Vulnerable Components</strong></td>
+                        <td>Componentes vulnerables</td>
+                        <td>🟡 MEDIUM</td>
+                        <td>Dependencies actualizadas</td>
+                        <td>Dependency scanning automatizado</td>
+                    </tr>
+                    <tr>
+                        <td><strong>A07 - ID & Auth Failures</strong></td>
+                        <td>Fallas de autenticación</td>
+                        <td>🟡 MEDIUM</td>
+                        <td>JWT implementation básica</td>
+                        <td>MFA, rate limiting, token rotation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>A08 - Software & Data Integrity</strong></td>
+                        <td>Integridad de software/datos</td>
+                        <td>🟡 MEDIUM</td>
+                        <td>Sin firma de artefactos</td>
+                        <td>CI/CD security, signing</td>
+                    </tr>
+                    <tr>
+                        <td><strong>A09 - Security Logging Failures</strong></td>
+                        <td>Fallas en logging de seguridad</td>
+                        <td>🔴 HIGH RISK</td>
+                        <td>Logging básico</td>
+                        <td>Security monitoring robusto</td>
+                    </tr>
+                    <tr>
+                        <td><strong>A10 - Server-Side Request Forgery</strong></td>
+                        <td>SSRF</td>
+                        <td>🟢 LOW</td>
+                        <td>No requests externos</td>
+                        <td>Validación URLs si se añade</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>🛠️ Secure Implementation Recommendations</h2>
+
+        <h3>🔒 Backend Security Hardening</h3>
+
+        <div class="secure-practice">
+            <h4>1. JWT Security Enhancement</h4>
+            
+            <div class="code-block">
+// Enhanced JWT Configuration
+@Configuration
+public class JwtSecurityConfig {
+    
+    @Value("${app.jwt.secret}")
+    private String jwtSecret; // Must be 256-bit random key
+    
+    @Value("${app.jwt.access-token-expiration:900}") // 15 minutes
+    private int accessTokenExpiration;
+    
+    @Value("${app.jwt.refresh-token-expiration:604800}") // 7 days
+    private int refreshTokenExpiration;
+    
+    @Bean
+    public JwtDecoder jwtDecoder() {
+        SecretKeySpec secretKey = new SecretKeySpec(
+            jwtSecret.getBytes(), 
+            SignatureAlgorithm.HS256.getJcaName()
+        );
+        
+        return NimbusJwtDecoder.withSecretKey(secretKey)
+            .macAlgorithm(MacAlgorithm.HS256)
+            .build();
+    }
+    
+    // Token rotation on refresh
+    public TokenResponse rotateTokens(String refreshToken) {
+        if (!isValidRefreshToken(refreshToken)) {
+            throw new InvalidTokenException("Invalid refresh token");
+        }
+        
+        // Invalidate old refresh token
+        tokenBlacklistService.blacklist(refreshToken);
+        
+        // Generate new tokens
+        return generateNewTokenPair(getUserFromToken(refreshToken));
+    }
+}
+
+// Token Blacklist Service
+@Service
+public class TokenBlacklistService {
+    
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
+    
+    public void blacklist(String token) {
+        String jti = getJwtId(token);
+        long ttl = getTokenRemainingTime(token);
+        
+        redisTemplate.opsForValue().set(
+            "blacklist:" + jti, 
+            "true", 
+            Duration.ofMillis(ttl)
+        );
+    }
+    
+    public boolean isBlacklisted(String token) {
+        String jti = getJwtId(token);
+        return redisTemplate.hasKey("blacklist:" + jti);
+    }
+}
+            </div>
+        </div>
+
+        <div class="secure-practice">
+            <h4>2. Rate Limiting Implementation</h4>
+            
+            <div class="code-block">
+// Rate Limiting with Bucket4j
+@Component
+public class RateLimitingService {
+    
+    private final Map<String, Bucket> cache = new ConcurrentHashMap<>();
+    
+    public boolean tryConsume(String key) {
+        return resolveBucket(key).tryConsume(1);
+    }
+    
+    private Bucket resolveBucket(String key) {
+        return cache.computeIfAbsent(key, this::newBucket);
+    }
+    
+    private Bucket newBucket(String key) {
+        // 5 attempts per minute for login endpoints
+        Bandwidth limit = Bandwidth.classic(5, Refill.intervally(5, Duration.ofMinutes(1)));
+        return Bucket.builder()
+            .addLimit(limit)
+            .build();
+    }
+}
+
+// Rate Limiting Filter
+@Component
+public class RateLimitingFilter implements Filter {
+    
+    @Autowired
+    private RateLimitingService rateLimitingService;
+    
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, 
+                        FilterChain chain) throws IOException, ServletException {
+        
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
+        
+        String clientIp = getClientIp(httpRequest);
+        String endpoint = httpRequest.getRequestURI();
+        
+        if (isProtectedEndpoint(endpoint)) {
+            String key = clientIp + ":" + endpoint;
+            
+            if (!rateLimitingService.tryConsume(key)) {
+                httpResponse.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
+                httpResponse.getWriter().write("{\"error\":\"Rate limit exceeded\"}");
+                return;
+            }
+        }
+        
+        chain.doFilter(request, response);
+    }
+    
+    private boolean isProtectedEndpoint(String endpoint) {
+        return endpoint.contains("/auth/login") || 
+               endpoint.contains("/auth/register") ||
+               endpoint.contains("/auth/forgot-password");
+    }
+}
+            </div>
+        </div>
+
+        <div class="secure-practice">
+            <h4>3. Input Validation & Sanitization</h4>
+            
+            <div class="code-block">
+// Enhanced Input Validation
+@Component
+public class InputSanitizer {
+    
+    private static final Pattern EMAIL_PATTERN = 
+        Pattern.compile("^[A-Za-z0-9+_.-]+@([A-Za-z0-9.-]+\\.[A-Za-z]{2,})$");
+    
+    private static final Pattern NAME_PATTERN = 
+        Pattern.compile("^[a-zA-ZÀ-ÿ\\s'-]{2,50}$");
+    
+    public String sanitizeString(String input) {
+        if (input == null) return null;
+        
+        // Remove potential XSS
+        return Jsoup.clean(input, Safelist.none())
+            .replaceAll("[<>\"'&]", "");
+    }
+    
+    public boolean isValidEmail(String email) {
+        return email != null && EMAIL_PATTERN.matcher(email).matches();
+    }
+    
+    public boolean isValidName(String name) {
+        return name != null && NAME_PATTERN.matcher(name).matches();
+    }
+    
+    public boolean isValidPassword(String password) {
+        if (password == null || password.length() < 8) return false;
+        
+        // At least 1 uppercase, 1 lowercase, 1 digit, 1 special char
+        return password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
+    }
+}
+
+// Custom Validators
+@Target({ElementType.FIELD})
+@Retention(RetentionPolicy.RUNTIME)
+@Constraint(validatedBy = PasswordValidator.class)
+public @interface ValidPassword {
+    String message() default "Password must be at least 8 characters with uppercase, lowercase, digit and special character";
+    Class<?>[] groups() default {};
+    Class<? extends Payload>[] payload() default {};
+}
+
+public class PasswordValidator implements ConstraintValidator<ValidPassword, String> {
+    
+    @Autowired
+    private InputSanitizer inputSanitizer;
+    
+    @Override
+    public boolean isValid(String password, ConstraintValidatorContext context) {
+        return inputSanitizer.isValidPassword(password);
+    }
+}
+
+// Enhanced DTOs
+public class RegisterRequest {
+    
+    @NotBlank(message = "Email is required")
+    @Email(message = "Invalid email format")
+    @Size(max = 100, message = "Email too long")
+    private String email;
+    
+    @NotBlank(message = "Password is required")
+    @ValidPassword
+    private String password;
+    
+    @NotBlank(message = "First name is required")
+    @Size(min = 2, max = 50, message = "First name must be 2-50 characters")
+    @Pattern(regexp = "^[a-zA-ZÀ-ÿ\\s'-]{2,50}$", message = "Invalid first name format")
+    private String firstName;
+    
+    // Getters/setters with sanitization
+    public void setFirstName(String firstName) {
+        this.firstName = inputSanitizer.sanitizeString(firstName);
+    }
+}
+            </div>
+        </div>
+
+        <h3>📱 Frontend Security (React Native)</h3>
+
+        <div class="secure-practice">
+            <h4>4. Secure Token Storage</h4>
+            
+            <div class="code-block">
+// Secure Token Management
+import * as SecureStore from 'expo-secure-store';
+import * as Crypto from 'expo-crypto';
+
+export class SecureTokenManager {
+    private static readonly ACCESS_TOKEN_KEY = 'access_token';
+    private static readonly REFRESH_TOKEN_KEY = 'refresh_token';
+    private static readonly TOKEN_HASH_KEY = 'token_hash';
+    
+    static async storeTokens(accessToken: string, refreshToken: string): Promise<void> {
+        try {
+            // Store tokens securely
+            await SecureStore.setItemAsync(this.ACCESS_TOKEN_KEY, accessToken);
+            await SecureStore.setItemAsync(this.REFRESH_TOKEN_KEY, refreshToken);
+            
+            // Store hash for integrity verification
+            const tokenHash = await Crypto.digestStringAsync(
+                Crypto.CryptoDigestAlgorithm.SHA256,
+                accessToken + refreshToken
+            );
+            await SecureStore.setItemAsync(this.TOKEN_HASH_KEY, tokenHash);
+            
+        } catch (error) {
+            console.error('Error storing tokens:', error);
+            throw new Error('Failed to store authentication tokens');
+        }
+    }
+    
+    static async getAccessToken(): Promise<string | null> {
+        try {
+            const token = await SecureStore.getItemAsync(this.ACCESS_TOKEN_KEY);
+            
+            if (token && await this.verifyTokenIntegrity()) {
+                return token;
+            }
+            
+            // Token integrity compromised, clear all tokens
+            await this.clearTokens();
+            return null;
+            
+        } catch (error) {
+            console.error('Error retrieving access token:', error);
+            return null;
+        }
+    }
+    
+    private static async verifyTokenIntegrity(): Promise<boolean> {
+        try {
+            const accessToken = await SecureStore.getItemAsync(this.ACCESS_TOKEN_KEY);
+            const refreshToken = await SecureStore.getItemAsync(this.REFRESH_TOKEN_KEY);
+            const storedHash = await SecureStore.getItemAsync(this.TOKEN_HASH_KEY);
+            
+            if (!accessToken || !refreshToken || !storedHash) {
+                return false;
+            }
+            
+            const currentHash = await Crypto.digestStringAsync(
+                Crypto.CryptoDigestAlgorithm.SHA256,
+                accessToken + refreshToken
+            );
+            
+            return currentHash === storedHash;
+            
+        } catch (error) {
+            return false;
+        }
+    }
+    
+    static async clearTokens(): Promise<void> {
+        try {
+            await Promise.all([
+                SecureStore.deleteItemAsync(this.ACCESS_TOKEN_KEY),
+                SecureStore.deleteItemAsync(this.REFRESH_TOKEN_KEY),
+                SecureStore.deleteItemAsync(this.TOKEN_HASH_KEY)
+            ]);
+        } catch (error) {
+            console.error('Error clearing tokens:', error);
+        }
+    }
+}
+
+// Secure API Client
+export class SecureApiClient {
+    private static readonly BASE_URL = 'https://api.skillswap.com';
+    private static readonly REQUEST_TIMEOUT = 10000;
+    
+    static async secureRequest<T>(
+        endpoint: string, 
+        options: RequestInit = {}
+    ): Promise<T> {
+        
+        const accessToken = await SecureTokenManager.getAccessToken();
+        
+        const secureOptions: RequestInit = {
+            ...options,
+            timeout: this.REQUEST_TIMEOUT,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest', // CSRF protection
+                ...(accessToken && { 'Authorization': `Bearer ${accessToken}` }),
+                ...options.headers,
+            },
+        };
+        
+        // Add request integrity check
+        if (options.body) {
+            const bodyHash = await Crypto.digestStringAsync(
+                Crypto.CryptoDigestAlgorithm.SHA256,
+                options.body.toString()
+            );
+            secureOptions.headers['X-Content-Hash'] = bodyHash;
+        }
+        
+        try {
+            const response = await fetch(`${this.BASE_URL}${endpoint}`, secureOptions);
+            
+            if (response.status === 401) {
+                // Token expired, try refresh
+                const refreshed = await this.refreshTokens();
+                if (refreshed) {
+                    // Retry request with new token
+                    return this.secureRequest(endpoint, options);
+                } else {
+                    throw new UnauthorizedError('Authentication required');
+                }
+            }
+            
+            if (!response.ok) {
+                throw new ApiError(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
+            return await response.json();
+            
+        } catch (error) {
+            if (error instanceof TypeError && error.message.includes('network')) {
+                throw new NetworkError('Network connection failed');
+            }
+            throw error;
+        }
+    }
+    
+    private static async refreshTokens(): Promise<boolean> {
+        try {
+            const refreshToken = await SecureStore.getItemAsync('refresh_token');
+            if (!refreshToken) return false;
+            
+            const response = await fetch(`${this.BASE_URL}/auth/refresh`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ refreshToken }),
+            });
+            
+            if (response.ok) {
+                const { accessToken, refreshToken: newRefreshToken } = await response.json();
+                await SecureTokenManager.storeTokens(accessToken, newRefreshToken);
+                return true;
+            }
+            
+            return false;
+            
+        } catch (error) {
+            console.error('Token refresh failed:', error);
+            return false;
+        }
+    }
+}
+            </div>
+        </div>
+
+        <div class="secure-practice">
+            <h4>5. Input Validation (Frontend)</h4>
+            
+            <div class="code-block">
+// Frontend Input Validation & Sanitization
+import DOMPurify from 'isomorphic-dompurify';
+import validator from 'validator';
+
+export class InputValidator {
+    
+    static sanitizeInput(input: string): string {
+        if (!input) return '';
+        
+        // Remove potential XSS
+        return DOMPurify.sanitize(input, { 
+            ALLOWED_TAGS: [],
+            ALLOWED_ATTR: [] 
+        }).trim();
+    }
+    
+    static validateEmail(email: string): ValidationResult {
+        const sanitized = this.sanitizeInput(email);
+        
+        if (!sanitized) {
+            return { isValid: false, error: 'Email is required' };
+        }
+        
+        if (!validator.isEmail(sanitized)) {
+            return { isValid: false, error: 'Invalid email format' };
+        }
+        
+        if (sanitized.length > 100) {
+            return { isValid: false, error: 'Email too long' };
+        }
+        
+        return { isValid: true, value: sanitized };
+    }
+    
+    static validatePassword(password: string): ValidationResult {
+        if (!password) {
+            return { isValid: false, error: 'Password is required' };
+        }
+        
+        if (password.length < 8) {
+            return { isValid: false, error: 'Password must be at least 8 characters' };
+        }
+        
+        const hasUpper = /[A-Z]/.test(password);
+        const hasLower = /[a-z]/.test(password);
+        const hasDigit = /\d/.test(password);
+        const hasSpecial = /[@$!%*?&]/.test(password);
+        
+        if (!hasUpper || !hasLower || !hasDigit || !hasSpecial) {
+            return { 
+                isValid: false, 
+                error: 'Password must contain uppercase, lowercase, digit and special character' 
+            };
+        }
+        
+        return { isValid: true, value: password };
+    }
+    
+    static validateName(name: string): ValidationResult {
+        const sanitized = this.sanitizeInput(name);
+        
+        if (!sanitized) {
+            return { isValid: false, error: 'Name is required' };
+        }
+        
+        if (sanitized.length < 2 || sanitized.length > 50) {
+            return { isValid: false, error: 'Name must be 2-50 characters' };
+        }
+        
+        if (!/^[a-zA-ZÀ-ÿ\s'-]+$/.test(sanitized)) {
+            return { isValid: false, error: 'Name contains invalid characters' };
+        }
+        
+        return { isValid: true, value: sanitized };
+    }
+}
+
+// Secure Form Component
+interface SecureFormProps {
+    onSubmit: (data: FormData) => Promise<void>;
+}
+
+export const SecureRegistrationForm: React.FC<SecureFormProps> = ({ onSubmit }) => {
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+        firstName: '',
+        lastName: ''
+    });
+    const [errors, setErrors] = useState<Record<string, string>>({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    
+    const validateForm = (): boolean => {
+        const newErrors: Record<string, string> = {};
+        
+        const emailValidation = InputValidator.validateEmail(formData.email);
+        if (!emailValidation.isValid) {
+            newErrors.email = emailValidation.error!;
+        }
+        
+        const passwordValidation = InputValidator.validatePassword(formData.password);
+        if (!passwordValidation.isValid) {
+            newErrors.password = passwordValidation.error!;
+        }
+        
+        const firstNameValidation = InputValidator.validateName(formData.firstName);
+        if (!firstNameValidation.isValid) {
+            newErrors.firstName = firstNameValidation.error!;
+        }
+        
+        const lastNameValidation = InputValidator.validateName(formData.lastName);
+        if (!lastNameValidation.isValid) {
+            newErrors.lastName = lastNameValidation.error!;
+        }
+        
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+    
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        
+        if (isSubmitting) return; // Prevent double submission
+        
+        if (!validateForm()) return;
+        
+        setIsSubmitting(true);
+        
+        try {
+            const sanitizedData = {
+                email: InputValidator.validateEmail(formData.email).value!,
+                password: formData.password,
+                firstName: InputValidator.validateName(formData.firstName).value!,
+                lastName: InputValidator.validateName(formData.lastName).value!
+            };
+            
+            await onSubmit(sanitizedData);
+            
+        } catch (error) {
+            console.error('Registration failed:', error);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+    
+    return (
+        <form onSubmit={handleSubmit}>
+            {/* Form fields with validation */}
+        </form>
+    );
+};
+
+interface ValidationResult {
+    isValid: boolean;
+    value?: string;
+    error?: string;
+}
+            </div>
+        </div>
+
+        <h2>🔧 Infrastructure Security</h2>
+
+        <div class="framework-analysis">
+            <h3>🏗️ Production Security Configuration</h3>
+            
+            <div class="code-block">
+# Production Security Configuration
+
+# application-production.yml
+server:
+  port: 8080
+  servlet:
+    session:
+      cookie:
+        secure: true
+        http-only: true
+        same-site: strict
+  ssl:
+    enabled: true
+    key-store: classpath:skillswap-keystore.p12
+    key-store-type: PKCS12
+    key-store-password: ${SSL_KEYSTORE_PASSWORD}
+
+spring:
+  security:
+    headers:
+      frame-options: DENY
+      content-type-options: nosniff
+      xss-protection: 1; mode=block
+      referrer-policy: strict-origin-when-cross-origin
+    
+app:
+  jwt:
+    secret: ${JWT_SECRET} # 256-bit random key
+    expiration: 900000    # 15 minutes
+    refresh-expiration: 604800000 # 7 days
+  
+  security:
+    cors:
+      allowed-origins:
+        - https://skillswap.app
+        - https://api.skillswap.app
+        - https://admin.skillswap.app
+      allowed-methods: GET,POST,PUT,DELETE
+      allow-credentials: true
+      max-age: 3600
+
+logging:
+  level:
+    com.skillswap.backend.security: INFO
+    org.springframework.security: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level [%X{traceId}] %logger{36} - %msg%n"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: never
+    info:
+      enabled: true
+
+# Docker Production Configuration
+# docker-compose.prod.yml
+version: '3.8'
+services:
+  skillswap-backend:
+    image: skillswap/backend:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=production
+      - JWT_SECRET=${JWT_SECRET}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - SSL_KEYSTORE_PASSWORD=${SSL_KEYSTORE_PASSWORD}
+    networks:
+      - internal-network
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          memory: 1G
+          cpus: '0.5'
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/log
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "443:443"
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/ssl:ro
+    depends_on:
+      - skillswap-backend
+    networks:
+      - internal-network
+
+networks:
+  internal-network:
+    driver: bridge
+    internal: false
+
+# nginx.conf security headers
+server {
+    listen 443 ssl http2;
+    server_name api.skillswap.com;
+    
+    ssl_certificate /etc/ssl/skillswap.crt;
+    ssl_certificate_key /etc/ssl/skillswap.key;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512;
+    ssl_prefer_server_ciphers off;
+    
+    # Security headers
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+    add_header X-Frame-Options "DENY" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'" always;
+    
+    # Rate limiting
+    limit_req_zone $binary_remote_addr zone=auth:10m rate=5r/m;
+    limit_req_zone $binary_remote_addr zone=api:10m rate=100r/m;
+    
+    location /api/auth/ {
+        limit_req zone=auth burst=5 nodelay;
+        proxy_pass http://skillswap-backend:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+    
+    location /api/ {
+        limit_req zone=api burst=20 nodelay;
+        proxy_pass http://skillswap-backend:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+            </div>
+        </div>
+
+        <h2>📊 Security Monitoring & Incident Response</h2>
+
+        <div class="pentest-finding">
+            <h3>🔍 Security Monitoring Implementation</h3>
+            
+            <div class="code-block">
+// Security Event Logging
+@Component
+public class SecurityAuditLogger {
+    
+    private static final Logger securityLogger = LoggerFactory.getLogger("SECURITY");
+    
+    @EventListener
+    public void handleAuthenticationSuccess(AuthenticationSuccessEvent event) {
+        UserPrincipal user = (UserPrincipal) event.getAuthentication().getPrincipal();
+        String clientIp = getCurrentClientIp();
+        
+        securityLogger.info("AUTH_SUCCESS: user={}, ip={}, timestamp={}", 
+            user.getEmail(), clientIp, Instant.now());
+    }
+    
+    @EventListener
+    public void handleAuthenticationFailure(AbstractAuthenticationFailureEvent event) {
+        String username = event.getAuthentication().getName();
+        String clientIp = getCurrentClientIp();
+        String reason = event.getException().getMessage();
+        
+        securityLogger.warn("AUTH_FAILURE: username={}, ip={}, reason={}, timestamp={}", 
+            username, clientIp, reason, Instant.now());
+        
+        // Check for brute force attempts
+        checkBruteForceAttempt(clientIp, username);
+    }
+    
+    @EventListener
+    public void handleSuspiciousActivity(SuspiciousActivityEvent event) {
+        securityLogger.error("SUSPICIOUS_ACTIVITY: type={}, user={}, ip={}, details={}, timestamp={}", 
+            event.getType(), event.getUserId(), event.getClientIp(), 
+            event.getDetails(), Instant.now());
+            
+        // Trigger immediate response
+        incidentResponseService.handleSuspiciousActivity(event);
+    }
+    
+    private void checkBruteForceAttempt(String clientIp, String username) {
+        int failureCount = getRecentFailureCount(clientIp, username);
+        
+        if (failureCount >= 5) {
+            // Temporarily block IP
+            ipBlockingService.blockIp(clientIp, Duration.ofMinutes(30));
+            
+            // Send security alert
+            securityAlertService.sendBruteForceAlert(clientIp, username);
+        }
+    }
+}
+
+// Intrusion Detection System
+@Service
+public class IntrusionDetectionService {
+    
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
+    
+    public void detectAnomalousPattern(String userId, String activity, String metadata) {
+        String key = "user_activity:" + userId;
+        
+        // Track user activity patterns
+        ActivityPattern pattern = new ActivityPattern(activity, metadata, Instant.now());
+        redisTemplate.opsForList().leftPush(key, pattern.toJson());
+        redisTemplate.expire(key, Duration.ofHours(24));
+        
+        // Analyze for anomalies
+        List<ActivityPattern> recentActivity = getRecentActivity(userId);
+        
+        if (isAnomalousPattern(recentActivity)) {
+            publishSecurityEvent(new SuspiciousActivityEvent(
+                "ANOMALOUS_PATTERN", userId, getCurrentClientIp(), 
+                "Unusual activity pattern detected"
+            ));
+        }
+    }
+    
+    private boolean isAnomalousPattern(List<ActivityPattern> activity) {
+        // Machine learning-based anomaly detection
+        // Check for:
+        // - Unusual login times
+        // - Rapid successive API calls
+        // - Access from multiple IPs
+        // - Unusual geographic locations
+        
+        return false; // Implement ML model
+    }
+}
+
+// Automated Incident Response
+@Service
+public class IncidentResponseService {
+    
+    public void handleSuspiciousActivity(SuspiciousActivityEvent event) {
+        switch (event.getType()) {
+            case "BRUTE_FORCE":
+                handleBruteForceAttack(event);
+                break;
+            case "TOKEN_REUSE":
+                handleTokenReuseAttack(event);
+                break;
+            case "ANOMALOUS_PATTERN":
+                handleAnomalousActivity(event);
+                break;
+            default:
+                handleGenericIncident(event);
+        }
+    }
+    
+    private void handleBruteForceAttack(SuspiciousActivityEvent event) {
+        // 1. Block IP immediately
+        ipBlockingService.blockIp(event.getClientIp(), Duration.ofHours(24));
+        
+        // 2. Invalidate all sessions for affected user
+        if (event.getUserId() != null) {
+            sessionService.invalidateAllUserSessions(event.getUserId());
+        }
+        
+        // 3. Send alerts
+        alertingService.sendSecurityAlert(
+            "Brute force attack detected and blocked",
+            event.getDetails()
+        );
+        
+        // 4. Log for forensics
+        forensicsLogger.logSecurityIncident(event);
+    }
+    
+    private void handleTokenReuseAttack(SuspiciousActivityEvent event) {
+        // 1. Blacklist all tokens for user
+        tokenService.blacklistAllUserTokens(event.getUserId());
+        
+        // 2. Force re-authentication
+        sessionService.invalidateAllUserSessions(event.getUserId());
+        
+        // 3. Notify user of security issue
+        notificationService.sendSecurityAlert(
+            event.getUserId(), 
+            "Suspicious activity detected on your account"
+        );
+    }
+}
+            </div>
+        </div>
+
+        <h2>✅ Security Implementation Checklist</h2>
+
+        <div class="checklist">
+            <h3>📋 Critical Security Actions (Immediate)</h3>
+            
+            <h4>🔴 High Priority (Fix within 24 hours)</h4>
+            <ul>
+                <li>❌ <strong>Replace JWT secret</strong> with 256-bit random key from environment</li>
+                <li>❌ <strong>Fix CORS configuration</strong> - remove wildcard, specify allowed origins</li>
+                <li>❌ <strong>Reduce JWT expiration</strong> to 15 minutes maximum</li>
+                <li>❌ <strong>Implement rate limiting</strong> on authentication endpoints</li>
+                <li>❌ <strong>Add TLS/HTTPS</strong> configuration for production</li>
+                <li>❌ <strong>Enhance error handling</strong> to prevent information disclosure</li>
+            </ul>
+            
+            <h4>🟡 Medium Priority (Fix within 1 week)</h4>
+            <ul>
+                <li>❌ <strong>Implement token blacklisting</strong> for logout/refresh</li>
+                <li>❌ <strong>Add input sanitization</strong> to all user inputs</li>
+                <li>❌ <strong>Implement MFA</strong> for sensitive operations</li>
+                <li>❌ <strong>Add security headers</strong> in nginx/application</li>
+                <li>❌ <strong>Implement audit logging</strong> for security events</li>
+                <li>❌ <strong>Add dependency scanning</strong> to CI/CD pipeline</li>
+            </ul>
+            
+            <h4>🟢 Low Priority (Fix within 1 month)</h4>
+            <ul>
+                <li>❌ <strong>Implement anomaly detection</strong> for user behavior</li>
+                <li>❌ <strong>Add automated incident response</strong> capabilities</li>
+                <li>❌ <strong>Perform penetration testing</strong> by external security firm</li>
+                <li>❌ <strong>Implement GDPR compliance</strong> controls</li>
+                <li>❌ <strong>Add security monitoring dashboards</strong></li>
+            </ul>
+        </div>
+
+        <h2>🛡️ GDPR & Privacy Compliance</h2>
+
+        <div class="gdpr-compliance">
+            <h3>🇪🇺 GDPR Implementation Requirements</h3>
+            
+            <div class="code-block">
+// GDPR Compliance Service
+@Service
+public class GdprComplianceService {
+    
+    public void handleDataSubjectRequest(DataSubjectRequest request) {
+        switch (request.getType()) {
+            case ACCESS:
+                generateUserDataExport(request.getUserId());
+                break;
+            case RECTIFICATION:
+                updateUserData(request.getUserId(), request.getUpdatedData());
+                break;
+            case ERASURE:
+                deleteUserData(request.getUserId());
+                break;
+            case PORTABILITY:
+                exportUserDataPortable(request.getUserId());
+                break;
+        }
+    }
+    
+    @Transactional
+    public void deleteUserData(Long userId) {
+        // 1. Anonymize user data (keep for analytics)
+        User user = userRepository.findById(userId).orElseThrow();
+        user.setEmail("deleted-" + UUID.randomUUID() + "@deleted.com");
+        user.setFirstName("Deleted");
+        user.setLastName("User");
+        user.setDeleted(true);
+        userRepository.save(user);
+        
+        // 2. Delete sensitive data
+        profileRepository.deleteByUserId(userId);
+        paymentRepository.deleteByUserId(userId);
+        
+        // 3. Log data deletion
+        auditService.logDataDeletion(userId, "GDPR_ERASURE_REQUEST");
+    }
+    
+    public UserDataExport generateUserDataExport(Long userId) {
+        return UserDataExport.builder()
+            .personalData(userRepository.findById(userId))
+            .profileData(profileRepository.findByUserId(userId))
+            .skillsData(skillRepository.findByUserId(userId))
+            .sessionsData(sessionRepository.findByUserId(userId))
+            .paymentsData(paymentRepository.findByUserId(userId))
+            .exportTimestamp(Instant.now())
+            .build();
+    }
+}
+
+// Data Retention Policy
+@Component
+@Scheduled(cron = "0 0 2 * * ?") // Daily at 2 AM
+public class DataRetentionService {
+    
+    public void enforceRetentionPolicies() {
+        // Delete inactive accounts after 3 years
+        LocalDateTime threeYearsAgo = LocalDateTime.now().minusYears(3);
+        List<User> inactiveUsers = userRepository.findInactiveUsersSince(threeYearsAgo);
+        
+        for (User user : inactiveUsers) {
+            if (!user.hasActiveSubscription()) {
+                gdprService.deleteUserData(user.getId());
+            }
+        }
+        
+        // Delete session logs older than 1 year
+        auditLogRepository.deleteOldLogs(LocalDateTime.now().minusYears(1));
+        
+        // Anonymize payment data older than 7 years (legal requirement)
+        paymentRepository.anonymizeOldPayments(LocalDateTime.now().minusYears(7));
+    }
+}
+            </div>
+        </div>
+
+        <p><em>Última actualización: 6 de septiembre de 2025</em></p>
+        <p><em>Próxima revisión: Security audit programado para cada 3 meses</em></p>
+    </div>
+</body>
+</html>

@@ -55,8 +55,7 @@ public class VideoSessionController {
             @RequestHeader("Authorization") String token,
             @PathVariable Long sessionId) {
         try {
-            String email = jwtUtil.getEmailFromToken(token.substring(7));
-            Long userId = jwtUtil.getUserIdFromEmail(email);
+            Long userId = jwtTokenProvider.getUserIdFromToken(token.substring(7));
 
             VideoSessionDTO videoSession = videoSessionService.acceptVideoSession(sessionId, userId);
             return ResponseEntity.ok(videoSession);
@@ -71,8 +70,7 @@ public class VideoSessionController {
             @RequestHeader("Authorization") String token,
             @PathVariable Long sessionId) {
         try {
-            String email = jwtUtil.getEmailFromToken(token.substring(7));
-            Long userId = jwtUtil.getUserIdFromEmail(email);
+            Long userId = jwtTokenProvider.getUserIdFromToken(token.substring(7));
 
             VideoSessionDTO videoSession = videoSessionService.rejectVideoSession(sessionId, userId);
             return ResponseEntity.ok(videoSession);
@@ -87,8 +85,7 @@ public class VideoSessionController {
             @RequestHeader("Authorization") String token,
             @PathVariable Long sessionId) {
         try {
-            String email = jwtUtil.getEmailFromToken(token.substring(7));
-            Long userId = jwtUtil.getUserIdFromEmail(email);
+            Long userId = jwtTokenProvider.getUserIdFromToken(token.substring(7));
 
             VideoSessionDTO videoSession = videoSessionService.startVideoSession(sessionId, userId);
             return ResponseEntity.ok(videoSession);
@@ -103,8 +100,7 @@ public class VideoSessionController {
             @RequestHeader("Authorization") String token,
             @PathVariable Long sessionId) {
         try {
-            String email = jwtUtil.getEmailFromToken(token.substring(7));
-            Long userId = jwtUtil.getUserIdFromEmail(email);
+            Long userId = jwtTokenProvider.getUserIdFromToken(token.substring(7));
 
             VideoSessionDTO videoSession = videoSessionService.endVideoSession(sessionId, userId);
             return ResponseEntity.ok(videoSession);
@@ -119,8 +115,7 @@ public class VideoSessionController {
             @RequestHeader("Authorization") String token,
             @PathVariable Long sessionId) {
         try {
-            String email = jwtUtil.getEmailFromToken(token.substring(7));
-            Long userId = jwtUtil.getUserIdFromEmail(email);
+            Long userId = jwtTokenProvider.getUserIdFromToken(token.substring(7));
 
             VideoSessionDTO videoSession = videoSessionService.cancelVideoSession(sessionId, userId);
             return ResponseEntity.ok(videoSession);
@@ -136,8 +131,7 @@ public class VideoSessionController {
             @PathVariable Long sessionId,
             @RequestBody RateSessionRequest request) {
         try {
-            String email = jwtUtil.getEmailFromToken(token.substring(7));
-            Long userId = jwtUtil.getUserIdFromEmail(email);
+            Long userId = jwtTokenProvider.getUserIdFromToken(token.substring(7));
 
             VideoSessionDTO videoSession = videoSessionService.rateVideoSession(
                 sessionId, userId, request.getRating(), request.getFeedback());
@@ -156,8 +150,7 @@ public class VideoSessionController {
             @RequestParam(defaultValue = "createdAt") String sortBy,
             @RequestParam(defaultValue = "desc") String sortDir) {
         try {
-            String email = jwtUtil.getEmailFromToken(token.substring(7));
-            Long userId = jwtUtil.getUserIdFromEmail(email);
+            Long userId = jwtTokenProvider.getUserIdFromToken(token.substring(7));
 
             Sort sort = sortDir.equalsIgnoreCase("desc") ? 
                 Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
@@ -175,8 +168,7 @@ public class VideoSessionController {
     public ResponseEntity<?> getPendingVideoSessions(
             @RequestHeader("Authorization") String token) {
         try {
-            String email = jwtUtil.getEmailFromToken(token.substring(7));
-            Long userId = jwtUtil.getUserIdFromEmail(email);
+            Long userId = jwtTokenProvider.getUserIdFromToken(token.substring(7));
 
             List<VideoSessionDTO> sessions = videoSessionService.getPendingVideoSessions(userId);
             return ResponseEntity.ok(sessions);
@@ -190,8 +182,7 @@ public class VideoSessionController {
     public ResponseEntity<?> getUpcomingVideoSessions(
             @RequestHeader("Authorization") String token) {
         try {
-            String email = jwtUtil.getEmailFromToken(token.substring(7));
-            Long userId = jwtUtil.getUserIdFromEmail(email);
+            Long userId = jwtTokenProvider.getUserIdFromToken(token.substring(7));
 
             List<VideoSessionDTO> sessions = videoSessionService.getUpcomingVideoSessions(userId);
             return ResponseEntity.ok(sessions);
@@ -232,8 +223,7 @@ public class VideoSessionController {
     public ResponseEntity<?> getUserVideoSessionStats(
             @RequestHeader("Authorization") String token) {
         try {
-            String email = jwtUtil.getEmailFromToken(token.substring(7));
-            Long userId = jwtUtil.getUserIdFromEmail(email);
+            Long userId = jwtTokenProvider.getUserIdFromToken(token.substring(7));
 
             VideoSessionService.VideoSessionStats stats = videoSessionService.getUserVideoSessionStats(userId);
             return ResponseEntity.ok(stats);
