@@ -1,6 +1,7 @@
 package com.skillswap.service;
 
 import com.skillswap.config.ApplicationConfigurationProperties;
+import com.skillswap.backend.monitoring.ApplicationMetricsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -21,8 +21,9 @@ import {
   Loading 
 } from '@components/ui';
 import { colors, typography, spacing } from '@styles/theme';
-import { PlatformUtils } from '@utils/platformUtils';
+import { PlatformUtils, PlatformConstants } from '@utils/platformUtils';
 import { MainStackParamList } from '@navigation/navigationTypes';
+import { skillsService, Skill } from '../../services';
 
 type SkillDetailScreenProps = StackScreenProps<MainStackParamList, 'SkillDetail'>;
 
@@ -97,7 +98,7 @@ export const SkillDetailScreen: React.FC<SkillDetailScreenProps> = ({
   route 
 }) => {
   const { skillId } = route.params;
-  const [skill, setSkill] = useState<SkillDetail | null>(null);
+  const [skill, setSkill] = useState<Skill | null>(null);
   const [loading, setLoading] = useState(true);
   const [bookmarked, setBookmarked] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -193,13 +194,15 @@ export const SkillDetailScreen: React.FC<SkillDetailScreenProps> = ({
   const loadSkillDetail = async () => {
     try {
       setLoading(true);
-      // TODO: Replace with actual API call
-      // const response = await skillsService.getSkillDetail(skillId);
+      const skillData = await skillsService.getSkillById(skillId);
       
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      setSkill(mockSkill);
+      if (skillData) {
+        setSkill(skillData);
+        setBookmarked(skillData.isBookmarked);
+      } else {
+        Alert.alert('Error', 'Skill not found.');
+        navigation.goBack();
+      }
     } catch (error) {
       console.error('Error loading skill detail:', error);
       Alert.alert('Error', 'Failed to load skill details. Please try again.');
@@ -247,7 +250,7 @@ export const SkillDetailScreen: React.FC<SkillDetailScreenProps> = ({
       <TouchableOpacity
         style={styles.backButton}
         onPress={() => navigation.goBack()}
-        hitSlop={PlatformUtils.hitSlop}
+        hitSlop={PlatformConstants.hitSlop}
       >
         <Ionicons
           name="arrow-back"
@@ -260,7 +263,7 @@ export const SkillDetailScreen: React.FC<SkillDetailScreenProps> = ({
         <TouchableOpacity
           style={styles.actionButton}
           onPress={handleShare}
-          hitSlop={PlatformUtils.hitSlop}
+          hitSlop={PlatformConstants.hitSlop}
         >
           <Ionicons
             name="share-outline"
@@ -272,7 +275,7 @@ export const SkillDetailScreen: React.FC<SkillDetailScreenProps> = ({
         <TouchableOpacity
           style={styles.actionButton}
           onPress={handleBookmark}
-          hitSlop={PlatformUtils.hitSlop}
+          hitSlop={PlatformConstants.hitSlop}
         >
           <Ionicons
             name={bookmarked ? "bookmark" : "bookmark-outline"}
@@ -285,7 +288,7 @@ export const SkillDetailScreen: React.FC<SkillDetailScreenProps> = ({
   );
 
   const renderImageGallery = () => {
-    if (!skill?.gallery.length) return null;
+    if (!skill?.images.length) return null;
 
     return (
       <ScrollView
@@ -301,7 +304,7 @@ export const SkillDetailScreen: React.FC<SkillDetailScreenProps> = ({
           setSelectedImageIndex(index);
         }}
       >
-        {skill.gallery.map((imageUrl, index) => (
+        {skill.images.map((imageUrl: string, index: number) => (
           <Image
             key={index}
             source={{ uri: imageUrl }}
@@ -326,7 +329,7 @@ export const SkillDetailScreen: React.FC<SkillDetailScreenProps> = ({
             <View style={styles.ratingContainer}>
               <Ionicons name="star" size={16} color={colors.warning[500]} />
               <Text style={styles.ratingText}>
-                {skill.rating.toFixed(1)} ({skill.reviewCount} reviews)
+                {skill.rating.toFixed(1)} ({skill.totalReviews} reviews)
               </Text>
             </View>
           </View>
@@ -341,7 +344,7 @@ export const SkillDetailScreen: React.FC<SkillDetailScreenProps> = ({
           {skill.tags.map((tag, index) => (
             <Badge
               key={index}
-              text={tag}
+              label={tag}
               variant="secondary"
               style={styles.tag}
             />
@@ -349,14 +352,7 @@ export const SkillDetailScreen: React.FC<SkillDetailScreenProps> = ({
         </View>
 
         <Text style={styles.descriptionText}>
-          {showFullDescription ? skill.longDescription : skill.description}
-          {skill.longDescription.length > skill.description.length && (
-            <TouchableOpacity onPress={() => setShowFullDescription(!showFullDescription)}>
-              <Text style={styles.readMoreText}>
-                {showFullDescription ? ' Show less' : ' Read more'}
-              </Text>
-            </TouchableOpacity>
-          )}
+          {skill.description}
         </Text>
       </Card>
     );
@@ -401,70 +397,28 @@ export const SkillDetailScreen: React.FC<SkillDetailScreenProps> = ({
 
   const renderOverviewTab = () => (
     <View style={styles.tabContent}>
-      {skill?.learningOutcomes.length > 0 && (
-        <Card style={styles.sectionCard}>
-          <Text style={styles.sectionTitle}>What you'll learn</Text>
-          {skill.learningOutcomes.map((outcome, index) => (
-            <View key={index} style={styles.listItem}>
-              <Ionicons name="checkmark-circle" size={16} color={colors.success[500]} />
-              <Text style={styles.listItemText}>{outcome}</Text>
-            </View>
-          ))}
-        </Card>
-      )}
-
-      {skill?.requirements.length > 0 && (
-        <Card style={styles.sectionCard}>
-          <Text style={styles.sectionTitle}>Requirements</Text>
-          {skill.requirements.map((requirement, index) => (
-            <View key={index} style={styles.listItem}>
-              <Ionicons name="ellipse" size={8} color={colors.text.secondary} />
-              <Text style={styles.listItemText}>{requirement}</Text>
-            </View>
-          ))}
-        </Card>
-      )}
+      {/* Learning outcomes and requirements not available in current Skill interface */}
+      <Card style={styles.sectionCard}>
+        <Text style={styles.sectionTitle}>About this skill</Text>
+        <Text style={styles.listItemText}>
+          This skill is offered by {skill?.instructor.name} who has a {skill?.instructor.rating} star rating 
+          from {skill?.instructor.totalReviews} reviews.
+        </Text>
+      </Card>
     </View>
   );
 
   const renderReviewsTab = () => (
     <View style={styles.tabContent}>
-      {skill?.reviews.map((review) => (
-        <Card key={review.id} style={styles.reviewCard}>
-          <View style={styles.reviewHeader}>
-            <Avatar
-              name={review.userName}
-              source={review.userAvatar}
-              size="small"
-            />
-            <View style={styles.reviewInfo}>
-              <Text style={styles.reviewerName}>{review.userName}</Text>
-              <View style={styles.reviewRating}>
-                {[...Array(5)].map((_, index) => (
-                  <Ionicons
-                    key={index}
-                    name="star"
-                    size={12}
-                    color={index < review.rating ? colors.warning[500] : colors.background.secondary}
-                  />
-                ))}
-                <Text style={styles.reviewDate}>{review.date}</Text>
-              </View>
-            </View>
-          </View>
-          
-          <Text style={styles.reviewComment}>{review.comment}</Text>
-          
-          {review.verified && (
-            <Badge
-              text="Verified Purchase"
-              variant="success"
-              size="small"
-              style={styles.verifiedBadge}
-            />
-          )}
-        </Card>
-      ))}
+      <Card style={styles.sectionCard}>
+        <Text style={styles.sectionTitle}>Reviews</Text>
+        <Text style={styles.listItemText}>
+          This skill has a {skill?.rating.toFixed(1)} star rating from {skill?.totalReviews} reviews.
+        </Text>
+        <Text style={[styles.listItemText, { marginTop: 8, fontStyle: 'italic' }]}>
+          Individual reviews are not yet available through the API.
+        </Text>
+      </Card>
     </View>
   );
 
@@ -473,19 +427,18 @@ export const SkillDetailScreen: React.FC<SkillDetailScreenProps> = ({
       <Card style={styles.instructorCard}>
         <View style={styles.instructorHeader}>
           <Avatar
-            source={skill?.instructor.avatar}
+            source={skill?.instructor.avatar ? { uri: skill.instructor.avatar } : undefined}
             name={skill?.instructor.name}
             size="large"
           />
           <View style={styles.instructorInfo}>
             <Text style={styles.instructorName}>{skill?.instructor.name}</Text>
-            {skill?.instructor.verified && (
+            {skill?.instructor.verifiedInstructor && (
               <View style={styles.verifiedContainer}>
                 <Ionicons name="checkmark-circle" size={16} color={colors.primary[500]} />
                 <Text style={styles.verifiedText}>Verified Instructor</Text>
-              </View>
+            </View>
             )}
-            <Text style={styles.instructorBio}>{skill?.instructor.bio}</Text>
           </View>
         </View>
 
@@ -495,16 +448,10 @@ export const SkillDetailScreen: React.FC<SkillDetailScreenProps> = ({
             <Text style={styles.statLabel}>Rating</Text>
           </View>
           <View style={styles.statItem}>
-            <Text style={styles.statValue}>{skill?.instructor.reviewCount}</Text>
+            <Text style={styles.statValue}>{skill?.instructor.totalReviews}</Text>
             <Text style={styles.statLabel}>Reviews</Text>
           </View>
-          <View style={styles.statItem}>
-            <Text style={styles.statValue}>{skill?.instructor.experience}</Text>
-            <Text style={styles.statLabel}>Experience</Text>
-          </View>
         </View>
-
-        <Text style={styles.responseTime}>{skill?.instructor.responseTime}</Text>
       </Card>
     </View>
   );

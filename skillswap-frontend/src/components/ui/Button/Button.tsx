@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { colors, typography, spacing } from '@styles/theme';
 
-interface ButtonProps {
+export interface ButtonProps {
   title: string;
   onPress: () => void;
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';

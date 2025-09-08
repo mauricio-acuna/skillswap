@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSwap - Índice de Documentación</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .category {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .category:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .category-header h2 {
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+        }
+
+        .category-header .icon {
+            margin-right: 15px;
+            font-size: 1.8em;
+        }
+
+        .toggle-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .category.expanded .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .category-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .category.expanded .category-content {
+            max-height: 2000px;
+        }
+
+        .document-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .document-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 4px solid #4facfe;
+        }
+
+        .document-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .document-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .document-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .document-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .document-size {
+            background: #ecf0f1;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            color: #7f8c8d;
+        }
+
+        .document-type {
+            background: #3498db;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+        }
+
+        .document-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .document-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .stats {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+
+        .search-container {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .search-input {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .search-input::placeholder {
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .document-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 SkillSwap Documentation Hub</h1>
+            <p>Centro de Documentación Completa - Plataforma EdTech Europea</p>
+        </div>
+
+        <div class="stats">
+            <h3>📊 Resumen de Documentación</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">35</span>
+                    <span class="stat-label">Documentos Totales</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">€315M</span>
+                    <span class="stat-label">Proyección Ingresos</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">144,500</span>
+                    <span class="stat-label">Palabras Documentación</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Investment Ready</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Buscar documentos...">
+        </div>
+
+        <!-- 01. FUNDING & INVESTMENT -->
+        <div class="category expanded" data-category="funding">
+            <div class="category-header" onclick="toggleCategory('funding')">
+                <h2><span class="icon">💰</span>Financiación e Inversión</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="category-content">
+                <div class="document-grid">
+                    <div class="document-card">
+                        <div class="document-title">FUNDING-BUSINESS-CASE.md</div>
+                        <div class="document-meta">
+                            <span class="document-type">Business Case</span>
+                            <span class="document-size">11.2KB</span>
+                        </div>
+                        <div class="document-description">
+                            Caso de negocio completo para ronda Seed de €2.5M. Incluye análisis de mercado €8.5B, propuesta de valor única, y plan de ejecución para liderar EdTech europeo.
+                        </div>
+                        <a href="01-funding-investment/FUNDING-BUSINESS-CASE.md" class="document-link">Ver Documento</a>
+                    </div>
+
+                    <div class="document-card">
+                        <div class="document-title">FUNDING-ROUNDS-STRATEGY.md</div>
+                        <div class="document-meta">
+                            <span class="document-type">Strategy</span>
+                            <span class="document-size">20.3KB</span>
+                        </div>
+                        <div class="document-description">
+                            Estrategia completa de financiación €35M en 4 rondas. Timeline 2025-2030 con valuaciones, dilución, y roadmap hacia IPO de €500M+.
+                        </div>
+                        <a href="01-funding-investment/FUNDING-ROUNDS-STRATEGY.md" class="document-link">Ver Documento</a>
+                    </div>
+
+                    <div class="document-card">
+                        <div class="document-title">INVESTOR-RELATIONS-KIT.md</div>
+                        <div class="document-meta">
+                            <span class="document-type">Pitch Materials</span>
+                            <span class="document-size">23.6KB</span>
+                        </div>
+                        <div class="document-description">
+                            Kit completo para inversores: pitch deck ejecutivo, materiales de due diligence, templates de outreach, y estrategia de comunicación.
+                        </div>
+                        <a href="01-funding-investment/INVESTOR-RELATIONS-KIT.md" class="document-link">Ver Documento</a>
+                    </div>
+
+                    <div class="document-card">
+                        <div class="document-title">FINANCIAL-PROJECTIONS.md</div>
+                        <div class="document-meta">
+                            <span class="document-type">Financial Model</span>
+                            <span class="document-size">26.5KB</span>
+                        </div>
+                        <div class="document-description">
+                            Modelo financiero detallado 5 años: €315M ingresos 2028, unit economics LTV/CAC 12x, análisis de sensibilidad y path to profitability.
+                        </div>
+                        <a href="01-funding-investment/FINANCIAL-PROJECTIONS.md" class="document-link">Ver Documento</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 02. BUSINESS STRATEGY -->
+        <div class="category" data-category="business">
+            <div class="category-header" onclick="toggleCategory('business')">
+                <h2><span class="icon">📈</span>Estrategia de Negocio</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="category-content">
+                <div class="document-grid">
+                    <div class="document-card">
+                        <div class="document-title">MARKET-VALIDATION-EVIDENCE.md</div>
+                        <div class="document-meta">
+                            <span class="document-type">Market Research</span>
+                            <span class="document-size">30.2KB</span>
+                        </div>
+                        <div class="document-description">
+                            Evidencia completa de validación: €8.5B TAM europeo, 2,847 beta users con 73% retention, product-market fit NPS +47, competitive analysis.
+                        </div>
+                        <a href="02-business-strategy/MARKET-VALIDATION-EVIDENCE.md" class="document-link">Ver Documento</a>
+                    </div>
+
+                    <div class="document-card">
+                        <div class="document-title">SUCCESS-CASES-BENCHMARKS.md</div>
+                        <div class="document-meta">
+                            <span class="document-type">Benchmarking</span>
+                            <span class="document-size">14.9KB</span>
+                        </div>
+                        <div class="document-description">
+                            Análisis competitivo profundo: Duolingo €6.5B, Coursera €4.3B, casos de éxito europeos, positioning estratégico y ventajas competitivas.
+                        </div>
+                        <a href="02-business-strategy/SUCCESS-CASES-BENCHMARKS.md" class="document-link">Ver Documento</a>
+                    </div>
+
+                    <div class="document-card">
+                        <div class="document-title">REINVESTMENT-GROWTH-STRATEGY.md</div>
+                        <div class="document-meta">
+                            <span class="document-type">Growth Plan</span>
+                            <span class="document-size">14.8KB</span>
+                        </div>
+                        <div class="document-description">
+                            Plan de crecimiento 3 años: expansión europea 5 países, estrategia de reinversión €2.5M, milestones de crecimiento y KPIs.
+                        </div>
+                        <a href="02-business-strategy/REINVESTMENT-GROWTH-STRATEGY.md" class="document-link">Ver Documento</a>
+                    </div>
+
+                    <div class="document-card">
+                        <div class="document-title">PRD.md</div>
+                        <div class="document-meta">
+                            <span class="document-type">Product Spec</span>
+                            <span class="document-size">8.2KB</span>
+                        </div>
+                        <div class="document-description">
+                            Product Requirements Document: especificaciones completas de la plataforma, features core, roadmap de desarrollo, y user stories.
+                        </div>
+                        <a href="02-business-strategy/PRD.md" class="document-link">Ver Documento</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 03. TECHNICAL ARCHITECTURE -->
+        <div class="category" data-category="technical">
+            <div class="category-header" onclick="toggleCategory('technical')">
+                <h2><span class="icon">🏗️</span>Arquitectura Técnica</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="category-content">
+                <div class="document-grid">
+                    <div class="document-card">
+                        <div class="document-title">TECHNICAL-SCALABILITY-PROOF.md</div>
+                        <div class="document-meta">
+                            <span class="document-type">Architecture</span>
+                            <span class="document-size">24.7KB</span>
+                        </div>
+                        <div class="document-description">
+                            Prueba de escalabilidad técnica: arquitectura para 1M+ usuarios, microservicios, AI infrastructure, performance benchmarks 99.97% uptime.
+                        </div>
+                        <a href="03-technical-architecture/TECHNICAL-SCALABILITY-PROOF.md" class="document-link">Ver Documento</a>
+                    </div>
+
+                    <div class="document-card">
+                        <div class="document-title">SkillSwap-TechnicalSpecs.md</div>
+                        <div class="document-meta">
+                            <span class="document-type">Technical Specs</span>
+                            <span class="document-size">15.4KB</span>
+                        </div>
+                        <div class="document-description">
+                            Especificaciones técnicas completas: Spring Boot backend, React Native frontend, PostgreSQL, Redis, AI matching algorithm, WebRTC.
+                        </div>
+                        <a href="03-technical-architecture/SkillSwap-TechnicalSpecs.md" class="document-link">Ver Documento</a>
+                    </div>
+
+                    <div class="document-card">
+                        <div class="document-title">API-Contract.md</div>
+                        <div class="document-meta">
+                            <span class="document-type">API Documentation</span>
+                            <span class="document-size">12.1KB</span>
+                        </div>
+                        <div class="document-description">
+                            Contratos de API RESTful: endpoints completos, autenticación JWT, documentación Swagger, integración backend-frontend.
+                        </div>
+                        <a href="03-technical-architecture/API-Contract.md" class="document-link">Ver Documento</a>
+                    </div>
+
+                    <div class="document-card">
+                        <div class="document-title">CLOUD-DEPLOYMENT-STRATEGY.md</div>
+                        <div class="document-meta">
+                            <span class="document-type">DevOps</span>
+                            <span class="document-size">9.8KB</span>
+                        </div>
+                        <div class="document-description">
+                            Estrategia de deployment cloud: AWS multi-region, Docker containers, Kubernetes orchestration, CI/CD pipeline, monitoring.
+                        </div>
+                        <a href="03-technical-architecture/CLOUD-DEPLOYMENT-STRATEGY.md" class="document-link">Ver Documento</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 04. SECURITY & COMPLIANCE -->
+        <div class="category" data-category="security">
+            <div class="category-header" onclick="toggleCategory('security')">
+                <h2><span class="icon">🔒</span>Seguridad y Cumplimiento</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="category-content">
+                <div class="document-grid">
+                    <div class="document-card">
+                        <div class="document-title">LEGAL-COMPLIANCE-FRAMEWORK.md</div>
+                        <div class="document-meta">
+                            <span class="document-type">Legal Framework</span>
+                            <span class="document-size">28.4KB</span>
+                        </div>
+                        <div class="document-description">
+                            Marco legal completo: GDPR compliance, estructura corporativa multi-jurisdicción, IP strategy, SOC 2 Type II roadmap.
+                        </div>
+                        <a href="04-security-compliance/LEGAL-COMPLIANCE-FRAMEWORK.md" class="document-link">Ver Documento</a>
+                    </div>
+
+                    <div class="document-card">
+                        <div class="document-title">security-implementation-roadmap.md</div>
+                        <div class="document-meta">
+                            <span class="document-type">Security Plan</span>
+                            <span class="document-size">7.3KB</span>
+                        </div>
+                        <div class="document-description">
+                            Roadmap de implementación de seguridad: encryption at rest/transit, authentication, authorization, security testing, monitoring.
+                        </div>
+                        <a href="04-security-compliance/security-implementation-roadmap.md" class="document-link">Ver Documento</a>
+                    </div>
+
+                    <div class="document-card">
+                        <div class="document-title">threat-model-security-matrix.md</div>
+                        <div class="document-meta">
+                            <span class="document-type">Threat Analysis</span>
+                            <span class="document-size">5.9KB</span>
+                        </div>
+                        <div class="document-description">
+                            Modelo de amenazas y matriz de seguridad: análisis de riesgos, vulnerabilidades potenciales, contramedidas y monitoreo.
+                        </div>
+                        <a href="04-security-compliance/threat-model-security-matrix.md" class="document-link">Ver Documento</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 05. PROJECT MANAGEMENT -->
+        <div class="category" data-category="management">
+            <div class="category-header" onclick="toggleCategory('management')">
+                <h2><span class="icon">📋</span>Gestión de Proyecto</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="category-content">
+                <div class="document-grid">
+                    <div class="document-card">
+                        <div class="document-title">SPRINT-STATUS.md</div>
+                        <div class="document-meta">
+                            <span class="document-type">Sprint Report</span>
+                            <span class="document-size">8.1KB</span>
+                        </div>
+                        <div class="document-description">
+                            Estado actual del sprint: objetivos completados 100%, funding documentation suite finalizada, metrics de progreso y próximos pasos.
+                        </div>
+                        <a href="05-project-management/SPRINT-STATUS.md" class="document-link">Ver Documento</a>
+                    </div>
+
+                    <div class="document-card">
+                        <div class="document-title">Multi-Agent-Coordination.md</div>
+                        <div class="document-meta">
+                            <span class="document-type">Coordination</span>
+                            <span class="document-size">6.7KB</span>
+                        </div>
+                        <div class="document-description">
+                            Sistema de coordinación multi-agente: protocolos de comunicación, sincronización de trabajo, gestión de dependencias entre equipos.
+                        </div>
+                        <a href="05-project-management/Multi-Agent-Coordination.md" class="document-link">Ver Documento</a>
+                    </div>
+
+                    <div class="document-card">
+                        <div class="document-title">PENDING-TASKS.md</div>
+                        <div class="document-meta">
+                            <span class="document-type">Task Management</span>
+                            <span class="document-size">12.8KB</span>
+                        </div>
+                        <div class="document-description">
+                            Lista completa de tareas pendientes y completadas: backlog organizado, prioridades, asignaciones y timeline de ejecución.
+                        </div>
+                        <a href="05-project-management/PENDING-TASKS.md" class="document-link">Ver Documento</a>
+                    </div>
+
+                    <div class="document-card">
+                        <div class="document-title">FINAL-STATUS-REPORT.md</div>
+                        <div class="document-meta">
+                            <span class="document-type">Final Report</span>
+                            <span class="document-size">9.2KB</span>
+                        </div>
+                        <div class="document-description">
+                            Reporte final del proyecto: logros alcanzados, métricas de éxito, lessons learned, y recomendaciones para siguientes fases.
+                        </div>
+                        <a href="05-project-management/FINAL-STATUS-REPORT.md" class="document-link">Ver Documento</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 06. USER GUIDES -->
+        <div class="category" data-category="guides">
+            <div class="category-header" onclick="toggleCategory('guides')">
+                <h2><span class="icon">📖</span>Guías de Usuario</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="category-content">
+                <div class="document-grid">
+                    <div class="document-card">
+                        <div class="document-title">USER-GUIDE.md</div>
+                        <div class="document-meta">
+                            <span class="document-type">User Manual</span>
+                            <span class="document-size">11.5KB</span>
+                        </div>
+                        <div class="document-description">
+                            Guía completa de usuario: onboarding, funcionalidades principales, AI matching, SkillCoin economy, video sessions, troubleshooting.
+                        </div>
+                        <a href="06-user-guides/USER-GUIDE.md" class="document-link">Ver Documento</a>
+                    </div>
+
+                    <div class="document-card">
+                        <div class="document-title">USER-STORIES-DETAILED.md</div>
+                        <div class="document-meta">
+                            <span class="document-type">User Stories</span>
+                            <span class="document-size">8.9KB</span>
+                        </div>
+                        <div class="document-description">
+                            Historias de usuario detalladas: personas, user journeys, acceptance criteria, edge cases, y scenarios de uso completos.
+                        </div>
+                        <a href="06-user-guides/USER-STORIES-DETAILED.md" class="document-link">Ver Documento</a>
+                    </div>
+
+                    <div class="document-card">
+                        <div class="document-title">README.md</div>
+                        <div class="document-meta">
+                            <span class="document-type">Project Overview</span>
+                            <span class="document-size">4.2KB</span>
+                        </div>
+                        <div class="document-description">
+                            Overview general del proyecto: descripción de SkillSwap, getting started, instalación, contribución, y links a documentación.
+                        </div>
+                        <a href="06-user-guides/README.md" class="document-link">Ver Documento</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleCategory(categoryId) {
+            const category = document.querySelector(`[data-category="${categoryId}"]`);
+            category.classList.toggle('expanded');
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const documentCards = document.querySelectorAll('.document-card');
+            
+            documentCards.forEach(card => {
+                const title = card.querySelector('.document-title').textContent.toLowerCase();
+                const description = card.querySelector('.document-description').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                    // Expand parent category if document matches
+                    const category = card.closest('.category');
+                    category.classList.add('expanded');
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Hide categories with no visible documents
+            document.querySelectorAll('.category').forEach(category => {
+                const visibleCards = category.querySelectorAll('.document-card[style="display: block"], .document-card:not([style])');
+                if (searchTerm === '' || visibleCards.length > 0) {
+                    category.style.display = 'block';
+                } else {
+                    category.style.display = 'none';
+                }
+            });
+        });
+
+        // Initialize with first category expanded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Already expanded in HTML
+        });
+    </script>
+</body>
+</html>

@@ -57,7 +57,7 @@ export function Checkbox<
                 style={[
                   styles.checkbox,
                   value && styles.checkboxChecked,
-                  (fieldError || error) && styles.checkboxError,
+                  (fieldError || error) ? styles.checkboxError : undefined,
                   checkboxStyle,
                 ]}
               >

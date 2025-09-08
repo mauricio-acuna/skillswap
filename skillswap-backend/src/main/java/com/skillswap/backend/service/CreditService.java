@@ -5,7 +5,6 @@ import com.skillswap.backend.model.User;
 import com.skillswap.backend.model.SkillMatch;
 import com.skillswap.backend.model.VideoSession;
 import com.skillswap.backend.repository.CreditTransactionRepository;
-import com.skillswap.backend.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +36,6 @@ public class CreditService {
 
     @Autowired
     private CreditTransactionRepository creditTransactionRepository;
-
-    @Autowired
-    private UserRepository userRepository;
 
     // Otorgar bono de registro
     public CreditTransaction grantRegistrationBonus(User user) {

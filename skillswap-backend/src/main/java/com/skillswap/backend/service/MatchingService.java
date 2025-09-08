@@ -3,9 +3,13 @@ package com.skillswap.backend.service;
 import com.skillswap.backend.model.User;
 import com.skillswap.backend.model.UserSkill;
 import com.skillswap.backend.model.SkillMatch;
+import com.skillswap.backend.model.MatchReview;
+import com.skillswap.backend.model.MatchReport;
 import com.skillswap.backend.dto.MatchCandidate;
 import com.skillswap.backend.repository.UserRepository;
 import com.skillswap.backend.repository.SkillMatchRepository;
+import com.skillswap.backend.repository.MatchReviewRepository;
+import com.skillswap.backend.repository.MatchReportRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +33,12 @@ public class MatchingService {
 
     @Autowired
     private SkillMatchRepository skillMatchRepository;
+
+    @Autowired
+    private MatchReviewRepository matchReviewRepository;
+
+    @Autowired
+    private MatchReportRepository matchReportRepository;
 
     /**
      * Buscar candidatos potenciales para intercambio de skills
@@ -216,7 +226,15 @@ public class MatchingService {
         match.setStatus(SkillMatch.MatchStatus.COMPLETED);
         match.setCompletedAt(LocalDateTime.now());
         
-        // TODO: Guardar rating y feedback en tabla separada de reviews
+        // Guardar rating y feedback en tabla separada de reviews
+        User reviewer = userRepository.findById(userId)
+            .orElseThrow(() -> new RuntimeException("User not found"));
+        User reviewedUser = (match.getTeacherUser().getId().equals(userId)) 
+            ? match.getLearnerUser() : match.getTeacherUser();
+            
+        MatchReview review = new MatchReview(match, reviewer, reviewedUser, rating, feedback);
+        matchReviewRepository.save(review);
+        
         logger.info("Match {} completed by user {} with rating: {} and feedback: {}", 
                    matchId, userId, rating, feedback);
         
@@ -257,9 +275,24 @@ public class MatchingService {
      */
     public void reportMatch(Long matchId, Long userId, String reason, String description) {
         // Verificar que el usuario tiene acceso al match
-        getMatchDetails(matchId, userId);
+        SkillMatch match = getMatchDetails(matchId, userId);
         
-        // TODO: Guardar reporte en tabla de reportes
+        // Verificar que no hay reporte duplicado
+        User reporter = userRepository.findById(userId)
+            .orElseThrow(() -> new RuntimeException("User not found"));
+            
+        if (matchReportRepository.existsBySkillMatchAndReporter(match, reporter)) {
+            throw new RuntimeException("You have already reported this match");
+        }
+        
+        // Determinar el usuario reportado
+        User reportedUser = (match.getTeacherUser().getId().equals(userId)) 
+            ? match.getLearnerUser() : match.getTeacherUser();
+        
+        // Crear y guardar el reporte
+        MatchReport report = new MatchReport(match, reporter, reportedUser, reason, description);
+        matchReportRepository.save(report);
+        
         logger.warn("Match {} reported by user {} for reason: {} - Description: {}", 
                    matchId, userId, reason, description);
     }

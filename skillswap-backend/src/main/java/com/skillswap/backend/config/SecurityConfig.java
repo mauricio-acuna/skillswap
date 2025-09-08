@@ -18,11 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import java.util.Arrays;
 
 /**
  * Spring Security Configuration
@@ -38,6 +34,9 @@ public class SecurityConfig {
 
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
+    
+    @Autowired
+    private CorsConfigurationSource corsConfigurationSource;
 
     /**
      * JWT Authentication Filter Bean
@@ -75,61 +74,13 @@ public class SecurityConfig {
     }
 
     /**
-     * CORS Configuration
-     */
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        
-        // Allowed origins (configure based on your frontend URLs)
-        configuration.setAllowedOriginPatterns(Arrays.asList(
-            "http://localhost:3000",    // React development server
-            "http://localhost:19006",   // Expo development server
-            "http://localhost:8081",    // React Native development server
-            "https://*.skillswap.app",  // Production domains
-            "https://*.vercel.app",     // Vercel deployments
-            "https://*.netlify.app"     // Netlify deployments
-        ));
-        
-        // Allowed methods
-        configuration.setAllowedMethods(Arrays.asList(
-            "GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "HEAD"
-        ));
-        
-        // Allowed headers
-        configuration.setAllowedHeaders(Arrays.asList(
-            "Authorization",
-            "Content-Type",
-            "X-Requested-With",
-            "Accept",
-            "Origin",
-            "Access-Control-Request-Method",
-            "Access-Control-Request-Headers"
-        ));
-        
-        // Exposed headers
-        configuration.setExposedHeaders(Arrays.asList(
-            "Access-Control-Allow-Origin",
-            "Access-Control-Allow-Credentials"
-        ));
-        
-        configuration.setAllowCredentials(true);
-        configuration.setMaxAge(3600L); // 1 hour
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        
-        return source;
-    }
-
-    /**
      * Security Filter Chain Configuration
      */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             // CORS configuration
-            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+            .cors(cors -> cors.configurationSource(corsConfigurationSource))
             
             // CSRF configuration
             .csrf(csrf -> csrf.disable())

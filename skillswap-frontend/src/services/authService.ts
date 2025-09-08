@@ -143,7 +143,7 @@ class AuthService {
       }
 
       return await response.json();
-    } catch (error) {
+    } catch (error: any) {
       clearTimeout(timeoutId);
       if (error.name === 'AbortError') {
         throw new Error('Request timeout');
@@ -189,7 +189,7 @@ class AuthService {
       }
       
       return token;
-    } catch (error) {
+    } catch (error: any) {
       console.error('Token retrieval error:', error);
       return null;
     }
@@ -225,7 +225,7 @@ class AuthService {
       }
 
       return null;
-    } catch (error) {
+    } catch (error: any) {
       this.clearStoredTokens();
       return null;
     }
@@ -257,7 +257,7 @@ class AuthService {
       }
 
       return response;
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(`Registration failed: ${error.message}`);
     }
   }
@@ -298,7 +298,7 @@ class AuthService {
       }
 
       return response;
-    } catch (error) {
+    } catch (error: any) {
       // Increment failed attempts on error
       const current = this.failedAttempts.get(data.email) || 0;
       this.failedAttempts.set(data.email, current + 1);
@@ -316,7 +316,7 @@ class AuthService {
           method: 'POST',
         });
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Logout error:', error);
     } finally {
       // Always clear local storage
@@ -335,7 +335,7 @@ class AuthService {
       });
 
       return response.success;
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(`Password reset failed: ${error.message}`);
     }
   }
@@ -353,7 +353,7 @@ class AuthService {
       
       const userData = secureStorage.getString('user_data');
       return userData ? JSON.parse(userData) : null;
-    } catch (error) {
+    } catch (error: any) {
       console.error('Get user error:', error);
       return null;
     }

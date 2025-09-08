@@ -2,8 +2,8 @@ import React from 'react';
 import {
   View,
   Text,
-  TouchableOpacity,
   Image,
+  TouchableOpacity,
   StyleSheet,
   Platform,
   ViewStyle,
@@ -11,28 +11,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { Card, Avatar, Badge } from '@components/ui';
 import { colors, typography, spacing } from '@styles/theme';
-
-interface Skill {
-  id: string;
-  title: string;
-  description: string;
-  instructor: {
-    id: string;
-    name: string;
-    avatar?: string;
-    rating: number;
-    verified: boolean;
-  };
-  category: string;
-  price: number;
-  duration: number;
-  rating: number;
-  reviewCount: number;
-  tags: string[];
-  availability: 'available' | 'busy' | 'offline';
-  imageUrl?: string;
-  featured: boolean;
-}
+import { Skill } from '../../../services';
 
 interface SkillCardProps {
   skill: Skill;
@@ -52,13 +31,13 @@ export const SkillCard: React.FC<SkillCardProps> = ({
   const getAvailabilityColor = (availability: string) => {
     switch (availability) {
       case 'available':
-        return colors.success[500];
+        return colors.success;
       case 'busy':
-        return colors.warning[500];
+        return colors.warning;
       case 'offline':
-        return colors.error[500];
+        return colors.error;
       default:
-        return colors.neutral[400];
+        return colors.text.secondary;
     }
   };
 
@@ -95,7 +74,7 @@ export const SkillCard: React.FC<SkillCardProps> = ({
 
     return (
       <View style={styles.tagsContainer}>
-        {visibleTags.map((tag, index) => (
+        {visibleTags.map((tag: string, index: number) => (
           <View key={index} style={styles.tag}>
             <Text style={styles.tagText}>{tag}</Text>
           </View>
@@ -116,7 +95,7 @@ export const SkillCard: React.FC<SkillCardProps> = ({
       activeOpacity={0.7}
     >
       <Avatar
-        source={skill.instructor.avatar}
+        source={skill.instructor.avatar ? { uri: skill.instructor.avatar } : undefined}
         name={skill.instructor.name}
         size="small"
         style={styles.instructorAvatar}
@@ -126,7 +105,7 @@ export const SkillCard: React.FC<SkillCardProps> = ({
           <Text style={styles.instructorName} numberOfLines={1}>
             {skill.instructor.name}
           </Text>
-          {skill.instructor.verified && (
+          {skill.instructor.verifiedInstructor && (
             <Ionicons
               name="checkmark-circle"
               size={14}
@@ -183,10 +162,10 @@ export const SkillCard: React.FC<SkillCardProps> = ({
       </View>
 
       {/* Skill Image */}
-      {skill.imageUrl && (
+      {skill.images.length > 0 && (
         <View style={styles.imageContainer}>
           <Image
-            source={{ uri: skill.imageUrl }}
+            source={{ uri: skill.images[0] }}
             style={styles.skillImage}
             resizeMode="cover"
           />
@@ -229,7 +208,7 @@ export const SkillCard: React.FC<SkillCardProps> = ({
               {skill.rating.toFixed(1)}
             </Text>
             <Text style={styles.reviewCount}>
-              ({skill.reviewCount})
+              ({skill.totalReviews})
             </Text>
           </View>
         </View>
@@ -237,16 +216,21 @@ export const SkillCard: React.FC<SkillCardProps> = ({
     </View>
   );
 
+  const cardStyles = [
+    styles.card,
+    Platform.OS === 'ios' ? styles.cardIOS : styles.cardAndroid,
+    style,
+  ];
+
+  if (variant === 'featured') {
+    cardStyles.push(styles.featuredCard);
+  }
+
   return (
     <Card
       variant={variant === 'featured' ? 'elevated' : 'default'}
       onPress={onPress}
-      style={[
-        styles.card,
-        variant === 'featured' && styles.featuredCard,
-        Platform.OS === 'ios' ? styles.cardIOS : styles.cardAndroid,
-        style,
-      ]}
+      style={StyleSheet.flatten(cardStyles)}
     >
       {cardContent}
     </Card>
@@ -270,17 +254,13 @@ const styles = StyleSheet.create({
   featuredCard: {
     borderWidth: 1,
     borderColor: colors.primary[200],
-    // Enhanced shadows for featured cards
-    ...Platform.select({
-      ios: {
-        shadowColor: colors.primary[500],
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.15,
-        shadowRadius: 12,
-      },
-      android: {
-        elevation: 4,
-      },
+    ...(Platform.OS === 'ios' ? {
+      shadowColor: colors.primary[500],
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.15,
+      shadowRadius: 12,
+    } : {
+      elevation: 4,
     }),
   },
   content: {
@@ -363,19 +343,19 @@ const styles = StyleSheet.create({
     gap: spacing.xs,
   },
   tag: {
-    backgroundColor: colors.neutral[100],
+    backgroundColor: colors.background.secondary,
     paddingHorizontal: spacing.sm,
     paddingVertical: spacing.xs,
     borderRadius: 6,
   },
   tagText: {
     ...typography.caption,
-    color: colors.neutral[700],
+    color: colors.text.primary,
     fontWeight: '500',
   },
   bottomSection: {
     borderTopWidth: 1,
-    borderTopColor: colors.neutral[200],
+    borderTopColor: colors.border.secondary,
     paddingTop: spacing.md,
   },
   instructorContainer: {

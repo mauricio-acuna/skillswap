@@ -2,6 +2,7 @@ package com.skillswap.backend.controller;
 
 import com.skillswap.backend.model.CreditTransaction;
 import com.skillswap.backend.service.CreditService;
+import com.skillswap.backend.service.UserService;
 import com.skillswap.backend.security.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -148,11 +149,13 @@ public class CreditController {
         }
     }
 
-    // Método auxiliar para obtener usuario por ID (debería inyectarse UserRepository)
+    @Autowired
+    private UserService userService;
+
+    // Método auxiliar para obtener usuario por ID
     private com.skillswap.backend.model.User getUserById(Long userId) {
-        // Esta sería la implementación real con UserRepository
-        // Por ahora, lanzamos excepción para que se implemente correctamente
-        throw new RuntimeException("UserRepository injection needed");
+        return userService.findById(userId)
+            .orElseThrow(() -> new RuntimeException("User not found with ID: " + userId));
     }
 
     // Método auxiliar para validar pagos (se integraría con el proveedor de pagos)

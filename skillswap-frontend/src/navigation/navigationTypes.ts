@@ -1,7 +1,7 @@
 import type { NavigatorScreenParams } from '@react-navigation/native';
 import type { StackScreenProps } from '@react-navigation/stack';
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import type { DrawerScreenProps } from '@react-navigation/drawer';
+import type { DrawerScreenProps as RNDrawerScreenProps } from '@react-navigation/drawer';
 
 // Auth Stack Navigation Types
 export type AuthStackParamList = {
@@ -151,7 +151,7 @@ export type DrawerParamList = {
 };
 
 export type DrawerScreenProps<T extends keyof DrawerParamList> = 
-  DrawerScreenProps<DrawerParamList, T>;
+  RNDrawerScreenProps<DrawerParamList, T>;
 
 // Root Stack Navigation Types
 export type RootStackParamList = {

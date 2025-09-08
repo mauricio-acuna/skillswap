@@ -233,7 +233,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             RateLimitExceededException ex, HttpServletRequest request) {
         
         String errorId = UUID.randomUUID().toString();
-        Map<String, Object> context = createErrorContext(request, ex, errorId);
         
         maintenanceLoggingService.logSecurityEvent(
             "RATE_LIMIT_EXCEEDED", 

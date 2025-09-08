@@ -40,13 +40,13 @@ export const Avatar: React.FC<AvatarProps> = ({
   const sizeStyles = styles[size];
   const variantStyles = styles[variant];
 
-  const containerStyles = [
+  const containerStyles = StyleSheet.flatten([
     styles.container,
     sizeStyles,
     variantStyles,
     backgroundColor && { backgroundColor },
     style,
-  ];
+  ]);
 
   const getInitials = (name: string): string => {
     return name
@@ -98,7 +98,7 @@ export const Avatar: React.FC<AvatarProps> = ({
             style={[
               styles.initialsText,
               styles[`${size}Text`],
-              textColor && { color: textColor }
+              textColor ? { color: textColor } : undefined
             ]}
           >
             {initials}
@@ -118,27 +118,40 @@ export const Avatar: React.FC<AvatarProps> = ({
   const renderBadge = () => {
     if (!badge) return null;
 
+    const badgePositionKey = `badge${capitalize(badgePosition)}`;
+    const badgePositionStyle = 
+      badgePositionKey === 'badgeTopRight' ? styles.badgeTopRight :
+      badgePositionKey === 'badgeBottomRight' ? styles.badgeBottomRight :
+      badgePositionKey === 'badgeTopLeft' ? styles.badgeTopLeft :
+      badgePositionKey === 'badgeBottomLeft' ? styles.badgeBottomLeft :
+      {};
+
     return (
-      <View style={[styles.badge, styles[`badge${capitalize(badgePosition)}`]]}>
+      <View style={[styles.badge, badgePositionStyle]}>
         {badge}
       </View>
     );
   };
 
-  const AvatarComponent = onPress ? TouchableOpacity : View;
-
   return (
-    <AvatarComponent
-      style={containerStyles}
-      onPress={onPress}
-      activeOpacity={onPress ? 0.7 : 1}
+    <View
+      style={containerStyles as any}
       testID={testID}
-      accessibilityRole={onPress ? 'button' : 'image'}
+      accessibilityRole="image"
       accessibilityLabel={name || 'User avatar'}
     >
-      {renderContent()}
+      {onPress ? (
+        <TouchableOpacity
+          onPress={onPress}
+          activeOpacity={0.7}
+        >
+          {renderContent()}
+        </TouchableOpacity>
+      ) : (
+        renderContent()
+      )}
       {renderBadge()}
-    </AvatarComponent>
+    </View>
   );
 };
 

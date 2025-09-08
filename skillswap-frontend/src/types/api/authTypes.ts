@@ -18,6 +18,7 @@ export interface AuthState {
   error: string | null;
   biometricEnabled: boolean;
   isFirstTimeUser: boolean;
+  failedAttempts: number;
 }
 
 export interface LoginRequest {

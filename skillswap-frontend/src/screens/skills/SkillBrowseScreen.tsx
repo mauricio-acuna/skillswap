@@ -18,34 +18,20 @@ import {
   LoadingSkeleton 
 } from '@components/ui';
 import { SearchBar } from './components/SearchBar';
-import { FilterModal } from './components/FilterModal';
-import { CategoryTabs } from './components/CategoryTabs';
-import { SkillCard } from './components/SkillCard';
+import { FilterModal, CategoryTabs, SkillCard } from './components';
 import { colors, typography, spacing } from '@styles/theme';
 import { MainStackParamList } from '@navigation/navigationTypes';
+import { skillsService, Skill, SkillFilter } from '../../services';
 
 type SkillBrowseScreenProps = StackScreenProps<MainStackParamList, 'SkillBrowse'>;
 
-interface Skill {
-  id: string;
-  title: string;
-  description: string;
-  instructor: {
-    id: string;
-    name: string;
-    avatar?: string;
-    rating: number;
-    verified: boolean;
-  };
+interface LocalFilters {
+  search: string;
   category: string;
-  price: number;
-  duration: number;
-  rating: number;
-  reviewCount: number;
-  tags: string[];
-  availability: 'available' | 'busy' | 'offline';
-  imageUrl?: string;
-  featured: boolean;
+  sortBy: 'relevance' | 'rating' | 'price' | 'recent';
+  priceRange: [number, number];
+  level: 'all' | 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
+  availability: 'all' | 'available' | 'busy' | 'offline';
 }
 
 interface FilterOptions {
@@ -93,67 +79,6 @@ export const SkillBrowseScreen: React.FC<SkillBrowseScreenProps> = ({ navigation
     duration: { min: 0, max: 300 },
   });
 
-  // Mock data - Replace with API call
-  const mockSkills: Skill[] = [
-    {
-      id: '1',
-      title: 'React Native Development',
-      description: 'Learn to build amazing mobile apps with React Native from scratch',
-      instructor: {
-        id: 'inst1',
-        name: 'Sarah Wilson',
-        rating: 4.9,
-        verified: true,
-      },
-      category: 'Technology',
-      price: 45,
-      duration: 60,
-      rating: 4.8,
-      reviewCount: 127,
-      tags: ['React Native', 'Mobile', 'JavaScript'],
-      availability: 'available',
-      featured: true,
-    },
-    {
-      id: '2',
-      title: 'UI/UX Design Fundamentals',
-      description: 'Master the principles of user interface and user experience design',
-      instructor: {
-        id: 'inst2',
-        name: 'Mike Chen',
-        rating: 4.7,
-        verified: true,
-      },
-      category: 'Design',
-      price: 35,
-      duration: 90,
-      rating: 4.6,
-      reviewCount: 89,
-      tags: ['UI', 'UX', 'Figma', 'Design'],
-      availability: 'available',
-      featured: false,
-    },
-    {
-      id: '3',
-      title: 'Business Strategy & Growth',
-      description: 'Learn proven strategies to grow your business and increase revenue',
-      instructor: {
-        id: 'inst3',
-        name: 'Jennifer Davis',
-        rating: 4.8,
-        verified: false,
-      },
-      category: 'Business',
-      price: 60,
-      duration: 120,
-      rating: 4.7,
-      reviewCount: 203,
-      tags: ['Strategy', 'Growth', 'Marketing'],
-      availability: 'busy',
-      featured: true,
-    },
-  ];
-
   useEffect(() => {
     loadSkills();
   }, []);
@@ -165,16 +90,12 @@ export const SkillBrowseScreen: React.FC<SkillBrowseScreenProps> = ({ navigation
   const loadSkills = async () => {
     try {
       setLoading(true);
-      // TODO: Replace with actual API call
-      // const response = await skillsService.getSkills();
-      
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      setSkills(mockSkills);
+      const response = await skillsService.getSkills();
+      setSkills(response.items);
     } catch (error) {
       console.error('Error loading skills:', error);
-      // TODO: Show error toast
+      // The service already provides mock data as fallback
+      setSkills([]);
     } finally {
       setLoading(false);
     }
@@ -258,18 +179,21 @@ export const SkillBrowseScreen: React.FC<SkillBrowseScreenProps> = ({ navigation
     navigation.navigate('UserProfile', { userId: instructorId });
   };
 
-  const renderSkillItem = ({ item, index }: { item: Skill; index: number }) => (
-    <SkillCard
-      skill={item}
-      onPress={() => handleSkillPress(item)}
-      onInstructorPress={() => handleInstructorPress(item.instructor.id)}
-      style={[
-        styles.skillCard,
-        // Platform-specific spacing
-        Platform.OS === 'ios' ? styles.skillCardIOS : styles.skillCardAndroid
-      ]}
-    />
-  );
+  const renderSkillItem = ({ item, index }: { item: Skill; index: number }) => {
+    const cardStyles = [
+      styles.skillCard,
+      Platform.OS === 'ios' ? styles.skillCardIOS : styles.skillCardAndroid
+    ];
+
+    return (
+      <SkillCard
+        skill={item}
+        onPress={() => handleSkillPress(item)}
+        onInstructorPress={() => handleInstructorPress(item.instructor.id)}
+        style={StyleSheet.flatten(cardStyles)}
+      />
+    );
+  };
 
   const renderEmptyState = () => (
     <View style={styles.emptyState}>

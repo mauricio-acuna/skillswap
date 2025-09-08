@@ -10,6 +10,7 @@ const initialState: AuthState = {
   error: null,
   biometricEnabled: false,
   isFirstTimeUser: true,
+  failedAttempts: 0,
 };
 
 export const authSlice = createSlice({
@@ -29,6 +30,7 @@ export const authSlice = createSlice({
       state.isLoading = false;
       state.error = null;
       state.isFirstTimeUser = false;
+      state.failedAttempts = 0;
     },
     loginFailure: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
@@ -86,6 +88,40 @@ export const authSlice = createSlice({
     setFirstTimeUser: (state, action: PayloadAction<boolean>) => {
       state.isFirstTimeUser = action.payload;
     },
+
+    // Additional required actions
+    setUser: (state, action: PayloadAction<User | null>) => {
+      state.user = action.payload;
+    },
+
+    setToken: (state, action: PayloadAction<string | null>) => {
+      state.accessToken = action.payload;
+    },
+
+    clearAuth: (state) => {
+      state.isAuthenticated = false;
+      state.accessToken = null;
+      state.refreshToken = null;
+      state.user = null;
+      state.error = null;
+      state.failedAttempts = 0;
+    },
+
+    setLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
+    },
+
+    setError: (state, action: PayloadAction<string | null>) => {
+      state.error = action.payload;
+    },
+
+    incrementFailedAttempts: (state) => {
+      state.failedAttempts += 1;
+    },
+
+    resetFailedAttempts: (state) => {
+      state.failedAttempts = 0;
+    },
   },
 });
 
@@ -102,6 +138,13 @@ export const {
   setBiometricEnabled,
   clearError,
   setFirstTimeUser,
+  setUser,
+  setToken,
+  clearAuth,
+  setLoading,
+  setError,
+  incrementFailedAttempts,
+  resetFailedAttempts,
 } = authSlice.actions;
 
 export default authSlice.reducer;

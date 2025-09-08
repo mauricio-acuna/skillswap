@@ -5,6 +5,19 @@
 
 ---
 
+## 📊 **PROGRESS TRACKING - UPDATE YOUR STATUS HERE**
+
+### **🔄 Current Session Update:**
+**Date:** _(Update when you start working)_  
+**Status:** _(STARTING/IN_PROGRESS/BLOCKED/COMPLETED)_  
+**Focus:** _(What you're working on today)_  
+**Progress:** _(% completion of current task)_  
+**Estimated completion:** _(Your assessment)_  
+
+**IMPORTANT:** Update `AGENTS-PROGRESS-TRACKING.md` with your progress!
+
+---
+
 ## 📊 **ESTADO ACTUAL COMPLETADO**
 
 ### ✅ Foundation Components - COMPLETADO

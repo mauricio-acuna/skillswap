@@ -7,6 +7,8 @@ import io.micrometer.core.instrument.Timer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -335,5 +337,36 @@ public class ApplicationMetricsService {
                 return new SystemHealthMetrics(this);
             }
         }
+    }
+    
+    /**
+     * Get all metrics as a map for alerting and monitoring
+     */
+    public Map<String, Object> getAllMetrics() {
+        Map<String, Object> metrics = new HashMap<>();
+        
+        // Basic counts
+        metrics.put("userRegistrations", userRegistrations.count());
+        metrics.put("userLogins", userLogins.count());
+        metrics.put("videoSessionsCreated", videoSessionsCreated.count());
+        metrics.put("videoSessionsCompleted", videoSessionsCompleted.count());
+        metrics.put("messagesExchanged", messagesExchanged.count());
+        metrics.put("creditsTransferred", creditsTransferred.count());
+        metrics.put("securityViolations", securityViolations.count());
+        
+        // Current state
+        metrics.put("activeVideoSessions", activeVideoSessions.get());
+        metrics.put("activeWebSocketConnections", activeWebSocketConnections.get());
+        metrics.put("totalCreditBalance", totalCreditBalance.get());
+        
+        // System health
+        SystemHealthMetrics health = getSystemHealth();
+        metrics.put("activeVideoSessionsHealth", health.getActiveVideoSessions());
+        metrics.put("activeWebSocketConnectionsHealth", health.getActiveWebSocketConnections());
+        metrics.put("totalUsers", health.getTotalUsers());
+        metrics.put("totalRegistrations", health.getTotalRegistrations());
+        metrics.put("totalSecurityViolations", health.getTotalSecurityViolations());
+        
+        return metrics;
     }
 }

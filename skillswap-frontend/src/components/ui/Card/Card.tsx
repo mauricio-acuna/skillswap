@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { colors, spacing } from '@styles/theme';
 
-interface CardProps {
+export interface CardProps {
   children: React.ReactNode;
   variant?: 'default' | 'elevated' | 'outlined' | 'filled';
   padding?: 'none' | 'small' | 'medium' | 'large';
@@ -28,28 +28,50 @@ export const Card: React.FC<CardProps> = ({
   style,
   testID,
 }) => {
-  const cardStyles = [
+  const paddingStyleKey = `padding${capitalize(padding)}`;
+  const marginStyleKey = `margin${capitalize(margin)}`;
+  
+  const paddingStyle = 
+    paddingStyleKey === 'paddingNone' ? styles.paddingNone :
+    paddingStyleKey === 'paddingSmall' ? styles.paddingSmall :
+    paddingStyleKey === 'paddingMedium' ? styles.paddingMedium :
+    paddingStyleKey === 'paddingLarge' ? styles.paddingLarge :
+    {};
+    
+  const marginStyle = 
+    marginStyleKey === 'marginNone' ? styles.marginNone :
+    marginStyleKey === 'marginSmall' ? styles.marginSmall :
+    marginStyleKey === 'marginMedium' ? styles.marginMedium :
+    marginStyleKey === 'marginLarge' ? styles.marginLarge :
+    {};
+
+  const cardStyles = StyleSheet.flatten([
     styles.base,
     styles[variant],
-    styles[`padding${capitalize(padding)}`],
-    styles[`margin${capitalize(margin)}`],
-    disabled && styles.disabled,
+    paddingStyle,
+    marginStyle,
+    disabled ? styles.disabled : undefined,
     style,
-  ];
-
-  const CardComponent = onPress ? TouchableOpacity : View;
+  ]);
 
   return (
-    <CardComponent
-      style={cardStyles}
-      onPress={onPress}
-      disabled={disabled}
-      activeOpacity={onPress ? 0.7 : 1}
+    <View
+      style={cardStyles as any}
       testID={testID}
       accessibilityRole={onPress ? 'button' : undefined}
     >
-      {children}
-    </CardComponent>
+      {onPress ? (
+        <TouchableOpacity
+          onPress={onPress}
+          disabled={disabled}
+          activeOpacity={0.7}
+        >
+          {children}
+        </TouchableOpacity>
+      ) : (
+        children
+      )}
+    </View>
   );
 };
 

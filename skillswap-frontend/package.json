@@ -17,7 +17,7 @@
     "build:ios:release": "xcodebuild -workspace ios/SkillSwap.xcworkspace -scheme SkillSwap -configuration Release",
     "bundle:android": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle",
     "bundle:ios": "react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle",
-    "postinstall": "cd ios && pod install"
+    "postinstall": "if [ -d ios ]; then cd ios && pod install; fi"
   },
   "dependencies": {
     "react": "18.2.0",
@@ -38,7 +38,7 @@
     "i18next": "^23.7.6",
     "react-native-webrtc": "^111.0.3",
     "socket.io-client": "^4.7.4",
-    "react-native-calendar-kit": "^0.11.1",
+    "@react-native-community/datetimepicker": "^7.6.2",
     "react-native-permissions": "^3.10.1",
     "@react-native-async-storage/async-storage": "^1.19.5",
     "react-native-mmkv": "^2.10.2",

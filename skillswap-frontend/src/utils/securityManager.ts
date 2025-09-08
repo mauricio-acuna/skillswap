@@ -4,6 +4,10 @@ interface SecurityCheck {
   isJailbroken: boolean;
   isDebugging: boolean;
   isEmulator: boolean;
+  isRooted: boolean;
+}
+
+interface SecurityReport {
   riskLevel: 'low' | 'medium' | 'high' | 'critical';
   checks: {
     [key: string]: boolean;
@@ -135,7 +139,7 @@ class SecurityManager {
 
   // Calculate risk level based on checks
   private calculateRiskLevel(checks: { [key: string]: boolean }): 'low' | 'medium' | 'high' | 'critical' {
-    const riskFactors = {
+    const riskFactors: { [key: string]: number } = {
       isJailbroken: 3,
       isRooted: 3,
       isDebugging: 1,
@@ -156,7 +160,7 @@ class SecurityManager {
   }
 
   // Main security check
-  async performSecurityCheck(force: boolean = false): Promise<SecurityCheck> {
+  async performSecurityCheck(force: boolean = false): Promise<SecurityReport> {
     const now = Date.now();
     if (!force && now - this.lastCheck < this.checkInterval) {
       // Return cached result if within interval
@@ -172,13 +176,9 @@ class SecurityManager {
       isEmulator: this.checkEmulator(),
     };
 
-    const isJailbroken = checks.isJailbroken || checks.isRooted;
     const riskLevel = this.calculateRiskLevel(checks);
 
-    const result: SecurityCheck = {
-      isJailbroken,
-      isDebugging: checks.isDebugging,
-      isEmulator: checks.isEmulator,
+    const result: SecurityReport = {
       riskLevel,
       checks,
     };
@@ -189,29 +189,11 @@ class SecurityManager {
     return result;
   }
 
-  // Store security check result
-  private storeSecurityCheck(result: SecurityCheck): void {
-    try {
-      // Store in secure storage for analysis
-      const timestamp = new Date().toISOString();
-      const securityEvent = {
-        timestamp,
-        ...result,
-      };
-      
-      console.log('Security Check Result:', securityEvent);
-      // TODO: Send to analytics/monitoring service
-    } catch (error) {
-      console.error('Failed to store security check:', error);
-    }
-  }
+  // Store security check result (removed old implementation)
 
   // Get last security check (placeholder for caching)
-  private getLastSecurityCheck(): SecurityCheck {
+  private getLastSecurityCheck(): SecurityReport {
     return {
-      isJailbroken: false,
-      isDebugging: __DEV__,
-      isEmulator: false,
       riskLevel: __DEV__ ? 'medium' : 'low',
       checks: {
         isJailbroken: false,
@@ -222,8 +204,13 @@ class SecurityManager {
     };
   }
 
+  private storeSecurityCheck(result: SecurityReport): void {
+    // In a real implementation, store the result securely
+    console.log('Security check stored:', result);
+  }
+
   // Handle security violations
-  handleSecurityViolation(violation: SecurityCheck): void {
+  private handleSecurityViolation(violation: SecurityReport): void {
     switch (violation.riskLevel) {
       case 'critical':
         // Block app functionality

@@ -73,7 +73,7 @@ class NetworkSecurityManager {
       // Create fingerprint hash
       const fingerprintData = JSON.stringify(deviceInfo);
       this.deviceFingerprint = await this.generateHash(fingerprintData);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to generate device fingerprint:', error);
       this.deviceFingerprint = 'unknown';
     }
@@ -91,7 +91,7 @@ class NetworkSecurityManager {
         hash = hash & hash; // Convert to 32-bit integer
       }
       return Math.abs(hash).toString(16);
-    } catch (error) {
+    } catch (error: any) {
       return 'fallback-hash';
     }
   }
@@ -147,7 +147,7 @@ class NetworkSecurityManager {
       // Certificate validation would happen at native level
       // with libraries like react-native-cert-pinner
       return true;
-    } catch (error) {
+    } catch (error: any) {
       console.error('Certificate pinning verification failed:', error);
       return false;
     }
@@ -187,7 +187,7 @@ class NetworkSecurityManager {
                        result.certificateValid && 
                        result.threats.length === 0;
 
-    } catch (error) {
+    } catch (error: any) {
       console.error('Network security check failed:', error);
       result.threats.push('Security check failed');
     }
@@ -201,7 +201,7 @@ class NetworkSecurityManager {
       // In production, implement proper proxy detection
       // Check for common proxy indicators
       return false;
-    } catch (error) {
+    } catch (error: any) {
       return false;
     }
   }
@@ -265,15 +265,21 @@ class NetworkSecurityManager {
 
       // Log successful response (only in development)
       if (this.config.enableLogging) {
+        // Create headers object manually for React Native compatibility
+        const headersObj: Record<string, string> = {};
+        response.headers.forEach?.((value: any, key: any) => {
+          headersObj[key] = value;
+        });
+        
         console.log('Secure Response:', {
           status: response.status,
-          headers: Object.fromEntries(response.headers.entries()),
+          headers: headersObj,
         });
       }
 
       return responseData;
 
-    } catch (error) {
+    } catch (error: any) {
       clearTimeout(timeoutId);
       
       if (error.name === 'AbortError') {

@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
-import { RootState } from '@store';
+import { RootState } from '../store';
 
 /**
  * Custom hook for navigation utilities
@@ -24,7 +24,15 @@ export const useAppNavigation = () => {
    * Navigate to main app (after successful login)
    */
   const navigateToMain = () => {
-    navigation.navigate('MainDrawer', { screen: 'MainTabs' });
+    navigation.navigate('MainDrawer', { 
+      screen: 'MainTabs',
+      params: {
+        screen: 'ExploreTab',
+        params: {
+          screen: 'Explore'
+        }
+      }
+    });
   };
 
   /**
