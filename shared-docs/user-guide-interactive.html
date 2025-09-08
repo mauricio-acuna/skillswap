@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📱 SkillSwap - Guía para Usuarios | Europa 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .download-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 15px 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .download-btn.ios {
+            background: linear-gradient(135deg, #000, #333);
+            color: white;
+        }
+        
+        .download-btn.android {
+            background: linear-gradient(135deg, #34A853, #0F9D58);
+            color: white;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .platform-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .tab-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: transparent;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn.active {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .tab-content {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .ios-exclusive {
+            border-left-color: #007AFF;
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.1), rgba(0, 122, 255, 0.05));
+        }
+        
+        .android-exclusive {
+            border-left-color: #34A853;
+            background: linear-gradient(135deg, rgba(52, 168, 83, 0.1), rgba(52, 168, 83, 0.05));
+        }
+        
+        .checklist {
+            background: rgba(240, 248, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .checklist ul {
+            list-style: none;
+        }
+        
+        .checklist li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .checklist li:before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .warning {
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.2), rgba(255, 193, 7, 0.1));
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .warning:before {
+            content: "⚠️";
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+        
+        .success {
+            background: linear-gradient(135deg, rgba(40, 167, 69, 0.2), rgba(40, 167, 69, 0.1));
+            border: 1px solid rgba(40, 167, 69, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .success:before {
+            content: "✅";
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+        
+        .code-block {
+            background: #1a1a1a;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+        
+        .country-flags {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .country-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .country-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .country-flag {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .floating-help {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .floating-help:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .pricing-table {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .pricing-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .pricing-table th,
+        .pricing-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-table th {
+            background: rgba(102, 126, 234, 0.1);
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .platform-tabs {
+                flex-direction: column;
+            }
+            
+            .tab-content {
+                padding: 20px;
+            }
+        }
+        
+        .toc {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .toc h3 {
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .toc-item {
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .toc-item:hover {
+            background: rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        .toc-emoji {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .search-container {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .search-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            text-align: center;
+        }
+        
+        .search-input::placeholder {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📱 SkillSwap Europa</h1>
+            <p>La plataforma líder para intercambiar habilidades en Europa</p>
+            
+            <div class="country-flags">
+                <div class="country-card">
+                    <span class="country-flag">🇪🇸</span>
+                    <div>España<br><small>47M usuarios</small></div>
+                </div>
+                <div class="country-card">
+                    <span class="country-flag">🇫🇷</span>
+                    <div>Francia<br><small>68M usuarios</small></div>
+                </div>
+                <div class="country-card">
+                    <span class="country-flag">🇩🇪</span>
+                    <div>Alemania<br><small>84M usuarios</small></div>
+                </div>
+                <div class="country-card">
+                    <span class="country-flag">🇬🇧</span>
+                    <div>Reino Unido<br><small>67M usuarios</small></div>
+                </div>
+                <div class="country-card">
+                    <span class="country-flag">🇮🇹</span>
+                    <div>Italia<br><small>59M usuarios</small></div>
+                </div>
+            </div>
+            
+            <div class="download-buttons">
+                <a href="#" class="download-btn ios">
+                    🍎 Descargar para iPhone
+                </a>
+                <a href="#" class="download-btn android">
+                    🤖 Descargar para Android
+                </a>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="🔍 Buscar en la guía... (ej: 'videollamadas', 'pagos', 'iOS')">
+        </div>
+
+        <div class="toc">
+            <h3>📖 Índice de Contenidos</h3>
+            <div class="toc-grid">
+                <a href="#installation" class="toc-item">
+                    <span class="toc-emoji">📲</span>
+                    Instalación
+                </a>
+                <a href="#getting-started" class="toc-item">
+                    <span class="toc-emoji">🚀</span>
+                    Primeros Pasos
+                </a>
+                <a href="#finding-mentors" class="toc-item">
+                    <span class="toc-emoji">🎯</span>
+                    Encontrar Mentores
+                </a>
+                <a href="#video-calls" class="toc-item">
+                    <span class="toc-emoji">📹</span>
+                    Videollamadas
+                </a>
+                <a href="#payments" class="toc-item">
+                    <span class="toc-emoji">💰</span>
+                    Pagos y SkillCoins
+                </a>
+                <a href="#safety" class="toc-item">
+                    <span class="toc-emoji">🛡️</span>
+                    Seguridad
+                </a>
+                <a href="#platform-differences" class="toc-item">
+                    <span class="toc-emoji">📱</span>
+                    iOS vs Android
+                </a>
+                <a href="#troubleshooting" class="toc-item">
+                    <span class="toc-emoji">🔧</span>
+                    Solución de Problemas
+                </a>
+            </div>
+        </div>
+
+        <div class="platform-tabs">
+            <button class="tab-btn active" onclick="showTab('general')">📋 General</button>
+            <button class="tab-btn" onclick="showTab('ios')">🍎 iOS</button>
+            <button class="tab-btn" onclick="showTab('android')">🤖 Android</button>
+            <button class="tab-btn" onclick="showTab('comparison')">⚖️ Comparación</button>
+        </div>
+
+        <div id="general" class="tab-content active">
+            <h2 id="installation">📲 Instalación y Configuración</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>📋 Requisitos Mínimos</h3>
+                    <div class="checklist">
+                        <ul>
+                            <li><strong>iOS:</strong> iPhone 6s+, iOS 13.0+</li>
+                            <li><strong>Android:</strong> Android 8.0+, 3GB RAM</li>
+                            <li><strong>Espacio:</strong> 45 MB libres</li>
+                            <li><strong>Internet:</strong> WiFi o datos móviles</li>
+                            <li><strong>Edad:</strong> 16+ años</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🌍 Disponibilidad por País</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-number">🇪🇸</span>
+                            España<br><small>Market leader</small>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">🇫🇷</span>
+                            Francia<br><small>68M+ usuarios</small>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">🇩🇪</span>
+                            Alemania<br><small>84M+ usuarios</small>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">🇬🇧</span>
+                            Reino Unido<br><small>67M+ usuarios</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="getting-started">🚀 Primeros Pasos</h2>
+            
+            <div class="feature-card">
+                <h3>👤 Crear tu Perfil Perfecto</h3>
+                <div class="checklist">
+                    <ul>
+                        <li><strong>Foto profesional:</strong> Cara visible, fondo limpio</li>
+                        <li><strong>Bio atractiva:</strong> Máximo 160 caracteres</li>
+                        <li><strong>Habilidades a enseñar:</strong> Mínimo 3, máximo 10</li>
+                        <li><strong>Habilidades a aprender:</strong> Sé específico</li>
+                        <li><strong>Disponibilidad:</strong> Horarios reales</li>
+                        <li><strong>Idiomas:</strong> Todos los que dominas</li>
+                        <li><strong>Verificaciones:</strong> Email + teléfono obligatorio</li>
+                    </ul>
+                </div>
+                
+                <div class="warning">
+                    <strong>Tip Pro:</strong> Perfiles con foto profesional reciben 300% más mensajes que perfiles sin foto.
+                </div>
+            </div>
+
+            <h2 id="finding-mentors">🎯 Encontrar Mentores/Estudiantes</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>🔍 Búsqueda Inteligente</h3>
+                    <div class="code-block">
+🔍 Ejemplos de búsqueda efectiva:
+• "JavaScript React" - Específico y técnico
+• "Francés conversación" - Claro y directo  
+• "Guitarra principiante" - Incluye tu nivel
+• "Marketing digital SEO" - Especialización
+• "Cocina italiana auténtica" - Con contexto
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🎛️ Filtros Avanzados</h3>
+                    <div class="checklist">
+                        <ul>
+                            <li><strong>Distancia:</strong> 5km - 50km - Mismo país</li>
+                            <li><strong>Precio:</strong> Gratis - €10/h - €50/h - €100/h+</li>
+                            <li><strong>Rating:</strong> 4.0+ estrellas</li>
+                            <li><strong>Idioma:</strong> Español, Inglés, Francés</li>
+                            <li><strong>Disponibilidad:</strong> Mañana, Tarde, Noche</li>
+                            <li><strong>Experiencia:</strong> 1+ año - 10+ años</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="video-calls">📹 Videollamadas y Comunicación</h2>
+            
+            <div class="feature-card">
+                <h3>🎥 Calidad de Video HD</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">720p</span>
+                        HD Video
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">48kHz</span>
+                        Audio Crystal Clear
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">99.9%</span>
+                        Uptime Garantizado
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">50ms</span>
+                        Latencia Promedio
+                    </div>
+                </div>
+                
+                <div class="success">
+                    <strong>Características Incluidas:</strong> Compartir pantalla, pizarra digital, grabación de sesiones, cancelación de ruido, y chat integrado.
+                </div>
+            </div>
+
+            <h2 id="payments">💰 Sistema de Pagos - SkillCoins</h2>
+            
+            <div class="pricing-table">
+                <h3>🪙 Paquetes de SkillCoins</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Paquete</th>
+                            <th>SkillCoins</th>
+                            <th>Precio</th>
+                            <th>Descuento</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>🥉 Starter</td>
+                            <td>10 coins</td>
+                            <td>€10</td>
+                            <td>0%</td>
+                            <td>€1/coin</td>
+                        </tr>
+                        <tr>
+                            <td>🥈 Popular</td>
+                            <td>25 coins</td>
+                            <td>€23</td>
+                            <td>8%</td>
+                            <td>€0.92/coin</td>
+                        </tr>
+                        <tr>
+                            <td>🥇 Value</td>
+                            <td>50 coins</td>
+                            <td>€45</td>
+                            <td>10%</td>
+                            <td>€0.90/coin</td>
+                        </tr>
+                        <tr>
+                            <td>💎 Premium</td>
+                            <td>100 coins</td>
+                            <td>€85</td>
+                            <td>15%</td>
+                            <td>€0.85/coin</td>
+                        </tr>
+                        <tr>
+                            <td>👑 Master</td>
+                            <td>250 coins</td>
+                            <td>€200</td>
+                            <td>20%</td>
+                            <td>€0.80/coin</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 id="safety">🛡️ Seguridad y Privacidad</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>✅ Verificaciones de Seguridad</h3>
+                    <div class="checklist">
+                        <ul>
+                            <li><strong>Email verificado:</strong> Obligatorio</li>
+                            <li><strong>Teléfono verificado:</strong> Recomendado</li>
+                            <li><strong>ID Document:</strong> Para mentores premium</li>
+                            <li><strong>LinkedIn conectado:</strong> Profesionales</li>
+                            <li><strong>Video verificación:</strong> Authenticity check</li>
+                            <li><strong>Background check:</strong> Para servicios presenciales</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🆘 SafeCheck - Encuentros Presenciales</h3>
+                    <div class="warning">
+                        <strong>Antes del encuentro:</strong><br>
+                        • Comparte ubicación con contacto de emergencia<br>
+                        • Establece check-ins automáticos cada 30 min<br>
+                        • Elige lugares públicos siempre<br>
+                        • Informa hora estimada de finalización
+                    </div>
+                    
+                    <div class="success">
+                        <strong>Durante el encuentro:</strong><br>
+                        • Botón de emergencia siempre accesible<br>
+                        • GPS tracking opcional<br>
+                        • Check-in automático cada 30 minutos<br>
+                        • Contacto directo con soporte 24/7
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="ios" class="tab-content">
+            <h2>🍎 Guía Específica para iOS</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card ios-exclusive">
+                    <h3>🎯 Características Exclusivas iOS</h3>
+                    <div class="checklist">
+                        <ul>
+                            <li><strong>Siri Shortcuts:</strong> "Hey Siri, buscar mentor de piano"</li>
+                            <li><strong>Control Center:</strong> Controla videollamadas desde CC</li>
+                            <li><strong>Picture-in-Picture:</strong> Llamadas en ventana flotante</li>
+                            <li><strong>Apple Watch:</strong> Notificaciones en muñeca</li>
+                            <li><strong>AirDrop:</strong> Comparte archivos instantáneamente</li>
+                            <li><strong>Widgets:</strong> Próximas sesiones en pantalla inicio</li>
+                            <li><strong>Haptic Feedback:</strong> Confirmaciones táctiles</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📱 Instalación paso a paso</h3>
+                    <div class="code-block">
+Instalación iOS:
+1. 🍎 Abre App Store
+2. 🔍 Busca "SkillSwap Europa"
+3. ⬇️ Toca "Obtener" (gratis)
+4. 🔒 Confirma con Face ID/Touch ID
+5. ⏱️ Espera descarga (30 segundos)
+6. ✅ ¡Listo! Icono en pantalla inicio
+                    </div>
+                    
+                    <div class="warning">
+                        <strong>Primera vez:</strong> La app pedirá permisos para cámara, micrófono y notificaciones. ¡Acepta todos para la mejor experiencia!
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>⚙️ Configuración iOS Optimizada</h3>
+                    <div class="checklist">
+                        <ul>
+                            <li><strong>Notificaciones:</strong> Configuración → Notificaciones → SkillSwap</li>
+                            <li><strong>Background refresh:</strong> Mantener activo para mensajes</li>
+                            <li><strong>Datos móviles:</strong> Permitir para videollamadas</li>
+                            <li><strong>Siri:</strong> Configuración → Siri → SkillSwap shortcuts</li>
+                            <li><strong>Privacidad:</strong> Configuración → Privacidad → revisar permisos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <h3>📊 Widgets iOS Disponibles</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">📅</span>
+                        Próximas Sesiones<br><small>Small/Medium</small>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">💰</span>
+                        SkillCoins Balance<br><small>Small</small>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">📈</span>
+                        Progreso Semanal<br><small>Medium</small>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">👥</span>
+                        Mentores Favoritos<br><small>Large</small>
+                    </div>
+                </div>
+                
+                <div class="success">
+                    <strong>Añadir Widget:</strong> Mantén presionada la pantalla inicio → Toca "+" → Busca "SkillSwap" → Selecciona tamaño
+                </div>
+            </div>
+        </div>
+
+        <div id="android" class="tab-content">
+            <h2>🤖 Guía Específica para Android</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card android-exclusive">
+                    <h3>🎨 Características Exclusivas Android</h3>
+                    <div class="checklist">
+                        <ul>
+                            <li><strong>Material You:</strong> Colores adaptativos del wallpaper</li>
+                            <li><strong>Google Assistant:</strong> "OK Google, abrir SkillSwap"</li>
+                            <li><strong>Smart Reply:</strong> Sugerencias automáticas de respuesta</li>
+                            <li><strong>Notification Channels:</strong> 8 canales personalizables</li>
+                            <li><strong>Android Auto:</strong> Podcasts mientras conduces</li>
+                            <li><strong>Adaptive Icons:</strong> Se adapta a tu launcher</li>
+                            <li><strong>Bubble Notifications:</strong> Chat flotante (Android 11+)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📱 Instalación paso a paso</h3>
+                    <div class="code-block">
+Instalación Android:
+1. 🤖 Abre Google Play Store
+2. 🔍 Busca "SkillSwap Europa"  
+3. ⬇️ Toca "Instalar" (gratis)
+4. ✅ Acepta permisos explicados
+5. ⏱️ Espera instalación (30-60 segundos)
+6. ✅ ¡Listo! Icono en cajón de apps
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🔐 Permisos Android Explicados</h3>
+                    <div class="checklist">
+                        <strong>Permisos Obligatorios:</strong>
+                        <ul>
+                            <li><strong>CAMERA:</strong> Foto de perfil y videollamadas</li>
+                            <li><strong>RECORD_AUDIO:</strong> Audio en llamadas</li>
+                            <li><strong>INTERNET:</strong> Conectar con usuarios</li>
+                            <li><strong>STORAGE:</strong> Guardar archivos de sesiones</li>
+                        </ul>
+                        
+                        <strong>Permisos Opcionales:</strong>
+                        <ul>
+                            <li><strong>LOCATION:</strong> Encontrar usuarios cercanos</li>
+                            <li><strong>CONTACTS:</strong> Invitar amigos</li>
+                            <li><strong>PHONE:</strong> Pausar durante llamadas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🔔 Canales de Notificación Android</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">🔴</span>
+                        Crítico<br><small>Emergencias</small>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">🟡</span>
+                        Alto<br><small>Nuevos matches</small>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">🟢</span>
+                        Medio<br><small>Mensajes</small>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">🔵</span>
+                        Bajo<br><small>Tips y consejos</small>
+                    </div>
+                </div>
+                
+                <div class="success">
+                    <strong>Personalizar:</strong> Configuración → Apps → SkillSwap → Notificaciones → Personaliza cada canal individualmente
+                </div>
+            </div>
+        </div>
+
+        <div id="comparison" class="tab-content">
+            <h2>⚖️ iOS vs Android - Comparación Completa</h2>
+            
+            <div class="pricing-table">
+                <h3>📊 Comparación de Características</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th>🍎 iOS</th>
+                            <th>🤖 Android</th>
+                            <th>Ganador</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Integración OS</strong></td>
+                            <td>Siri, Control Center, Widgets</td>
+                            <td>Assistant, Material You, Canales</td>
+                            <td>🤝 Empate</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Notificaciones</strong></td>
+                            <td>Agrupación inteligente</td>
+                            <td>8 canales personalizables</td>
+                            <td>🤖 Android</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Videollamadas</strong></td>
+                            <td>Picture-in-Picture nativo</td>
+                            <td>Ventana flotante</td>
+                            <td>🍎 iOS</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Compartir archivos</strong></td>
+                            <td>AirDrop instantáneo</td>
+                            <td>Google Drive integration</td>
+                            <td>🍎 iOS</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Personalización</strong></td>
+                            <td>Widgets limitados</td>
+                            <td>Adaptive icons, themes</td>
+                            <td>🤖 Android</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Privacidad</strong></td>
+                            <td>Controles granulares</td>
+                            <td>Permisos detallados</td>
+                            <td>🤝 Empate</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Performance</strong></td>
+                            <td>Optimizado hardware</td>
+                            <td>Varía por dispositivo</td>
+                            <td>🍎 iOS</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ecosistema</strong></td>
+                            <td>Apple Watch, iPad, Mac</td>
+                            <td>Google services, Auto</td>
+                            <td>🤝 Empate</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="feature-grid">
+                <div class="feature-card ios-exclusive">
+                    <h3>🍎 ¿Cuándo elegir iOS?</h3>
+                    <div class="checklist">
+                        <ul>
+                            <li>Tienes otros dispositivos Apple</li>
+                            <li>Priorizas privacidad y seguridad</li>
+                            <li>Quieres integración perfecta con ecosistema</li>
+                            <li>Usas AirDrop frecuentemente</li>
+                            <li>Performance consistente es crítico</li>
+                            <li>Te gusta la simplicidad</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="feature-card android-exclusive">
+                    <h3>🤖 ¿Cuándo elegir Android?</h3>
+                    <div class="checklist">
+                        <ul>
+                            <li>Te gusta personalizar tu experiencia</li>
+                            <li>Usas servicios de Google intensivamente</li>
+                            <li>Quieres más opciones de hardware</li>
+                            <li>El precio es un factor importante</li>
+                            <li>Necesitas notificaciones granulares</li>
+                            <li>Flexibilidad sobre simplicidad</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="troubleshooting" class="tab-content">
+            <h2 id="troubleshooting">🔧 Solución de Problemas</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>📹 Problemas de Video/Audio</h3>
+                    <div class="warning">
+                        <strong>Audio cortado o sin sonido:</strong><br>
+                        • Verifica permisos de micrófono<br>
+                        • Cierra otras apps que usen audio<br>
+                        • Reinicia la app<br>
+                        • Verifica conexión a internet
+                    </div>
+                    
+                    <div class="success">
+                        <strong>Video pixelado o lento:</strong><br>
+                        • Reduce calidad en configuración<br>
+                        • Usa WiFi en lugar de datos móviles<br>
+                        • Acércate al router<br>
+                        • Cierra apps en segundo plano
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>💰 Problemas de Pago</h3>
+                    <div class="warning">
+                        <strong>Pago rechazado:</strong><br>
+                        • Verifica fondos suficientes<br>
+                        • Confirma que tarjeta no esté expirada<br>
+                        • Contacta tu banco por bloqueos<br>
+                        • Prueba PayPal como alternativa
+                    </div>
+                    
+                    <div class="success">
+                        <strong>SkillCoins no aparecen:</strong><br>
+                        • Espera hasta 10 minutos<br>
+                        • Cierra y reabre la app<br>
+                        • Verifica email de confirmación<br>
+                        • Contacta soporte con recibo
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🔐 Problemas de Cuenta</h3>
+                    <div class="code-block">
+Olvidé mi contraseña:
+1. Pantalla login → "Olvidé contraseña"
+2. Introduce email registrado
+3. Revisa email (incluye spam)
+4. Sigue enlace de recuperación
+5. Crea nueva contraseña
+6. ¡Listo para usar!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">150k+</span>
+                Usuarios Activos
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">2,500+</span>
+                Habilidades Disponibles
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">4.6⭐</span>
+                Rating Promedio
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">500k+</span>
+                Sesiones Completadas
+            </div>
+        </div>
+
+        <div class="feature-card" style="text-align: center; margin-top: 40px;">
+            <h3>📞 ¿Necesitas Ayuda?</h3>
+            <p style="margin: 20px 0;">Nuestro equipo de soporte está disponible 24/7 en tu idioma</p>
+            
+            <div class="download-buttons">
+                <a href="mailto:support@skillswap.eu" class="download-btn ios">
+                    📧 Email Support
+                </a>
+                <a href="#" class="download-btn android" onclick="openChatModal()">
+                    💬 Chat en Vivo
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <button class="floating-help" onclick="openHelpModal()">❓</button>
+
+    <!-- Modal de Ayuda -->
+    <div id="helpModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('helpModal')">&times;</button>
+            <h3>🆘 Centro de Ayuda Rápida</h3>
+            
+            <div style="margin: 20px 0;">
+                <h4>📞 Contacto Directo</h4>
+                <p><strong>📧 Email:</strong> support@skillswap.eu</p>
+                <p><strong>💬 Chat:</strong> Disponible en la app</p>
+                <p><strong>📱 WhatsApp:</strong> +34 900 123 456 (España)</p>
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <h4>🕐 Horarios de Soporte</h4>
+                <p><strong>🇪🇸 Español:</strong> 9:00-21:00 CET</p>
+                <p><strong>🇬🇧 English:</strong> 8:00-20:00 GMT</p>
+                <p><strong>🇫🇷 Français:</strong> 9:00-18:00 CET</p>
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <h4>⚡ Problemas Comunes</h4>
+                <p><strong>No recibo notificaciones:</strong> Verifica permisos en configuración</p>
+                <p><strong>Video no funciona:</strong> Permite acceso a cámara</p>
+                <p><strong>No puedo pagar:</strong> Verifica tarjeta y fondos</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Ocultar todos los contenidos
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remover clase active de todos los botones
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Mostrar contenido seleccionado
+            document.getElementById(tabName).classList.add('active');
+            
+            // Activar botón correspondiente
+            event.target.classList.add('active');
+        }
+        
+        function openHelpModal() {
+            document.getElementById('helpModal').style.display = 'block';
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        function openChatModal() {
+            alert('El chat en vivo está disponible dentro de la app SkillSwap. ¡Descárgala ahora!');
+        }
+        
+        // Cerrar modal al hacer clic fuera
+        window.onclick = function(event) {
+            const modal = document.getElementById('helpModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+        
+        // Búsqueda simple
+        document.querySelector('.search-input').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.feature-card');
+            
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    card.style.display = 'block';
+                    card.style.border = '2px solid #667eea';
+                } else {
+                    card.style.border = 'none';
+                }
+            });
+        });
+        
+        // Smooth scroll para enlaces TOC
+        document.querySelectorAll('.toc-item').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+        // Animaciones al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observar todas las cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

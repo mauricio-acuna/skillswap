@@ -59,6 +59,38 @@ export type ExploreStackParamList = {
 export type ExploreStackScreenProps<T extends keyof ExploreStackParamList> = 
   StackScreenProps<ExploreStackParamList, T>;
 
+// Main Stack Navigation Types (for skill browsing and details)
+export type MainStackParamList = {
+  Home: undefined;
+  SkillBrowse: undefined;
+  SkillDetail: { skillId: string };
+  BookSession: { skillId: string; instructorId: string };
+  UserProfile: { userId: string };
+  EditProfile: undefined;
+  Settings: undefined;
+  Notifications: undefined;
+  Messages: undefined;
+  Chat: { recipientId: string; recipientName: string };
+  MySkills: undefined;
+  AddSkill: undefined;
+  EditSkill: { skillId: string };
+  Bookings: undefined;
+  BookingDetail: { bookingId: string };
+  Reviews: undefined;
+  WriteReview: { skillId: string; bookingId: string };
+  Payments: undefined;
+  PaymentMethod: undefined;
+  Earnings: undefined;
+  Help: undefined;
+  About: undefined;
+  TermsOfService: undefined;
+  PrivacyPolicy: undefined;
+  UIShowcase: undefined;
+};
+
+export type MainStackScreenProps<T extends keyof MainStackParamList> = 
+  StackScreenProps<MainStackParamList, T>;
+
 // Matches Stack Navigation Types
 export type MatchesStackParamList = {
   Matches: undefined;
